@@ -13,18 +13,18 @@
 </head>
 
 <body>
-  <h1 class=" text-center my-5">Connexion</h1>
+  <h1 class=" text-center my-5 fw-bold">Connexion</h1>
   <div class="container">
     <div class="row">
       <form action="" method="POST" class="col-lg-6 mx-auto">
 
         <div class="mb-3">
-          <label for="email" class="form-label fw-bold">Identifiant</label>
+          <label for="email" class="form-label fw-bold fs-5">Identifiant</label>
           <input type="email" class="form-control" id="email" name="mail">
         </div>
 
         <div class="mb-3">
-          <label for="password" class="form-label fw-bold">Mot de passe</label>
+          <label for="password" class="form-label fw-bold fs-5">Mot de passe</label>
           <input type="password" class="form-control" id="password" name="password">
         </div>
 
