@@ -1,0 +1,9 @@
+html,body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    background-image: url(/assets/img/planner-g95658c39c_1920.jpg);
+}
+
