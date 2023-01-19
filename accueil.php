@@ -1,20 +1,32 @@
 <?php
 if (isset($_GET['year'])) {
     $year = $_GET['year'];
+    if($_GET['year'] < 1970 || $_GET['year'] > 2038){
+        echo 'Veuillez selectionner une année valide <br>';
+        echo '<button type="button"><a href="accueil.php">Retour</a></button>';
+        exit;
+    }
 }
 
 if (isset($_GET['month'])) {
+    if($_GET['month'] > 12 || $_GET['month'] < 1 ){
+        echo 'Veuillez selectionner un mois valide <br>';
+        echo '<button type="button"><a href="accueil.php">Retour</a></button>';
+        exit;
+    }
     $month = $_GET['month'];
 }
-$days = ['Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi','Dimanche'];
-$months = ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Aout','Septembre','Octobre','Novembre','Decembre'];
+$days = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'];
+$months = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Aout', 'Septembre', 'Octobre', 'Novembre', 'Decembre'];
+//tableau des jours fériés en France
 
-function showCalendar($month, $year)
+
+function showCalendar($month, $year,)
 {
     $daysInMonth = cal_days_in_month(CAL_GREGORIAN, $month, $year);
     echo '
     
-    <table>
+    <table class="col-12">
         <thead>
             <tr>
                 <th>Lundi</th>
@@ -78,45 +90,51 @@ function showCalendar($month, $year)
 
     <div class="container">
         <div class="row">
-        <form class="col-lg-6 m-auto my-5" class="" method="">
-            <label for="year">Choisir l'année:</label>
-            <select id="year" name="year">
-                <option value="2018">2018</option>
-                <option value="2019">2019</option>
-                <option value="2020">2020</option>
-                <option value="2021">2021</option>
-                <option value="2022">2022</option>
-                <option value="2023">2023</option>
-            </select>
-            <br>
-            <label for="month">Choisir le mois:</label>
-            <select id="month" name="month">
-                <option value="1">Janvier</option>
-                <option value="2">Février</option>
-                <option value="3">Mars</option>
-                <option value="4">Avril</option>
-                <option value="5">Mai</option>
-                <option value="6">Juin</option>
-                <option value="7">Juillet</option>
-                <option value="8">Août</option>
-                <option value="9">Septembre</option>
-                <option value="10">Octobre</option>
-                <option value="11">Novembre</option>
-                <option value="12">Décembre</option>
-            </select>
-            <br><br>
-            <input type="submit" value="Envoyer">
-        </form>
+            <form class="choice col-lg-6  my-5 col-12" class="" method="">
+                <label for="year">Choisir l'année:</label>
+                
+                <select id="year" name="year">
+                    <option value="2018">2018</option>
+                    <option value="2019">2019</option>
+                    <option value="2020">2020</option>
+                    <option value="2021">2021</option>
+                    <option value="2022">2022</option>
+                    <option value="2023">2023</option>
+                </select>
+                <br>
+                <label for="month">Choisir le mois:</label>
+                <select id="month" name="month">
+                    <option value="1">Janvier</option>
+                    <option value="2">Février</option>
+                    <option value="3">Mars</option>
+                    <option value="4">Avril</option>
+                    <option value="5">Mai</option>
+                    <option value="6">Juin</option>
+                    <option value="7">Juillet</option>
+                    <option value="8">Août</option>
+                    <option value="9">Septembre</option>
+                    <option value="10">Octobre</option>
+                    <option value="11">Novembre</option>
+                    <option value="12">Décembre</option>
+                </select>
+                <br><br>
+                <input type="submit" value="Envoyer">
+            </form>
+            <div class="doc col-lg-6 my-5 mx-5 ">
+                <input type="file"> <br><br>
+                <input type="submit" value="Envoyer">
+            </div>
 
-        <h1><?=$month.' '.$year?></h1>
-        <?php if (isset($_GET['year']) && isset($_GET['month'])) {
-            // if($_GET['month']>12 || )
-            $month = $_GET['month'];
-            $year = $_GET['year'];
-            showCalendar($month, $year);
-        } else {
-            showCalendar(date('m'), date('Y'));
-        } ?>
+
+            <?php if (isset($_GET['year']) && isset($_GET['month'])) {
+              
+                $month = $_GET['month'];
+                $year = $_GET['year']; ?>
+                <h1 class="text-end"><?= $months[$month - 1] . ' ' . $year ?></h1>
+            <?php showCalendar($month, $year);
+            } else {
+                showCalendar(date('m'), date('Y'));
+            } ?>
         </div>
 
     </div>
