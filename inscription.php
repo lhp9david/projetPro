@@ -13,7 +13,7 @@
 </head>
 
 <body>
-  <i class="bi bi-arrow-left-circle-fill fs-1 mx-3"></i>
+ <a class="text-dark" href="/index.php"><i class="bi bi-arrow-left-circle-fill fs-1 mx-3"></i></a> 
   <h1 class=" text-center fw-bold fs-1">Inscription</h1>
   <div class="container">
 
@@ -46,7 +46,7 @@
         <input type="checkbox" class="form-check-input" id="CGU" name="CGU">
         <label class="form-check-label fw-bold fs-5" for="CGU">Veuillez accepter les CGU</label>
       </div>
-      <button type="submit" class="btn btn-primary">Valider</button>
+      <button type="submit" class="btn btn-warning">Valider</button>
     </form>
   </div>
 

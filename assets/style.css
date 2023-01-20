@@ -6,6 +6,31 @@ html,body {
 body {
     background-image: url(/assets/img/planner-g95658c39c_1920.jpg);
 }
+/*****************************login**************************/
+
+.guillemetGauche {
+   height: 2em;
+   margin-right: 2em;
+}
+.guillemetDroit {
+   height: 2em;
+   margin-left: 2em;
+}
+
+/***************************NAVBAR**************************/
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1em;
+    background-color: gold ;
+    color: white;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+.navbar img {
+  height: 2em;
+}
 /***********************Choix du mois et de l'année**************************/
 .choice,.doc {
   width: fit-content;
@@ -25,11 +50,18 @@ body {
   transition: 0.5s;
   cursor: pointer;
 }
+.arrow {
+  width: 2em;
+  height: 2em;
+  margin: 1em;
+ 
+}
 
 /*******************CALENDRIER******************************/
 table {
     border-collapse: collapse;
     width: 100%;
+    height: 80vh;
   }
   th, td {
     border: 1px solid #ddd;
@@ -54,13 +86,25 @@ table {
     cursor: pointer;
   }
 
+/***************************footer**************************/
+footer {
+    background-color: gold;
+    color: black;
+    font-weight: bold;
+    padding: 1em;
+    text-align: center;
+}
 
-@media screen and (max-width: 425px) {
+
+@media screen and (max-width: 520px) {
 .container {
     width: 90%;
     margin: auto;
     padding: 0;
 
+    }
+    table {
+      height: 90vh;
     }
     th,td{
         font-size: 0.5em;
@@ -71,7 +115,12 @@ table {
         padding: 0.5em;
       }
       .doc {
-        margin-left: 0;
+        margin-left: 0 important;
+      }
+      .bell{
+        position: absolute;
+        top: 4em;
+        left: 1em;
       }
 }
     
