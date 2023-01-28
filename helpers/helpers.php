@@ -3,7 +3,7 @@ if (isset($_GET['year']) && isset($_GET['month'])) {
     if ($_GET['year'] < 1970 || $_GET['year'] > 2037 || $_GET['month'] > 12 || $_GET['month'] < 1) {
         // au moins un champ est vide
         // redirigez l'utilisateur vers la page d'erreur
-        header('Location: view-accueil.php');
+        header('Location: controller-accueil.php');
         exit;
     }
 
