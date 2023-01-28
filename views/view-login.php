@@ -21,12 +21,12 @@
 
         <div class="mb-3">
           <label for="email" class="form-label fw-bold fs-5 text-center">Identifiant</label>
-          <input type="email" class="form-control" id="email" name="mail">
+         <input class="form-control" value="<?= $_POST['mail'] ?? '' ?>" type="email" name="mail" id="mail"><span><?= $errors['mail'] ?? '' ?></span>
         </div>
 
         <div class="mb-3">
           <label for="password" class="form-label fw-bold fs-5 text-end">Mot de passe</label>
-          <input type="password" class="form-control" id="password" name="password">
+          <input type="password" class="form-control" name="password" id="password"><span><?= $errors['password'] ?? '' ?></span>
         </div>
 
         <button type="submit" class="btn btn-warning d-block mx-auto">Valider</button>
