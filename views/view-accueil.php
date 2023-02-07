@@ -15,6 +15,8 @@
 
 
 <body>
+
+
 <?php include('../views/include/navbar.php') ?>
 
 <div class="container">
@@ -30,7 +32,7 @@
         showForm(date('m'), date('Y'));
         showCalendar(date('m'), date('Y'));
     }
-
+    
 
     ?>
 
@@ -60,8 +62,8 @@
         </div>
 
     </div>
- <?php include('../views/include/footer.php') ?>
-    <script src="assets/js/bootstrap.bundle.js"></script>
+     <?php include('../views/include/footer.php') ?>
+    <script src="../assets/js/bootstrap.bundle.js"></script>
     <script src="script.js"></script>
 </body>
 

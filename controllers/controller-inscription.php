@@ -22,34 +22,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $errors['password'] = 'Veuillez entrer votre mot passe';
         }
     }
-
-    if (empty($errors)) {
-
-                    header('Location: controller-accueil.php');
-                }
-            } 
-        
-    
-
-
-if(isset($_GET['logout'])) {
-   
-    $disconnected = true;
 }
-?>
 
-
-
-
-
-
-
-
-
-
-
-
-
-<?php
-include('../views/view-login.php');
-?>
+    ?>

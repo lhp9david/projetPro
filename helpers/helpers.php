@@ -9,10 +9,13 @@ if (isset($_GET['year']) && isset($_GET['month'])) {
 
 }
 
+
+
 // fonction pour afficher le calendrier
-function showCalendar($month, $year,)
+function showCalendar($month, $year)
 {
 
+    $birthday = '02-02-1970';
 
     $days = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'];
     $months = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Aout', 'Septembre', 'Octobre', 'Novembre', 'Decembre'];
@@ -63,11 +66,18 @@ function showCalendar($month, $year,)
             }
         }
         // afficher les jrs du mois
+
         // date d'aujourd'hui en jaune
         if (date('d-M-Y', mktime(0, 0, 0, $month, $i, $year)) == date('d-M-Y')) {
 
+            echo '<td class="bg-warning text-black">'.date('l') . $i  . '</td>';
+            
+            // date de naissance en jaune
+        }else if (date('d-m-Y', mktime(0, 0, 0, $month, $i, $year)) == date($birthday, mktime(0, 0, 0, $month, $i, $year))) {
+
             echo '<td class="bg-warning text-black">' . $i  . '</td>';
-            // jours fériés en vert
+
+            // jours fériés en blanc
         } else if (array_key_exists(date('d-M-Y', mktime(0, 0, 0, $month, $i, $year)), $holidays)) {
 
             echo '<td class="bg-light text-black border border-dark">' . $holidays[date('d-M-Y', mktime(00, 00, 00, $month, $i, $year))]   . '</td>';
@@ -87,6 +97,7 @@ function showCalendar($month, $year,)
     }
     echo "</tbody>";
     echo "</table>";
+
 }
 
 
@@ -129,4 +140,8 @@ function showForm($month, $year)
     echo '  </select></div>
             <input class="test mx-auto d-block mt-5 text-center" type="submit" value="valider">
             </form>';
-} ?>
+}
+
+
+?>
+

@@ -9,14 +9,17 @@
     <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="/assets/bootstrap-icons-1.9.1/bootstrap-icons.css">
     <link rel="stylesheet" href="/assets/style.css">
-    <title>Document</title>
+    <title>rdv</title>
 </head>
 
 <body>
 
-<?php include('./views/include/navbar.php')?>
+<?php include('../views/include/navbar.php')?>
 
-    <script src="assets/js/bootstrap.bundle.js"></script>
+
+<?php include('../views/include/footer.php') ?>
+
+    <script src="../assets/js/bootstrap.bundle.js"></script>
     <script src="script.js"></script>
 </body>
 

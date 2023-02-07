@@ -13,6 +13,12 @@
 </head>
 
 <body>
+
+<?php if (isset($disconnected)) { ?>
+    <p>Vous êtes bien déconnecté</p>
+   <button class="return"><a href="../controllers/controller-login.php">Retour à l'accueil</a></button> 
+<?php } else { ?>
+
   <h1 class=" text-center my-5 fw-bold">Connexion</h1>
   <div class="container">
     <div class="row">
@@ -39,7 +45,7 @@
        <img class="guillemetGauche" src="/assets/img/signe-de-guillemets-a-gauche.png" alt="guillemet"> Bienvenue sur notre plateforme pour parents divorcés! Partagez en toute sécurité des documents importants et organisez la garde de vos enfants. Connectez-vous dès maintenant. <img class="guillemetDroit" src="/assets/img/symbole-des-guillemets-droits.png" alt="guillemet">
         </p>
       </div>
-        <button type="button" class="btn btn-dark d-block mx-auto"><a class="text-decoration-none text-white" href="/inscription.php">Créer un nouveau compte</a></button>
+        <button type="button" class="btn btn-dark d-block mx-auto"><a class="text-decoration-none text-white" href="../views/view-inscription.php">Créer un nouveau compte</a></button>
       </div>
     </div>
 
@@ -47,8 +53,10 @@
   </div>
 
 
-  <script src="assets/js/bootstrap.bundle.js"></script>
+  <script src="../assets/js/bootstrap.bundle.js"></script>
   <script src="script.js"></script>
+
+  <?php } ?>
 </body>
 
 </html>

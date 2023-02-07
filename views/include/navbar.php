@@ -7,12 +7,16 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
-        <a class="nav-link active" aria-current="page" href="#">Accueil</a>
-        <a class="nav-link" href="#">Documents</a>
-        <a class="nav-link" href="#">RDV</a>
-        <a class="nav-link" href="#">Deconnexion</a>
+        <a class="nav-link active" aria-current="page" href="../controllers/controller-accueil.php">Accueil</a>
+        <a class="nav-link" href="../controllers/controller-documents.php">Documents</a>
+        <a class="nav-link" href="../controllers/controller-rdv.php">RDV</a>
+        <a class="nav-link" href="../controllers/controller-login.php?logout">Deconnexion</a>
       </div>
     </div>
   </div>
-  <a href="#"><i class="bell bi bi-bell-fill fs-3 text-black"></i></a><span class="text-black">1</span>
 </nav>
+
+
+
+
+
