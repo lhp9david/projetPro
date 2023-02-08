@@ -5,8 +5,18 @@ html,body {
 }
 body {
     background-image: url(/assets/img/planner-g95658c39c_1920.jpg);
+    background-size: cover ;
+    
 }
 /*****************************login**************************/
+
+.connexion {
+  width: fit-content;
+    margin: auto;
+    background-color: #ffc107;
+    padding: 0.2em;
+    border-radius: 10px 0 10px 0;
+}
 
 .guillemetGauche {
    height: 2em;
@@ -16,6 +26,15 @@ body {
    height: 2em;
    margin-left: 2em;
 }
+/********************************************************Inscription****************************************************/
+.inscription {
+  width: fit-content;
+  margin: auto;
+  background-color: #ffc107;
+  padding: 0.2em;
+  border-radius: 10px 0 10px 0;
+}
+
 
 /***************************NAVBAR**************************/
 .navbar {
@@ -85,6 +104,37 @@ table {
     transition: 0.5s;
     cursor: pointer;
   }
+
+/*********************************************************view-rdv****************************************************/
+
+.event{
+  color: gold;
+  font-weight: bold;
+  padding: 1em;
+  text-align: center;
+  background-color: black;
+  border-radius: 10px 0 10px 0;
+}
+.event:nth-child(even) {
+    background-color: gold;
+    color: black;
+}
+.event p {
+  margin: 0;
+}
+/*******************oublie de mot de passe**********************/
+
+
+.forgetMail {
+  width: fit-content;
+  margin: 1em auto;
+  background-color: #ffc107;
+  padding: 0.2em;
+  border-radius: 10px 0 10px 0;
+}
+
+
+
 
 /***************************footer**************************/
 footer {

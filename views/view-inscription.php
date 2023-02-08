@@ -9,12 +9,12 @@
   <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
   <link rel="stylesheet" href="../assets/bootstrap-icons-1.9.1/bootstrap-icons.css">
   <link rel="stylesheet" href="../assets/style.css">
-  <title>Calendrier</title>
+  <title>Inscription</title>
 </head>
 
 <body>
  <a class="text-dark" href="/index.php"><i class="bi bi-arrow-left-circle-fill fs-1 mx-3"></i></a> 
-  <h1 class=" text-center fw-bold fs-1">Inscription</h1>
+  <h1 class="inscription text-center fw-bold fs-1">Inscription</h1>
   <div class="container">
 
     <form action="" method="POST" class="col-lg-6 mx-auto">

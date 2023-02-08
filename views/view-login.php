@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
   <link rel="stylesheet" href="/assets/bootstrap-icons-1.9.1/bootstrap-icons.css">
   <link rel="stylesheet" href="/assets/style.css">
-  <title>Calendrier</title>
+  <title>Connexion</title>
 </head>
 
 <body>
@@ -19,7 +19,7 @@
    <button class="return"><a href="../controllers/controller-login.php">Retour à l'accueil</a></button> 
 <?php } else { ?>
 
-  <h1 class=" text-center my-5 fw-bold">Connexion</h1>
+  <h1 class="connexion text-center my-5 fw-bold">Connexion</h1>
   <div class="container">
     <div class="row">
 
@@ -35,17 +35,18 @@
           <input type="password" class="form-control" name="password" id="password"><span><?= $errors['password'] ?? '' ?></span>
         </div>
 
-        <button type="submit" class="btn btn-warning d-block mx-auto">Valider</button>
+        <button type="submit" class="btn btn-warning d-block mx-auto fw-bold">Valider</button>
       </form>
+      <a class="text-center mt-5" href="">Mot de passe oublié</a>
     </div>
     <div class="row my-5">
       <div class="col-lg-6 mx-auto">
       <div >
         <p class="text-center fw-bold">
-       <img class="guillemetGauche" src="/assets/img/signe-de-guillemets-a-gauche.png" alt="guillemet"> Bienvenue sur notre plateforme pour parents divorcés! Partagez en toute sécurité des documents importants et organisez la garde de vos enfants. Connectez-vous dès maintenant. <img class="guillemetDroit" src="/assets/img/symbole-des-guillemets-droits.png" alt="guillemet">
+       <img class="guillemetGauche" src="/assets/img/signe-de-guillemets-a-gauche.png" alt="guillemet"> Bienvenue sur notre plateforme pour parents divorcés! Partagez en toute sécurité des photos et évènements importants de vos enfants. Connectez-vous dès maintenant. <img class="guillemetDroit" src="/assets/img/symbole-des-guillemets-droits.png" alt="guillemet">
         </p>
       </div>
-        <button type="button" class="btn btn-dark d-block mx-auto"><a class="text-decoration-none text-white" href="../views/view-inscription.php">Créer un nouveau compte</a></button>
+        <button type="button" class="btn btn-dark d-block mx-auto fw-bold"><a class="text-decoration-none text-white" href="../views/view-inscription.php">Créer un nouveau compte</a></button>
       </div>
     </div>
 

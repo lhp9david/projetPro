@@ -43,7 +43,7 @@
 
                     <div class="doc  my-5 mx-auto ">
                         <h3>Ajouter un événement</h3>
-                        <input type="date"> <br><br>
+                        <input type="date" name="dateEvenement"> <br><br>
                         <input type="submit" value="Ajouter">
                     </div>
                 </div>

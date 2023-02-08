@@ -70,7 +70,9 @@ function showCalendar($month, $year)
         // date d'aujourd'hui en jaune
         if (date('d-M-Y', mktime(0, 0, 0, $month, $i, $year)) == date('d-M-Y')) {
 
-            echo '<td class="bg-warning text-black">'.date('l') . $i  . '</td>';
+            echo '<td class="bg-warning text-black type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"">'.date('l') . $i  . '</td>';
+            createModal();
+
             
             // date de naissance en jaune
         }else if (date('d-m-Y', mktime(0, 0, 0, $month, $i, $year)) == date($birthday, mktime(0, 0, 0, $month, $i, $year))) {
@@ -142,6 +144,25 @@ function showForm($month, $year)
             </form>';
 }
 
+function createModal(){ ?>
+    <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+ <?php } ?>
 
-?>
 
