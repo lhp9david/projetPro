@@ -15,7 +15,7 @@ if (isset($_GET['year']) && isset($_GET['month'])) {
 function showCalendar($month, $year)
 {
 
-    $birthday = '02-02-1970';
+    
 
     $days = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'];
     $months = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Aout', 'Septembre', 'Octobre', 'Novembre', 'Decembre'];
@@ -58,11 +58,15 @@ function showCalendar($month, $year)
     // boucle pour parcourir les jrs du mois + fonction date() pour déterminer le jr de la semaine 
     for ($i = 1; $i <= $daysInMonth; $i++) {
         $dayOfWeek = date('N', mktime(0, 0, 0, $month, $i, $year));
+
         // creation de cellules vides avant le 1er du mois
         if ($i == 1) {
             echo '<tr>';
             for ($j = 1; $j < $dayOfWeek; $j++) {
+
                 echo '<td class="bg-secondary"></td>';
+             
+
             }
         }
         // afficher les jrs du mois
@@ -70,21 +74,18 @@ function showCalendar($month, $year)
         // date d'aujourd'hui en jaune
         if (date('d-M-Y', mktime(0, 0, 0, $month, $i, $year)) == date('d-M-Y')) {
 
-            echo '<td class="bg-warning text-black type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"">'.date('l') . $i  . '</td>';
-            createModal();
+            echo '<td class="bg-warning text-black type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-'.$i.'"">'.$i.'</td>';
+            createModal($month, $i, $year, $holidays);
 
             
-            // date de naissance en jaune
-        }else if (date('d-m-Y', mktime(0, 0, 0, $month, $i, $year)) == date($birthday, mktime(0, 0, 0, $month, $i, $year))) {
-
-            echo '<td class="bg-warning text-black">' . $i  . '</td>';
-
             // jours fériés en blanc
         } else if (array_key_exists(date('d-M-Y', mktime(0, 0, 0, $month, $i, $year)), $holidays)) {
 
-            echo '<td class="bg-light text-black border border-dark">' . $holidays[date('d-M-Y', mktime(00, 00, 00, $month, $i, $year))]   . '</td>';
+            echo '<td class="bg-light text-black border border-dark type="button" data-bs-toggle="modal" data-bs-target="#modal-'.$i.'">' . $holidays[date('d-M-Y', mktime(00, 00, 00, $month, $i, $year))]   . '</td>';
+            createModal($month, $i, $year, $holidays);
         } else {
-            echo '<td>' . $i . '</td>';
+            echo '<td class="type="button" data-bs-toggle="modal" data-bs-target="#modal-'.$i.'">' . $i . '</td>';
+            createModal($month, $i, $year, $holidays);
         }
 
         // creation de cellules vides après le dernier du mois
@@ -92,7 +93,8 @@ function showCalendar($month, $year)
             echo '</tr>';
         } else if ($i == $daysInMonth) {
             for ($j = $dayOfWeek; $j < 7; $j++) {
-                echo "<td class='bg-secondary'></td>";
+                echo '<td class="bg-secondary "></td>';
+                
             }
             echo '</tr>';
         }
@@ -144,21 +146,21 @@ function showForm($month, $year)
             </form>';
 }
 
-function createModal(){ ?>
+function createModal($month, $i, $year, $holidays){ ?>
     <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="modal-<?=$i?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <h1 class="modal-title fs-5" id="exampleModalLabel"><?=  $i .'/'.$month. '/' .$year?></h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        ...
+        <?= $holidays[date('d-M-Y', mktime(00, 00, 00, $month, $i, $year))] ?? ' '?>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-primary">Ajouter un évènement</button>
       </div>
     </div>
   </div>

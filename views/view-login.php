@@ -37,7 +37,7 @@
 
         <button type="submit" class="btn btn-warning d-block mx-auto fw-bold">Valider</button>
       </form>
-      <a class="text-center mt-5" href="">Mot de passe oublié</a>
+      <a class="text-center mt-5" href="../views/forget.php">Mot de passe oublié</a>
     </div>
     <div class="row my-5">
       <div class="col-lg-6 mx-auto">
