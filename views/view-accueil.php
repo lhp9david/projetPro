@@ -17,56 +17,30 @@
 <body>
 
 
-<?php include('../views/include/navbar.php') ?>
+    <?php include('../views/include/navbar.php') ?>
 
-<div class="container">
-    <?php if (isset($_GET['year']) && isset($_GET['month'])) {
+    <div class="container mb-5">
+        <?php if (isset($_GET['year']) && isset($_GET['month'])) {
 
-        $month = $_GET['month'];
-        $year = $_GET['year'];
-        '<div class="row">' . showForm($month, $year) . '</div>';
+            $month = $_GET['month'];
+            $year = $_GET['year'];
+            '<div class="row">' . showForm($month, $year) . '</div>';
 
-        showCalendar($month, $year);
-    } else {
-        
-        showForm(date('m'), date('Y'));
-        showCalendar(date('m'), date('Y'));
-    }
-    
+            showCalendar($month, $year);
+        } else {
 
-    ?>
-
-        <div class="row mx-auto">
-          
-
-                <div class="shareDoc col-lg-6">
-
-                    <div class="doc  my-5 mx-auto ">
-                        <h3>Ajouter un événement</h3>
-                        <input type="date" name="dateEvenement"> <br><br>
-                        <input type="submit" value="Ajouter">
-                    </div>
-                </div>
-
-                <div class="AddEvent col-lg-6">
-
-                    <div class="doc  my-5 mx-auto ">
-                        <h3>Partager un document</h3>
-                        <input type="file"> <br><br>
-                        <input type="submit" value="Envoyer">
-                    </div>
-                </div>
-           
+            showForm(date('m'), date('Y'));
+            showCalendar(date('m'), date('Y'));
+        }
 
 
-        </div>
+        ?>
+
 
     </div>
-     <?php include('../views/include/footer.php') ?>
+    <?php include('../views/include/footer.php') ?>
     <script src="../assets/js/bootstrap.bundle.js"></script>
     <script src="script.js"></script>
 </body>
 
 </html>
-
-

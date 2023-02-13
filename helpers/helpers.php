@@ -66,7 +66,6 @@ function showCalendar($month, $year)
 
                 echo '<td class="bg-secondary"></td>';
              
-
             }
         }
         // afficher les jrs du mois
@@ -160,7 +159,7 @@ function createModal($month, $i, $year, $holidays){ ?>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Ajouter un évènement</button>
+        <button type="button" class="btn btn-primary"><a class="text-white" href="../views/add-event.php?<?='date='.$year.'-'.$month.'-'.$i?>">Ajouter un évènement</a> </button>
       </div>
     </div>
   </div>

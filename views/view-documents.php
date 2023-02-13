@@ -16,6 +16,15 @@
 
 <?php include('../views/include/navbar.php')?>
 
+<div class="ShareDoc col-lg-6">
+
+<div class="doc  my-5 mx-auto ">
+    <h3>Partager un document</h3>
+    <input type="file"> <br><br>
+    <input type="submit" value="Envoyer">
+</div>
+</div>
+
 
 <?php include('../views/include/footer.php') ?>
 
