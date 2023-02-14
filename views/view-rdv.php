@@ -20,24 +20,28 @@
 <div class="container">
     <h2 class="my-3">Mattéo</h2>
         <div class=" my-3 row event">
-            <p class="col-lg-4">10/04/2023 </p>
-            <p class="col-lg-4">rendez vous medecin</p>
-            <p class="col-lg-4">14h</p>
+            <p class="col-lg-3">10/04/2023 </p>
+            <p class="col-lg-3">rendez vous medecin</p>
+            <p class="col-lg-4">non renseigné</p>
+            <p class="col-lg-2">14h</p>
         </div>
         <div class=" my-3 row event">
-            <p class="col-lg-4">11/07/2023</p>
-            <p class="col-lg-4">Anniversaire</p>
-            <p class="col-lg-4">15h</p>
+            <p class="col-lg-3">11/07/2023</p>
+            <p class="col-lg-3">Anniversaire</p>
+            <p class="col-lg-4">Sa cousine</p>
+            <p class="col-lg-2">15h</p>
         </div>
         <div class=" my-3 row event">
-            <p class="col-lg-4">19/09/2023 </p>
-            <p class="col-lg-4">Match de foot</p>
-            <p class="col-lg-4">14h</p>
+            <p class="col-lg-3">19/09/2023 </p>
+            <p class="col-lg-3">Match de foot</p>
+            <p class="col-lg-4">contre harfleur</p>
+            <p class="col-lg-2">14h</p>
         </div>
         <div class=" my-3 row event">
-            <p class="col-lg-4">12/11/2023 </p>
-            <p class="col-lg-4">rendez vous medecin</p>
-            <p class="col-lg-4">14h</p>
+            <p class="col-lg-3">12/11/2023 </p>
+            <p class="col-lg-3">rendez vous medecin</p>
+            <p class="col-lg-4">suivi orl</p>
+            <p class="col-lg-2">14h</p>
         </div>
 </div>
 

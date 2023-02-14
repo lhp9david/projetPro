@@ -9,7 +9,7 @@
       <div class="navbar-nav">
         <a class="nav-link active" aria-current="page" href="../controllers/controller-accueil.php">Accueil</a>
         <a class="nav-link" href="../controllers/controller-documents.php">Documents</a>
-        <a class="nav-link" href="../controllers/controller-rdv.php">RDV</a>
+        <a class="nav-link" href="../controllers/controller-rdv.php">Evenements</a>
         <a class="nav-link" href="../controllers/controller-login.php?logout">Deconnexion</a>
       </div>
     </div>

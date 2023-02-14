@@ -23,7 +23,7 @@
         <div class="doc  my-5 mx-auto ">
             <h3>Ajouter un événement</h3>
 
-            <div><input type="date" name="dateEvenement" value="<?= $_GET['date'] ?>"></div>
+            <div><input type="date" name="dateEvenement" value="<?=$_GET['date']?>"></div>
             <div> <select name="motifEvent" id="event-select">
                     <option value="">--Choisir evenement--</option>
                     <option value="dog">Sortie scolaire</option>

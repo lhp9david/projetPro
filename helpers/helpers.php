@@ -158,8 +158,8 @@ function createModal($month, $i, $year, $holidays){ ?>
         <?= $holidays[date('d-M-Y', mktime(00, 00, 00, $month, $i, $year))] ?? ' '?>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary"><a class="text-white" href="../views/add-event.php?<?='date='.$year.'-'.$month.'-'.$i?>">Ajouter un évènement</a> </button>
+        <button type="button" class="btn btn-dark fw-bold" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-warning fw-bold "><a class="text-black" href="../views/add-event.php?<?='date='.$year.'-'.$month.'-'.$i?>">Ajouter un évènement</a> </button>
       </div>
     </div>
   </div>

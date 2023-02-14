@@ -155,6 +155,13 @@ textarea
 {
  resize : none;
 }
+/*************************************add-doc*************************************/
+.ShareDoc {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 /*******************oublie de mot de passe**********************/
 
@@ -167,6 +174,10 @@ textarea
   border-radius: 10px 0 10px 0;
 }
 
+/********************************modal************************************/
+.modal-footer button a {
+  text-decoration: none;
+}
 
 
 /***************************footer**************************/

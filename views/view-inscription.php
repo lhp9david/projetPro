@@ -46,7 +46,7 @@
         <input type="checkbox" class="form-check-input" id="CGU" name="CGU">
         <label class="form-check-label fw-bold fs-5" for="CGU">Veuillez accepter les CGU</label>
       </div>
-      <button type="submit" class="btn btn-warning">Valider</button>
+      <button type="submit" class="btn btn-warning fw-bold mx-auto d-block">Valider</button>
     </form>
   </div>
 
