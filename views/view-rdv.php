@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="/assets/bootstrap-icons-1.9.1/bootstrap-icons.css">
     <link rel="stylesheet" href="../assets/style.css">
-    <title>rdv</title>
+    <title>Evenements</title>
 </head>
 
 <body>
@@ -17,7 +17,7 @@
 <?php include('../views/include/navbar.php')?>
 
 
-<div class="container">
+<div class="container event-container">
     <h2 class="my-3">Mattéo</h2>
         <div class=" my-3 row event">
             <p class="col-lg-3">10/04/2023 </p>

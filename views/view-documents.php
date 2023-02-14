@@ -16,7 +16,7 @@
 
 <?php include('../views/include/navbar.php')?>
 
-<div class="ShareDoc col-lg-6">
+<div class="ShareDoc">
 
 <div class="doc  my-5 mx-auto ">
     <h3>Partager un document</h3>

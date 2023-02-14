@@ -38,7 +38,7 @@ function showCalendar($month, $year)
 
 // nombre de jours dans le mois
     $daysInMonth = cal_days_in_month(CAL_GREGORIAN, $month, $year);
-    echo   '<h1 class="text-end">'  . $months[$month - 1] . ' ' . $year . '</h1>' . '
+    echo     '
     
     <table class="col-12">
         <thead>
@@ -110,11 +110,11 @@ function showForm($month, $year)
 {
     $formatter = new IntlDateFormatter('fr_FR', IntlDateFormatter::FULL, IntlDateFormatter::NONE, 'Europe/Paris', IntlDateFormatter::GREGORIAN);
     $formatter->setPattern('MMMM');
-    echo '  <form class="choice mx-auto my-5 " action="" method="get">
-            <div>
+    echo '  <form class="col-lg-6" action="" method="get">
+            
             <label for="month">mois</label>';
     echo '  </select><a class="" href="?month=' . (($month == 1) ? 12 : $month - 1) . '&year=' . (($month == 1) ? $year - 1 : $year) . '"><img class="arrow" src="../assets/img/left.png" alt="gauche"></a>';
-    echo '  <select class = "mx-auto"name="month">';
+    echo '  <select class = ""name="month">';
 
     // Génère une liste de mois de janvier à décembre, ucfirst() met la première lettre en majuscule
 
@@ -126,9 +126,9 @@ function showForm($month, $year)
             echo '<option value=' . $m . '>' . ucfirst($monthlist) . '</option>';
         }
     }
-    echo '  </select><a class="" href="?month=' . (($month == 12) ? 1 : $month + 1) . '&year=' . (($month == 12) ? $year + 1 : $year) . '"><img class="arrow" src="../assets/img/right.png" alt="droite"></a><br>';
-    echo '<label for="year" class="d-block mx-auto">année</label>';
-    echo '<select class="mx-auto d-block" name="year">';
+    echo '  </select><a class="" href="?month=' . (($month == 12) ? 1 : $month + 1) . '&year=' . (($month == 12) ? $year + 1 : $year) . '"><img class="arrow" src="../assets/img/right.png" alt="droite"></a>';
+    echo '<label for="year" class="me-2">année</label>';
+    echo '<select class="" name="year">';
 
     // Génère la liste des années de 1970 à 2037
 
@@ -140,8 +140,8 @@ function showForm($month, $year)
         }
     }
 
-    echo '  </select></div>
-            <input class="test mx-auto d-block mt-5 text-center" type="submit" value="valider">
+    echo '  </select>
+            <input class="" type="submit" value="valider">
             </form>';
 }
 

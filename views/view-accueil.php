@@ -24,9 +24,9 @@
 
             $month = $_GET['month'];
             $year = $_GET['year'];
-            '<div class="row">' . showForm($month, $year) . '</div>';
+     '<div class="row">' . showForm($month, $year) . showCalendar($month, $year); '</div>';
 
-            showCalendar($month, $year);
+            
         } else {
 
             showForm(date('m'), date('Y'));
@@ -35,7 +35,6 @@
 
 
         ?>
-
 
     </div>
     <?php include('../views/include/footer.php') ?>
