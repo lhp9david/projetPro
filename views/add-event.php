@@ -22,18 +22,20 @@
 
         <div class="doc  my-5 mx-auto ">
             <h3>Ajouter un événement</h3>
+            <form action="../controllers/controller-rdv.php" method="POST">
+                <div><input type="date" name="dateEvenement" value="<?= $_GET['date'] ?>"></div>
+                <div><input type="time" name="heureEvenement"></div>
+                <div> <select name="motifEvent" id="event-select">
+                        <option value="0">--Choisir evenement--</option>
+                        <option value="Sortie scolaire">Sortie scolaire</option>
+                        <option value="Rendez-vous médical">Rendez vous médical</option>
+                        <option value="Autre">Autre</option>
+                    </select></div>
+                <div><textarea name="noteEvenement" id="" cols="30" rows="5"></textarea></div>
 
-            <div><input type="date" name="dateEvenement" value="<?=$_GET['date']?>"></div>
-            <div> <select name="motifEvent" id="event-select">
-                    <option value="">--Choisir evenement--</option>
-                    <option value="dog">Sortie scolaire</option>
-                    <option value="cat">Rendez vous médical</option>
-                    <option value="hamster">Autre</option>
-                </select></div>
-                <div><textarea name="" id="" cols="30" rows="5"></textarea></div>
+                <div><input type="submit" value="Ajouter"></div>
+            </form>
 
-        <div><input type="submit" value="Ajouter"></div>
-            
         </div>
     </div>
 

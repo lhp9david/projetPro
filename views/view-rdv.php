@@ -14,7 +14,11 @@
 
 <body>
 
-<?php include('../views/include/navbar.php')?>
+<?php include('../views/include/navbar.php');
+  
+
+    
+?>
 
 
 <div class="container event-container">
@@ -43,6 +47,12 @@
             <p class="col-lg-4">suivi orl</p>
             <p class="col-lg-2">14h</p>
         </div>
+        <?php   
+       
+          echo  addEvent($_POST['dateEvenement'],$_POST['typeEvenement'],$_POST['heureEvenement'],$_POST['noteEvenement']);
+          
+        
+    ?>
 </div>
 
 <?php include('../views/include/footer.php') ?>

@@ -23,7 +23,7 @@
   <div class="container">
     <div class="row">
 
-      <form action="" method="POST" class="col-lg-6 mx-auto">
+      <form action="/controllers/controller-login.php" method="POST" class="col-lg-6 mx-auto">
 
         <div class="mb-3">
           <label for="email" class="form-label fw-bold fs-5 text-center">Identifiant</label>
@@ -32,7 +32,7 @@
 
         <div class="mb-3">
           <label for="password" class="form-label fw-bold fs-5 text-end">Mot de passe</label>
-          <input type="password" class="form-control" name="password" id="password"><span><?= $errors['password'] ?? '' ?></span>
+          <input type="password" class="form-control" name="password" id="password"><span><?= $errors['error'] ?? '' ?></span>
         </div>
 
         <button type="submit" class="btn btn-warning d-block mx-auto fw-bold">Valider</button>
@@ -46,7 +46,7 @@
        <img class="guillemetGauche" src="/assets/img/signe-de-guillemets-a-gauche.png" alt="guillemet"> Bienvenue sur notre plateforme pour parents divorcés! Partagez en toute sécurité des photos et évènements importants de vos enfants. Connectez-vous dès maintenant. <img class="guillemetDroit" src="/assets/img/symbole-des-guillemets-droits.png" alt="guillemet">
         </p>
       </div>
-        <button type="button" class="btn btn-dark d-block mx-auto fw-bold"><a class="text-decoration-none text-white" href="../views/view-inscription.php">Créer un nouveau compte</a></button>
+        <button type="button" class="btn btn-dark d-block mx-auto fw-bold"><a class="text-decoration-none text-white" href="../controllers/controller-inscription.php">Créer un nouveau compte</a></button>
       </div>
     </div>
 

@@ -10,8 +10,7 @@ if (isset($_GET['year']) && isset($_GET['month'])) {
 }
 
 
-
-// fonction pour afficher le calendrier
+/**************************************************fonction pour afficher le formulaire *********************************************/
 function showCalendar($month, $year)
 {
 
@@ -105,7 +104,7 @@ function showCalendar($month, $year)
 
 
 
-// fonction pour afficher le formulaire
+/******************************************Fonction pour afficher le formulaire******************************************/
 function showForm($month, $year)
 {
     $formatter = new IntlDateFormatter('fr_FR', IntlDateFormatter::FULL, IntlDateFormatter::NONE, 'Europe/Paris', IntlDateFormatter::GREGORIAN);
@@ -145,6 +144,7 @@ function showForm($month, $year)
             </form>';
 }
 
+/*****************************fonction pour creer la modal  ******************************************************/
 function createModal($month, $i, $year, $holidays){ ?>
     <!-- Modal -->
 <div class="modal fade" id="modal-<?=$i?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -166,4 +166,71 @@ function createModal($month, $i, $year, $holidays){ ?>
 </div>
  <?php } ?>
 
+ <?php
+/*********************************************fonction pour verifier la validité du fichie **************************************************/
+
+
+function checkImage($inputName, $maxSize, $arrayExt)
+{
+
+    
+
+    $response = [];
+
+
+    if ($_FILES[$inputName]['error'] == 4) {
+        $response = [
+            'status' => false,
+            'message' => 'Veuillez selectionner un document'
+        ];
+    } else {
+        $response = [
+            'status' => true,
+            'message' => 'Image safe'
+        ];
+
+        if ((!preg_match('/image/', mime_content_type($_FILES[$inputName]['tmp_name']))) || (!preg_match('/application/', mime_content_type($_FILES[$inputName]['tmp_name'])))) {
+            $response = [
+                'status' => false,
+                'message' => 'veuillez selectionner uniquement une image ou un pdf'
+            ];
+        }
+
+        $mime = mime_content_type($_FILES[$inputName]['tmp_name']);
+        $array = explode('/', $mime);
+
+
+        if (!in_array($array[1], $arrayExt)) {
+
+            $extension = implode('-', $arrayExt);
+            $response = [
+                'status' => false,
+                'message' => 'Veuillez selectionner un document parmi les extensions suivantes ' . $extension
+            ];
+        }
+
+        if ($_FILES[$inputName]['size'] > $maxSize * 1024 * 1024) {
+
+            $response = [
+                'status' => false,
+                'message' => 'Veuillez selectionner un document inferieur à 2Mo'
+            ];
+        }
+
+    }
+    return $response;
+}
+
+/**********************************fonction pour ajouter un evenement  *****************************************/
+
+function addEvent($date,$type,$heure,$note){
+    
+    echo'<div class=" my-3 row event">
+    <p class="col-lg-3">'.$date.' </p>
+    <p class="col-lg-3">'.$type.'</p>
+    <p class="col-lg-4">'.$note.'</p>
+    <p class="col-lg-2">'.$heure.'</p>
+</div>';
+}
+?>
 

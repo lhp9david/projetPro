@@ -20,8 +20,11 @@
 
 <div class="doc  my-5 mx-auto ">
     <h3>Partager un document</h3>
-    <input type="file"> <br><br>
+    <form action="" method="POST" enctype="multipart/form-data">
+    <input type="file" name="userFile"> <span><?= $response['userFile'] ?? '' ?></span><br><br>
     <input type="submit" value="Envoyer">
+    <?php var_dump($_FILES)?>
+    </form>
 </div>
 </div>
 
