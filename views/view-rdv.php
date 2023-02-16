@@ -49,7 +49,7 @@
         </div>
         <?php   
        
-          echo  addEvent($_POST['dateEvenement'],$_POST['typeEvenement'],$_POST['heureEvenement'],$_POST['noteEvenement']);
+          
           
         
     ?>

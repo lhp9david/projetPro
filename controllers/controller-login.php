@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($user) {
             if (password_verify($password, $user['parent_password'])) {
                 $_SESSION['user'] = $user;
-                header('Location: controller-inscription2.php');
+                header('Location: controller-accueil.php');
                 exit();
             } else {
                 $errors['error'] = 'Mauvais identifiant ou mot de passe';

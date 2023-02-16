@@ -27,20 +27,22 @@ $errors = [];
             if (empty($_POST['birthdate'])) {
                 $errors['birthdate'] = 'champ obligatoire';
             }
-            else if (!preg_match('/^[0-9]{2}-[0-9]{2}-[0-9]{4}$/', $_POST['birthdate'])) {
-                $errors['birthdate'] = 'Veuillez respecter le format jj-mm-aaaa';
-            }
+            // else if (!preg_match('/^([0-2][0-9]|(3)[0-1])(\/)(((0)[0-9])|((1)[0-2]))(\/)\d{4}$/', $_POST['birthdate'])) {
+            //     $errors['birthdate'] = 'Veuillez respecter le format jj-mm-aaaa';
+            // }
         }
 
         if(empty($errors)){
+            include('../helpers/connexionBDD.php');
+
             $connexion = connect_bd();
-            $query = $connexion->prepare('INSERT INTO child (parent_lastname, parent_firstname, parent_birthdate) VALUES (:lastname, :firstname, :birthdate)');
-            $query->execute([
-                'lastname' => $_POST['lastname'],
-                'firstname' => $_POST['firstname'],
-                'birthdate' => $_POST['birthdate']
-            ]);
-            header('Location: controller-accueil.php');
+            $sql = 'INSERT INTO child (child_lastname, child_firstname, birthdate,parent_id) VALUES (:lastname, :firstname, :birthdate)';
+            $stmt = $connexion->prepare($sql);
+            $stmt->bindParam(':lastname', $_POST['childLastname']);
+            $stmt->bindParam(':firstname', $_POST['childFirstname']);
+            $stmt->bindParam(':birthdate', $_POST['birthdate']);
+            $stmt->execute();
+            header('Location: controller-inscription3.php');
             exit();
         }
     }
