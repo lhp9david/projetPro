@@ -1,8 +1,8 @@
 <?php
-
 require '../config/env.php';
-require '../models/Parent.php';
+require '../models/Child.php';
 require '../helpers/database.php';
+
 session_start();
 if(!isset($_SESSION['user'])){
     header('Location: controller-login.php');
