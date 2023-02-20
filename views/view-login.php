@@ -14,7 +14,12 @@
 
 <body>
 
-<?php if (isset($disconnected)) { ?>
+
+<?php if (isset($subscribed)) { ?>
+    <p>Vous êtes bien Inscrit, vous allez recevoir un mail de confirmation</p>
+   <button class="return"><a href="../controllers/controller-login.php">Se connecter</a></button> 
+
+<?php  } else if (isset($disconnected)) { ?>
     <p>Vous êtes bien déconnecté</p>
    <button class="return"><a href="../controllers/controller-login.php">Retour à l'accueil</a></button> 
 <?php } else { ?>

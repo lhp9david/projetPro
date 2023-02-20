@@ -1,4 +1,7 @@
 <?php
+require '../config/env.php';
+require '../models/Parent.php';
+require '../helpers/database.php';
 
     $errors = [];
     
@@ -68,20 +71,18 @@
 
         if(empty($errors)){
 
-            include('../helpers/connexionBDD.php');
+            
+ 
+            $obj_user = new Paarent($_POST['lastname'], $_POST['firstname'], $_POST['mail'], $_POST['password'],'','');
+            $obj_user->createParent();
 
-            $connexion = connect_bd();
-            $sql = "INSERT INTO parent (parent_name, parent_firstname, mail,parent_password) VALUES (:lastname, :firstname, :mail, :password)";
-            $stmt = $connexion->prepare($sql);
-            $stmt->bindValue(':lastname', $_POST['lastname']);
-            $stmt->bindValue(':firstname', $_POST['firstname']);
-            $stmt->bindValue(':mail', $_POST['mail']);
-            $stmt->bindValue(':password', password_hash($_POST['password'], PASSWORD_DEFAULT),PDO::PARAM_STR);
-            $stmt->execute();
-            header('Location: controller-inscription2.php');
-            exit();
+
+      
+            }
+
+          
         }
-    }
+    
 
     include('../views/view-inscription.php');
 

@@ -22,7 +22,7 @@
 
 
 <div class="container event-container">
-    <h2 class="my-3">Mattéo</h2>
+    <h2 class="my-3">John</h2>
         <div class=" my-3 row event">
             <p class="col-lg-3">10/04/2023 </p>
             <p class="col-lg-3">rendez vous medecin</p>

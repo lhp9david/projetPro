@@ -1,5 +1,15 @@
 <?php
 
+require '../config/env.php';
+require '../models/Parent.php';
+require '../helpers/database.php';
+session_start();
+if(!isset($_SESSION['user'])){
+    header('Location: controller-login.php');
+    exit();
+} else {
+    $user = $_SESSION['user'];
+}
 $errors = [];
     
     
@@ -33,17 +43,11 @@ $errors = [];
         }
 
         if(empty($errors)){
-            include('../helpers/connexionBDD.php');
+            $parentID = $_SESSION['user']['id'];
 
-            $connexion = connect_bd();
-            $sql = 'INSERT INTO child (child_lastname, child_firstname, birthdate,parent_id) VALUES (:lastname, :firstname, :birthdate)';
-            $stmt = $connexion->prepare($sql);
-            $stmt->bindParam(':lastname', $_POST['childLastname']);
-            $stmt->bindParam(':firstname', $_POST['childFirstname']);
-            $stmt->bindParam(':birthdate', $_POST['birthdate']);
-            $stmt->execute();
-            header('Location: controller-inscription3.php');
-            exit();
+            $child = new Child($_POST['childName'], $_POST['childFirstname'], $_POST['birthdate'],$parentID);
+            $child->createChild();
+           
         }
     }
 

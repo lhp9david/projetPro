@@ -1,5 +1,15 @@
 <?php
 
+require '../config/env.php';
+require '../models/Parent.php';
+require '../helpers/database.php';
+session_start();
+if(!isset($_SESSION['user'])){
+    header('Location: controller-login.php');
+    exit();
+} else {
+    $user = $_SESSION['user'];
+}
     $errors = [];
     
     
@@ -38,15 +48,11 @@
 
         if(empty($errors)){
 
-            include('../helpers/connexionBDD.php');
-
-            $connexion = connect_bd();
-            $sql = "INSERT INTO parent (parent2_nickname, parent2_pass) VALUES (:pseudo, :password)";
-            $stmt = $connexion->prepare($sql);
-            $stmt->bindValue(':pseudo', $_POST['pseudoParent2']);
-            $stmt->bindValue(':password', password_hash($_POST['passwordParent2'], PASSWORD_DEFAULT),PDO::PARAM_STR);
-            $stmt->execute();
-            header('Location: controller-accueil.php');
-            exit();
+          $obj_parent = new Paarent();
+          $obj_parent->createParent2();
         }
+
     }
+
+
+    include('../views/view-inscription3.php');
