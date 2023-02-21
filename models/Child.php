@@ -54,6 +54,17 @@ public function displayChild() {
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
     return $result;
 }
-}
 
+/* afficher l'anniversaire de l'enfant du parent connecté */
+
+public function displayChildBirthday() {
+    $parentID = $_SESSION['user']['parent_id'];
+    $sql = 'SELECT birthdate FROM child WHERE parent_id = :parent_id';
+    $stmt = $this->_pdo->prepare($sql);
+    $stmt->bindParam(':parent_id', $parentID);
+    $stmt->execute();
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return $result;
+}
+}
 ?>

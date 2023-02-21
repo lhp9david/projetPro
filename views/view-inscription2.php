@@ -37,7 +37,7 @@
     <script src="../assets/js/bootstrap.bundle.js"></script>
     <script src="script.js"></script>
 
-   <?php var_dump($_SESSION)?>
+   
 </body>
 
 </html>

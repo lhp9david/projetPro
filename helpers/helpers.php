@@ -14,6 +14,7 @@ if (isset($_GET['year']) && isset($_GET['month'])) {
 function showCalendar($month, $year)
 {
 
+   
     
 
     $days = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'];

@@ -11,8 +11,8 @@ class Paarent
     private string $_parent_password;
     private string $_parent2_nickname;
     private string $_parent2_pass;
-    private array $_errors = [];
-    private $_success = false;
+    public array $_errors = [];
+    public $_success = false;
 
     private object $_pdo;
 
@@ -61,6 +61,11 @@ class Paarent
         $query->execute();
         $result = $query->fetch();
 
+        if(!$result) {
+            $this->_errors['error'] = 'Identifiants ou mot de passe incorrect';
+
+        } else {
+
 
         // Vérifier si le parent_id existe dans la table child en faisant une jointure avec la table parent
         $sql = "SELECT child.* FROM child INNER JOIN parent ON child.parent_id = parent.parent_id WHERE child.parent_id = :parent_id";
@@ -96,7 +101,7 @@ class Paarent
             } 
         } else {
            $this->_errors['error'] = 'Identifiants ou mot de passe incorrect';
-        }
+        }}
     }
 
     /**
