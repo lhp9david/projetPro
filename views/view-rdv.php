@@ -22,37 +22,20 @@
 
 
 <div class="container event-container">
-    <h2 class="my-3">John</h2>
+<?php foreach($nameList as $name) {?>
+    <h2 class="my-3"><?= $name['child_firstname'] ?? ''?></h2>
+<?php } ?>
+
+    <?php foreach($eventList as $event) { ?>
         <div class=" my-3 row event">
-            <p class="col-lg-3">10/04/2023 </p>
-            <p class="col-lg-3">rendez vous medecin</p>
-            <p class="col-lg-4">non renseigné</p>
-            <p class="col-lg-2">14h</p>
+            <p class="col-lg-3"><?= $event['event_date'] ?? '' ?></p>
+            <p class="col-lg-3"><?=$event['event_name'] ?? ''?></p>
+            <p class="col-lg-4"><?=$event['event_motif']?></p>
+            <p class="col-lg-2"><?=$event['event_hour'] ?? ''?></p>
         </div>
-        <div class=" my-3 row event">
-            <p class="col-lg-3">11/07/2023</p>
-            <p class="col-lg-3">Anniversaire</p>
-            <p class="col-lg-4">Sa cousine</p>
-            <p class="col-lg-2">15h</p>
-        </div>
-        <div class=" my-3 row event">
-            <p class="col-lg-3">19/09/2023 </p>
-            <p class="col-lg-3">Match de foot</p>
-            <p class="col-lg-4">contre harfleur</p>
-            <p class="col-lg-2">14h</p>
-        </div>
-        <div class=" my-3 row event">
-            <p class="col-lg-3">12/11/2023 </p>
-            <p class="col-lg-3">rendez vous medecin</p>
-            <p class="col-lg-4">suivi orl</p>
-            <p class="col-lg-2">14h</p>
-        </div>
-        <?php   
-       
-          
-          
-        
-    ?>
+
+  <?php  } ?>
+
 </div>
 
 <?php include('../views/include/footer.php') ?>

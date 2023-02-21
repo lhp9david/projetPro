@@ -19,7 +19,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $parent = new Paarent();
         $parent->login($mail, $password);
-    }
+        
+    } else {
+        $errors['error'] = 'Veuillez remplir tous les champs';
+    } 
 
     } 
     if (isset($_GET['logout'])) {

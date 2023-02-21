@@ -18,17 +18,18 @@
 
     <?php include('../views/include/navbar.php') ?>
 
-    <div class="AddEvent ">
+    <div class="AddEvent">
 
         <div class="doc  my-5 mx-auto ">
             <h3>Ajouter un événement</h3>
             <form action="../controllers/controller-rdv.php" method="POST">
-                <div><input type="date" name="dateEvenement" value="<?= $_GET['date'] ?>"></div>
-                <div><input type="time" name="heureEvenement"></div>
+                <div><input type="date" name="dateEvent" value="<?= $_GET['date'] ?? '' ?>"></div>
+                <div><input type="time" name="hourEvent"></div>
                 <div> <select name="motifEvent" id="event-select">
                         <option value="0">--Choisir evenement--</option>
+                        <option value="rdv médical">Rendez-vous médical</option>
+                        <option value="Anniversaire">Anniversaire</option>
                         <option value="Sortie scolaire">Sortie scolaire</option>
-                        <option value="Rendez-vous médical">Rendez vous médical</option>
                         <option value="Autre">Autre</option>
                     </select></div>
                 <div><textarea name="noteEvenement" id="" cols="30" rows="5"></textarea></div>

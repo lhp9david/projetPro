@@ -32,12 +32,12 @@
 
         <div class="mb-3">
           <label for="email" class="form-label fw-bold fs-5 text-center">Identifiant</label>
-         <input class="form-control" value="<?= $_POST['mail'] ?? '' ?>" type="email" name="mail" id="mail"><span><?= $errors['mail'] ?? '' ?></span>
+         <input class="form-control" value="<?= $_POST['mail'] ?? '' ?>" type="email" name="mail" id="mail"><span class='text-danger'><?= $errors['mail'] ?? '' ?></span>
         </div>
 
         <div class="mb-3">
           <label for="password" class="form-label fw-bold fs-5 text-end">Mot de passe</label>
-          <input type="password" class="form-control" name="password" id="password"><span><?= $errors['error'] ?? '' ?></span>
+          <input type="password" class="form-control" name="password" id="password"><span class="text-danger"><?= $errors['error'] ?? '' ?></span>
         </div>
 
         <button type="submit" class="btn btn-warning d-block mx-auto fw-bold">Valider</button>

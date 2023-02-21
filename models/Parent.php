@@ -11,6 +11,8 @@ class Paarent
     private string $_parent_password;
     private string $_parent2_nickname;
     private string $_parent2_pass;
+    private array $_errors = [];
+    private $_success = false;
 
     private object $_pdo;
 
@@ -52,7 +54,7 @@ class Paarent
      */
     public function login($mail, $password)
     {
-        $errors = [];
+       
 
         $query = $this->_pdo->prepare('SELECT * FROM parent WHERE mail = :mail');
         $query->bindValue(':mail', $mail);
@@ -81,17 +83,19 @@ class Paarent
                     'parent2_pass' => $result['parent2_pass'],
                 ];
 
+                $this->_success = true;
+
                 if (!$result2) {
                     // Aucun enfant trouvé, on redirige vers la page d'inscription de l'enfant
                     header('Location: controller-inscription2.php');
                    
                 } else {
                 header('Location: controller-accueil.php');
-                exit();
+                
                 }
-            } else {
-               $errors['error'] = 'Mauvais identifiant ou mot de passe';
-            }
+            } 
+        } else {
+           $this->_errors['error'] = 'Identifiants ou mot de passe incorrect';
         }
     }
 
@@ -139,5 +143,39 @@ class Paarent
         $stmt->execute();
         header('Location: controller-accueil.php');
         exit();
+    }
+
+    /**
+     * méthode pour connexion du parent 2
+     * 
+     */
+
+    public function loginParent2($pseudo, $password){
+        $errors = [];
+
+        $query = $this->_pdo->prepare('SELECT * FROM parent WHERE parent2_nickname = :pseudo');
+        $query->bindValue(':pseudo', $pseudo);
+        $query->execute();
+        $result = $query->fetch();
+
+        if ($result) {
+            // Un ou plusieurs enregistrements ont été trouvés, traiter les données ici
+
+            if (password_verify($password, $result['parent2_pass'])) {
+                $_SESSION['user'] = [
+                    'parent_id' => $result['parent_id'],
+                    'parent_name' => $result['parent_name'],
+                    'parent_firstname' => $result['parent_firstname'],
+                    'mail' => $result['mail'],
+                    'parent_password' => $result['parent_password'],
+                    'parent2_nickname' => $result['parent2_nickname'],
+                    'parent2_pass' => $result['parent2_pass'],
+                ];
+                header('Location: controller-accueil.php');
+                exit();
+            } else {
+               $errors['error'] = 'Mauvais identifiant ou mot de passe';
+            }
+        }
     }
 }

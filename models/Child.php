@@ -22,13 +22,8 @@ class Child {
             }
         
             // nous avons besoin d'un constructeur pour instancier la connexion à la base de données
-            public function __construct( $child_lastname, $child_firstname, $birthdate, $parent_id)
+            public function __construct()
             {
-        
-                $this->_child_lastname= $child_lastname;
-                $this->_child_firstname= $child_firstname;
-                $this->_birthdate= $birthdate;
-                $this->_parent_id= $parent_id;
     
                 $this->_pdo = Database::connect();
                 
@@ -47,5 +42,18 @@ class Child {
         header('Location: controller-inscription3.php');
         exit();
 }
+
+/* afficher les prenoms des enfants du parent connecté */
+
+public function displayChild() {
+    $parentID = $_SESSION['user']['parent_id'];
+    $sql = 'SELECT child_firstname FROM child WHERE parent_id = :parent_id';
+    $stmt = $this->_pdo->prepare($sql);
+    $stmt->bindParam(':parent_id', $parentID);
+    $stmt->execute();
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return $result;
 }
+}
+
 ?>
