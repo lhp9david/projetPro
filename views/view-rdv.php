@@ -28,12 +28,12 @@
 
     <?php foreach($eventList as $event) { ?>
         <div class=" my-3 row event">
-            <p class="col-lg-3"><?= $event['event_date'] ?? '' ?></p>
+            <p class="col-lg-3"><?=$event['event_date'] ?? '' ?></p>
             <p class="col-lg-3"><?=$event['event_name'] ?? ''?></p>
             <p class="col-lg-4"><?=$event['event_motif']?></p>
-            <p class="col-lg-2"><?=$event['event_hour'] ?? ''?></p>
+            <p class="col-lg-2"><?=$event['event_hour'] ?? ''?><a href="../controllers/controller-rdv?<?=$event['event_id']?>"><img class="trash" src="../assets/img/delete.png" alt=""></a></p>
         </div>
-
+      
   <?php  } ?>
 
 </div>

@@ -22,10 +22,8 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 $name = new Child();
 $nameList = $name-> displayChild();
 
-
 $event = new Event();
 $eventList = $event-> showEvent();
-
 
 
 include('../views/view-rdv.php')

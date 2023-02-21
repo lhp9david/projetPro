@@ -31,7 +31,7 @@ class Event
         $this->_pdo = Database::connect();
     }
 
-
+/* creer un event */
     public function createEvent()
     {
 
@@ -78,11 +78,22 @@ class Event
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         $childID = $result['child_id'];
 
-        $sql = 'SELECT event_name, event_date, event_hour, event_motif FROM event WHERE child_id = :child_id';
+        $sql = 'SELECT event_id,event_name, event_date, event_hour, event_motif FROM event WHERE child_id = :child_id';
         $stmt = $this->_pdo->prepare($sql);
         $stmt->bindParam(':child_id', $childID);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
+    }
+
+    /* effacer un event */  
+    public function deleteEvent()
+    {
+        $sql = 'DELETE FROM event WHERE event_id = :event_id';
+        $stmt = $this->_pdo->prepare($sql);
+        $stmt->bindParam(':event_id', $_GET['event_id']);
+        $stmt->execute();
+        header('Location: ../controllers/controller-rdv.php');
+        exit();
     }
 }

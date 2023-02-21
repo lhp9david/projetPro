@@ -140,6 +140,12 @@ td:hover {
   margin: 0;
 }
 
+.trash {
+  width: 1em;
+  height: 1em;
+  margin-left: 1em;
+}
+
 
 /*******************************add-event************************************/
 
@@ -185,6 +191,8 @@ textarea
 .modal-footer button a {
   text-decoration: none;
 }
+
+
 
 
 /***************************footer**************************/
