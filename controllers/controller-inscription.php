@@ -71,11 +71,9 @@ require '../helpers/database.php';
 
         if(empty($errors)){
 
-            
- 
             $obj_user = new Paarent();
             $obj_user->createParent();
-            
+
 
             }
 
@@ -84,6 +82,3 @@ require '../helpers/database.php';
     
 
     include('../views/view-inscription.php');
-
-
-    ?>
