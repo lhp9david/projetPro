@@ -38,7 +38,7 @@ class Child {
         $parentID = $_SESSION['user']['parent_id'];
             
         $sql = 'INSERT INTO child (child_lastname, child_firstname, birthdate,parent_id) VALUES (:lastname, :firstname, :birthdate, :parentID)';
-        $stmt = $this->pdo->prepare($sql);
+        $stmt = $this->_pdo->prepare($sql);
         $stmt->bindParam(':lastname', $_POST['childName']);
         $stmt->bindParam(':firstname', $_POST['childFirstname']);
         $stmt->bindParam(':birthdate', $_POST['birthdate']);

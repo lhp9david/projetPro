@@ -50,7 +50,7 @@
     </form>
   </div>
 
-
+  <?php var_dump($errors);?>
 
 
   <script src="../assets/js/bootstrap.bundle.js"></script>

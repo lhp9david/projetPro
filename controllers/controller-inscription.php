@@ -73,11 +73,10 @@ require '../helpers/database.php';
 
             
  
-            $obj_user = new Paarent($_POST['lastname'], $_POST['firstname'], $_POST['mail'], $_POST['password'],'','');
+            $obj_user = new Paarent();
             $obj_user->createParent();
+            
 
-
-      
             }
 
           

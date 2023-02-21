@@ -43,9 +43,9 @@ $errors = [];
         }
 
         if(empty($errors)){
-            $parentID = $_SESSION['user']['id'];
+            
 
-            $child = new Child($_POST['childName'], $_POST['childFirstname'], $_POST['birthdate'],$parentID);
+            $child = new Child($_POST['childName'], $_POST['childFirstname'], $_POST['birthdate'],$_SESSION['user']['parent_id']);
             $child->createChild();
            
         }
