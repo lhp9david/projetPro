@@ -15,10 +15,16 @@
 <body>
 
 <?php include('../views/include/navbar.php')?>
-
-<?php foreach($fileList as $file) {?>
-    <h2 class="my-3"><?= $file['file_name'] ?? ''?></h2>
+<div class="container container-doc mt-5">
+<?php foreach($fileList as $value) {?>
+    
+    <img src="../controllers/<?=$folderPath.'/'.$value['file_name']?>" alt="">
+ 
+    
 <?php } ?>
+</div>
+
+
 
 <div class="ShareDoc">
 
@@ -42,7 +48,7 @@
 <?php include('../views/include/footer.php') ?>
 
     <script src="../assets/js/bootstrap.bundle.js"></script>
-    <script src="script.js"></script>
+    <script src="../script.js"></script>
 </body>
 
 </html>

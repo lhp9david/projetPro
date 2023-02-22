@@ -19,21 +19,32 @@ include('../helpers/database.php');
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
 
+/*
+verifier la variable $_FILE['name']['error']*/
 
-        $folder = new Files();
+        if($_FILES['userFile']['error'] === 0){
 
-        if(!$folder->checkFileSize()) {
+        
+            $folder = new Files();
+
+            if(!$folder->checkFileSize()) {
             $error = 'Veuillez choisir un fichier de moins de 5mo';
-        } else if (!$folder->checkFileType()) {
+            } else if (!$folder->checkFileType()) {
             $error = 'Veuillez choisir un fichier de type pdf, png, jpg, jpeg';
-        } else {
-            $folder->createFolder();
-            $folder->uploadFile();
+            } else {
+            $error = 'Votre fichier a bien été téléchargé';
             $folder->saveFile();
-        }
+            header('Location: controller-documents.php');
+            }
     
+        } else {
+            $error = 'Veuillez choisir un fichier';
+        }
 }
 
+
+$path = new Files();
+$folderPath = $path->getFilePath();
 $files = new Files();
 $fileList = $files->getFiles();
 
@@ -41,8 +52,6 @@ $fileList = $files->getFiles();
 
 
 
-
 include('../views/view-documents.php')
-
 
 ?>

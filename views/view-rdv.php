@@ -27,7 +27,7 @@
 <?php } ?>
 
     <?php foreach($eventList as $event) { ?>
-        <div class=" my-3 row event">
+        <div class="event-container1 my-3 row event">
             <p class="col-lg-3"><?=$event['event_date'] ?? '' ?></p>
             <p class="col-lg-3"><?=$event['event_name'] ?? ''?></p>
             <p class="col-lg-4"><?=$event['event_motif']?></p>
@@ -41,7 +41,7 @@
 <?php include('../views/include/footer.php') ?>
 
     <script src="../assets/js/bootstrap.bundle.js"></script>
-    <script src="script.js"></script>
+    <script src="../script.js"></script>
 </body>
 
 </html>

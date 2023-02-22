@@ -146,6 +146,18 @@ td:hover {
   margin-left: 1em;
 }
 
+/***********************************************view-doc**********************************************************/
+.container-doc img {
+  height: 150px;
+ 
+}
+
+.container-doc {
+  display: flex;
+  /* justify-content: center;
+  align-items: center;*/
+  flex-wrap: wrap; 
+}
 
 /*******************************add-event************************************/
 
@@ -157,10 +169,10 @@ td:hover {
 
 }
 
-textarea
-{
- resize : none;
+textarea {
+  resize: none;
 }
+
 /*******************************event-container************************************/
 
 .event-container {
@@ -168,6 +180,7 @@ textarea
   min-height: 100vh;
 
 }
+
 /****************************************add-doc*************************************/
 .ShareDoc {
   height: 100vh;
@@ -216,6 +229,8 @@ footer {
   font-weight: bold;
   margin: 0 1em;
 }
+
+
 @media screen and (max-width: 520px) {
   .container {
     width: 90%;
