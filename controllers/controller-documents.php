@@ -7,21 +7,35 @@ if(!isset($_SESSION['user'])){
     $user = $_SESSION['user'];
 }
 
-require_once('../helpers/helpers.php');
-
-$arrayExt = ['jpg', 'jpeg', 'png', 'pdf'];
-
-if(isset($_POST['submit'])){
-
-    $file = $_FILES['userFile'];
-    $size = $file['size'];
+include('../helpers/helpers.php');
+include('../models/Files.php');
+include('../config/env.php');
+include('../helpers/database.php');
 
 
-    checkImage($file,$size,$arrayExt);
+
+
+
+if($_SERVER['REQUEST_METHOD'] === 'POST'){
+
+
+
+        $folder = new Files();
+
+        if(!$folder->checkFileSize()) {
+            $error = 'Veuillez choisir un fichier de moins de 5mo';
+        } else if (!$folder->checkFileType()) {
+            $error = 'Veuillez choisir un fichier de type pdf, png, jpg, jpeg';
+        } else {
+            $folder->createFolder();
+            $folder->uploadFile();
+            $folder->saveFile();
+        }
+    
 }
 
-
-
+$files = new Files();
+$fileList = $files->getFiles();
 
 
 

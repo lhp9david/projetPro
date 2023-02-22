@@ -87,11 +87,11 @@ class Event
     }
 
     /* effacer un event */  
-    public function deleteEvent()
+    public function deleteEvent($id)
     {
         $sql = 'DELETE FROM event WHERE event_id = :event_id';
         $stmt = $this->_pdo->prepare($sql);
-        $stmt->bindParam(':event_id', $_GET['event_id']);
+        $stmt->bindParam(':event_id', $id);
         $stmt->execute();
         header('Location: ../controllers/controller-rdv.php');
         exit();

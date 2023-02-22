@@ -19,25 +19,29 @@
     <div class="container">
 
         <form action="../controllers/controller-inscription2.php" method="POST" class="col-lg-6 mx-auto">
-            <div class="mb-3">
-                <label for="childFirstname" class="form-label fw-bold fs-5">Prénom</label>
-                <input type="text" class="form-control" id="childFirstname" name="childFirstname" value="<?= (isset($_POST['childFirstname'])) ? $_POST['childFirstname'] : ''; ?>"><span class="text-danger"><?= isset($errors['childFirstname']) ? $errors['childFirstname'] : '' ?></span>
-            </div>
-            <div class="mb-3">
-                <label for="childName" class="form-label fw-bold fs-5">Nom</label>
-                <input type="text" class="form-control" id="childName" name="childName" value="<?= (isset($_POST['childName'])) ? $_POST['childName'] : ''; ?>"><span class="text-danger"><?= isset($errors['childName']) ? $errors['childName'] : '' ?></span>
-            </div>
-            <div class="mb-3">
-                <label for="birthdate" class="form-label fw-bold fs-5">Date de naissance</label>
-                <input type="date" class="form-control" id="birthdate" name="birthdate" value="<?= (isset($_POST['birthdate'])) ? $_POST['birthdate'] : ''; ?>"><span class="text-danger"><?= isset($errors['birthdate']) ? $errors['birthdate'] : '' ?></span>
+            <div class="child">
+                <div class="mb-3">
+                    <label for="childFirstname" class="form-label fw-bold fs-5">Prénom</label>
+                    <input type="text" class="form-control" id="childFirstname" name="childFirstname" value="<?= (isset($_POST['childFirstname'])) ? $_POST['childFirstname'] : ''; ?>"><span class="text-danger"><?= isset($errors['childFirstname']) ? $errors['childFirstname'] : '' ?></span>
+                </div>
+                <div class="mb-3">
+                    <label for="childName" class="form-label fw-bold fs-5">Nom</label>
+                    <input type="text" class="form-control" id="childName" name="childName" value="<?= (isset($_POST['childName'])) ? $_POST['childName'] : ''; ?>"><span class="text-danger"><?= isset($errors['childName']) ? $errors['childName'] : '' ?></span>
+                </div>
+                <div class="mb-3">
+                    <label for="birthdate" class="form-label fw-bold fs-5">Date de naissance</label>
+                    <input type="date" class="form-control" id="birthdate" name="birthdate" value="<?= (isset($_POST['birthdate'])) ? $_POST['birthdate'] : ''; ?>"><span class="text-danger"><?= isset($errors['birthdate']) ? $errors['birthdate'] : '' ?></span>
+                </div>
             </div>
             <button type="submit" class="btn btn-warning fw-bold mx-auto d-block">Valider</button>
         </form>
     </div>
-    <script src="../assets/js/bootstrap.bundle.js"></script>
-    <script src="script.js"></script>
+    <button class="addChild btn btn-success fw-bold">Ajouter un enfant</button>
 
-   
+    <script src="../assets/js/bootstrap.bundle.js"></script>
+    <script src="../script.js"></script>
+
+
 </body>
 
 </html>

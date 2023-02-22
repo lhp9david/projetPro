@@ -168,7 +168,7 @@ function createModal($month, $i, $year, $holidays){ ?>
  <?php } ?>
 
  <?php
-/*********************************************fonction pour verifier la validité du fichie **************************************************/
+/*********************************************fonction pour verifier la validité du fichier**************************************************/
 
 
 function checkImage($inputName, $maxSize, $arrayExt)

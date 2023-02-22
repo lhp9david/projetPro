@@ -26,5 +26,13 @@ $event = new Event();
 $eventList = $event-> showEvent();
 
 
+if(isset($_GET['id'])){
+  $id = $_GET['id'];
+    $event = new Event();
+    $event->deleteEvent($id);
+    header('Location: controller-rdv.php');
+    exit();
+}
+
 include('../views/view-rdv.php')
 ?>
