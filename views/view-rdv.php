@@ -28,7 +28,7 @@
 
     <?php foreach($eventList as $event) { ?>
         <div class="event-container1 my-3 row event">
-            <p class="col-lg-3"><?=$event['event_date'] ?? '' ?></p>
+            <p class="col-lg-3"><?=date('d-m-Y',strtotime($event['event_date'])) ?? '' ;?></p>
             <p class="col-lg-3"><?=$event['event_name'] ?? ''?></p>
             <p class="col-lg-4"><?=$event['event_motif']?></p>
             <p class="col-lg-2"><?=$event['event_hour'] ?? ''?><a href="../controllers/controller-rdv.php?id=<?=$event['event_id']?>"><img class="trash" src="../assets/img/delete.png" alt=""></a></p>

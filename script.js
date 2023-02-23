@@ -22,16 +22,16 @@
 
 
 
-// eventContainer = document.querySelectorAll('.event-container1');
+eventContainer = document.querySelectorAll('.event-container1');
 
-// console.log(eventContainer);
+console.log(eventContainer);
 
-// if (eventContainer.length < 1 ) {
-//     let newEvent = document.createElement('div');
-//     newEvent.innerText = 'Aucun événement à venir';
-//     document.querySelector('.event-container').appendChild(newEvent);
+if (eventContainer.length < 1 ) {
+    let newEvent = document.createElement('div');
+    newEvent.innerText = 'Aucun événement à venir';
+    document.querySelector('.event-container').appendChild(newEvent);
 
-// }
+}
 
 
 // function afficherEnPleinEcran(element) {

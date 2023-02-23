@@ -89,6 +89,26 @@ class Event
     /* effacer un event */  
     public function deleteEvent($id)
     {
+        // /* verifier que l'event appartient bien à un enfant du parent connecté */
+        // $sql = 'SELECT child_id FROM event WHERE event_id = :event_id';
+        // $stmt = $this->_pdo->prepare($sql);
+        // $stmt->bindParam(':event_id', $id);
+        // $stmt->execute();
+        // $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        // $childID = $result['child_id'];
+
+        // $sql = 'SELECT child_id FROM child WHERE parent_id = :parent_id';
+        // $stmt = $this->_pdo->prepare($sql);
+        // $stmt->bindParam(':parent_id', $_SESSION['user']['parent_id']);
+        // $stmt->execute();
+        // $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        // $childIDParent = $result['child_id'];
+
+        // if ($childID != $childIDParent) {
+        //     header('Location: ../controllers/controller-rdv.php');
+        //     exit();
+        // }
+
         $sql = 'DELETE FROM event WHERE event_id = :event_id';
         $stmt = $this->_pdo->prepare($sql);
         $stmt->bindParam(':event_id', $id);
@@ -101,10 +121,14 @@ class Event
 
     public function showAllEvent()
     {
-        $sql = 'SELECT event_id,event_name, event_date, event_hour, event_motif FROM event';
+        $parentID = $_SESSION['user']['parent_id'];
+        $sql = 'SELECT event_id,event_name, event_date, event_hour, event_motif FROM event  where child_id in (SELECT child_id FROM child WHERE parent_id = :parent_id)';
         $stmt = $this->_pdo->prepare($sql);
+        $stmt->bindParam(':parent_id', $parentID);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
+
+   
     }
 }
