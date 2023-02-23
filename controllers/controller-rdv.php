@@ -13,9 +13,15 @@ include('../models/Event.php');
 
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
-    $event = new Event();
-    $event->createEvent();
-
+    if(!empty($_POST['motifEvent']) && !empty($_POST['dateEvent']) && !empty($_POST['hourEvent']) && !empty($_POST['noteEvenement'])){
+        $event = new Event();
+        $event->createEvent();
+    }
+    else{
+        
+        header('Location: ../views/add-event.php?error');
+          
+    }
     
 }
 
@@ -34,5 +40,6 @@ if(isset($_GET['id'])){
     exit();
 }
 
-include('../views/view-rdv.php')
+include('../views/view-rdv.php');
+
 ?>

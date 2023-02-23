@@ -37,7 +37,7 @@
   <?php  } ?>
 
 </div>
-
+<?=$error ?? ''?>
 <?php include('../views/include/footer.php') ?>
 
     <script src="../assets/js/bootstrap.bundle.js"></script>

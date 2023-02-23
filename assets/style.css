@@ -3,6 +3,7 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  min-height: 100vh;
 }
 
 body {
@@ -151,11 +152,33 @@ td:hover {
 }
 
 /***********************************************view-doc**********************************************************/
-.container-doc img {
+.elt {
   height: 150px;
- 
 }
 
+#grand-format {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 1000;
+}
+#grand-format img {
+  max-width: 80vw;
+  max-height: 80vh;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.elt:hover{
+  transform: scale(1.1);
+  transition: 0.3s;
+  cursor: pointer;
+}
 .container-doc {
   display: flex;
   justify-content: center;
@@ -173,8 +196,17 @@ td:hover {
   display:flex;
   flex-direction: column;
   justify-content: space-between;
-  
 
+}
+
+.doc {
+  border-radius: 10px;
+  width: fit-content;
+}
+
+.yearDoc {
+  text-align: end;
+  font-size: 2em;
 }
 /*******************************add-event************************************/
 
@@ -198,13 +230,7 @@ textarea {
 
 }
 
-/****************************************add-doc*************************************/
-.ShareDoc {
- 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+
 
 /*******************oublie de mot de passe**********************/
 

@@ -18,7 +18,7 @@
 
 
     <?php include('../views/include/navbar.php') ?>
-    <?php echo $user['parent_name']; ?>
+
     <div class="container mb-5">
         <?php if (isset($_GET['year']) && isset($_GET['month'])) {
 

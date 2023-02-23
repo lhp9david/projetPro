@@ -35,6 +35,7 @@
                 <div><textarea name="noteEvenement" id="" cols="30" rows="5"></textarea></div>
 
                 <div><input type="submit" value="Ajouter"></div>
+                <?php if (isset($_GET['error'])) { echo 'Veuillez remplir tous les champs';} else { '';} ?>
             </form>
 
         </div>
