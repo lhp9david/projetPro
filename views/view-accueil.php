@@ -32,7 +32,7 @@
             showForm(date('m'), date('Y'));
             showCalendar(date('m'), date('Y'));
         }
-
+ 
         ?>
 
     </div>

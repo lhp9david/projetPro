@@ -120,6 +120,10 @@ td:hover {
   cursor: pointer;
 }
 
+.present {
+  height: 1.5em;
+}
+
 /*********************************************************view-rdv****************************************************/
 
 .event {
@@ -154,12 +158,24 @@ td:hover {
 
 .container-doc {
   display: flex;
-  /* justify-content: center;
-  align-items: center;*/
+  justify-content: center;
+  align-items: center;
   flex-wrap: wrap; 
   gap: 1em;
 }
 
+.box-doc {
+  display: flex;
+  justify-content: space-between;
+}
+
+.month-side {
+  display:flex;
+  flex-direction: column;
+  justify-content: space-between;
+  
+
+}
 /*******************************add-event************************************/
 
 .AddEvent {
@@ -184,7 +200,7 @@ textarea {
 
 /****************************************add-doc*************************************/
 .ShareDoc {
-  height: 100vh;
+ 
   display: flex;
   justify-content: center;
   align-items: center;
@@ -267,7 +283,7 @@ footer {
   }
 
   .container-doc img {
-    width: 100%;
-    height: 50%;
+    width: 100px;
+    height: 100px;
   }
 }

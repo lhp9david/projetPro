@@ -62,7 +62,7 @@ class Paarent
         $result = $query->fetch();
 
         if(!$result) {
-            $this->_errors['error'] = 'Identifiants ou mot de passe incorrect';
+           $errors['error'] = 'Identifiants ou mot de passe incorrect';
 
         } else {
 

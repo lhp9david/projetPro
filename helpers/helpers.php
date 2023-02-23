@@ -13,12 +13,27 @@ if (isset($_GET['year']) && isset($_GET['month'])) {
 /**************************************************fonction pour afficher le formulaire *********************************************/
 function showCalendar($month, $year)
 {
+    include('../models/Event.php');
+    include('../models/Child.php');
+    include('../helpers/database.php');
+    include('../config/env.php');
 
-   
+    $event = new Event;
+    $events = $event->showAllEvent();
+    if ($events) {
+        $event_date = date('d-M-Y', strtotime($events[0]['event_date']));
+    } else {
+        $event_date = '';
+    }
+    
     
 
-    $days = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'];
-    $months = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Aout', 'Septembre', 'Octobre', 'Novembre', 'Decembre'];
+
+    $birthdate = new Child;
+    $date= $birthdate->displayChildBirthday()[0]['birthdate'];
+    $birthday =date('d-M-'.$year, strtotime($date));
+    
+
 
     // tableau des jours fériés
     $holidays = [
@@ -36,6 +51,8 @@ function showCalendar($month, $year)
 
     ];
 
+
+   
 // nombre de jours dans le mois
     $daysInMonth = cal_days_in_month(CAL_GREGORIAN, $month, $year);
     echo     '
@@ -82,6 +99,18 @@ function showCalendar($month, $year)
 
             echo '<td class="bg-light text-black border border-dark type="button" data-bs-toggle="modal" data-bs-target="#modal-'.$i.'">' . $holidays[date('d-M-Y', mktime(00, 00, 00, $month, $i, $year))]   . '</td>';
             createModal($month, $i, $year, $holidays);
+
+            // anniversaire en vert
+        } else if (date('d-M-Y', mktime(0, 0, 0, $month, $i, $year)) == $birthday ) {
+            echo '<td class="bg-success text-black type="button" data-bs-toggle="modal" data-bs-target="#modal-'.$i.'">' . '<img class="present" src="../assets/img/cadeau.png" alt="">' . '</td>';
+            createModalBirthday($month, $i, $year);
+           
+            //  événement en rouge
+        } else if (date('d-M-Y', mktime(0, 0, 0, $month, $i, $year)) ==  $event_date) {
+            echo '<td class="bg-danger text-black type="button" data-bs-toggle="modal" data-bs-target="#modal-'.$i.'">' . '<img class="present" src="../assets/img/notes.png" alt="">' . '</td>';
+            createModalEvent($month, $i, $year);
+            
+       
         } else {
             echo '<td class="type="button" data-bs-toggle="modal" data-bs-target="#modal-'.$i.'">' . $i . '</td>';
             createModal($month, $i, $year, $holidays);
@@ -167,71 +196,73 @@ function createModal($month, $i, $year, $holidays){ ?>
 </div>
  <?php } ?>
 
+
  <?php
-/*********************************************fonction pour verifier la validité du fichier**************************************************/
+/*****************************fonction pour la modal anniversaire*********************************************** */
+
+function createModalBirthday($month, $i, $year){ 
+/* on instancie la class child et on utilise la methode displayChild pour recuperer le prenom de l'enfant */
+    $child = new Child;
+    $prénom = $child->displayChild();
+    ?>
 
 
-function checkImage($inputName, $maxSize, $arrayExt)
-{
+    <!-- Modal -->
+<div class="modal fade" id="modal-<?=$i?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel"><?=  $i .'/'.$month. '/' .$year?></h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <?php foreach($prénom as $value){ ?>
+            <p><?= 'Anniversaire de ' .$value['child_firstname'] ?></p>
+        <?php } ?>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-dark fw-bold" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-warning fw-bold "><a class="text-black" href="../views/add-event.php?<?='date='.$year.'-'.$month.'-'.$i?>">Ajouter un évènement</a> </button>
+      </div>
+    </div>
+  </div>
+</div>
+ <?php } ?>
 
+<?php
+
+/* fonction create modal event */
+function createModalEvent($month, $i, $year){ 
+    /* on instancie la class child et on utilise la methode displayChild pour recuperer le prenom de l'enfant */
+        $event = new Event;
+        $events = $event->showAllEvent();
+        ?>
     
-
-    $response = [];
-
-
-    if ($_FILES[$inputName]['error'] == 4) {
-        $response = [
-            'status' => false,
-            'message' => 'Veuillez selectionner un document'
-        ];
-    } else {
-        $response = [
-            'status' => true,
-            'message' => 'Image safe'
-        ];
-
-        if ((!preg_match('/image/', mime_content_type($_FILES[$inputName]['tmp_name']))) || (!preg_match('/application/', mime_content_type($_FILES[$inputName]['tmp_name'])))) {
-            $response = [
-                'status' => false,
-                'message' => 'veuillez selectionner uniquement une image ou un pdf'
-            ];
-        }
-
-        $mime = mime_content_type($_FILES[$inputName]['tmp_name']);
-        $array = explode('/', $mime);
-
-
-        if (!in_array($array[1], $arrayExt)) {
-
-            $extension = implode('-', $arrayExt);
-            $response = [
-                'status' => false,
-                'message' => 'Veuillez selectionner un document parmi les extensions suivantes ' . $extension
-            ];
-        }
-
-        if ($_FILES[$inputName]['size'] > $maxSize * 1024 * 1024) {
-
-            $response = [
-                'status' => false,
-                'message' => 'Veuillez selectionner un document inferieur à 2Mo'
-            ];
-        }
-
-    }
-    return $response;
-}
-
-/**********************************fonction pour ajouter un evenement  *****************************************/
-
-function addEvent($date,$type,$heure,$note){
     
-    echo'<div class=" my-3 row event">
-    <p class="col-lg-3">'.$date.' </p>
-    <p class="col-lg-3">'.$type.'</p>
-    <p class="col-lg-4">'.$note.'</p>
-    <p class="col-lg-2">'.$heure.'</p>
-</div>';
-}
-?>
+        <!-- Modal -->
+    <div class="modal fade" id="modal-<?=$i?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel"><?=  $i .'/'.$month. '/' .$year?></h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <?php foreach($events as $value){ ?>
+                <p><?= $value['event_name'] ?></p>
+                <p><?= $value['event_hour'] ?></p>
+                <p><?= $value['event_motif'] ?></p>
+               
+            <?php } ?>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-dark fw-bold" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-warning fw-bold "><a class="text-black" href="../views/add-event.php?<?='date='.$year.'-'.$month.'-'.$i?>">Ajouter un évènement</a> </button>
+          </div>
+        </div>
+      </div>
+    </div>
+     <?php } ?>
+
+
 

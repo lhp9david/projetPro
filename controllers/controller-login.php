@@ -19,6 +19,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $parent = new Paarent();
         $parent->login($mail, $password);
+        if($parent->_success == false){
+            $errors['error'] = 'Identifiant ou mot de passe incorrect';
+        }
         
     } else {
         $errors['error'] = 'Veuillez remplir tous les champs';

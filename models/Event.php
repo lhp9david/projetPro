@@ -96,4 +96,15 @@ class Event
         header('Location: ../controllers/controller-rdv.php');
         exit();
     }
+
+    /* afficher les events*/
+
+    public function showAllEvent()
+    {
+        $sql = 'SELECT event_id,event_name, event_date, event_hour, event_motif FROM event';
+        $stmt = $this->_pdo->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
 }
