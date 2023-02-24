@@ -43,13 +43,16 @@ class Event
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         $eventTypeID = $result['event_type_id'];
 
-        /* recuperer le child_id du parent connecté */
-        $sql = 'SELECT child_id FROM child WHERE parent_id = :parent_id';
+        /* recuperer la valeur du child_id du bon enfant grace à l'id du parent connecté  et au prenom de l'enfant*/
+        $sql = 'SELECT child_id FROM child WHERE parent_id = :parent_id AND child_firstname = :child_firstname';
         $stmt = $this->_pdo->prepare($sql);
         $stmt->bindParam(':parent_id', $_SESSION['user']['parent_id']);
+        $stmt->bindParam(':child_firstname', $_POST['childname']);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         $childID = $result['child_id'];
+
+
 
 
 

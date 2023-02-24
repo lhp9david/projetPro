@@ -13,7 +13,7 @@ include('../models/Event.php');
 
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
-    if(!empty($_POST['motifEvent']) && !empty($_POST['dateEvent']) && !empty($_POST['hourEvent']) && !empty($_POST['noteEvenement'])){
+    if(!empty($_POST['motifEvent']) && !empty($_POST['dateEvent']) && !empty($_POST['hourEvent'])  && !empty($_POST['childname'])){
         $event = new Event();
         $event->createEvent();
     }
@@ -29,7 +29,7 @@ $name = new Child();
 $nameList = $name-> displayChild();
 
 $event = new Event();
-$eventList = $event-> showEvent();
+$eventList = $event-> showAllEvent();
 
 
 if(isset($_GET['id'])){

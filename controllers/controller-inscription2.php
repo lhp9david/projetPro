@@ -42,11 +42,20 @@ $errors = [];
             // }
         }
 
+        
+
         if(empty($errors)){
             
 
             $child = new Child();
-            $child->createChild();
+            $check = $child->checkChild();
+            if($check){
+                $errors['error'] = 'Ce nom est déjà utilisé';
+            } else {
+                $child->createChild();
+                header('Location: controller-inscription3.php');
+                exit();
+            }
            
         }
     }

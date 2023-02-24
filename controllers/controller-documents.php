@@ -49,7 +49,13 @@ $files = new Files();
 $fileList = $files->getFiles();
 
 
-
+if(isset($_GET['id'])){
+    $id = $_GET['id'];
+      $file = new Files();
+      $file->deleteFile($id);
+      header('Location: controller-documents.php');
+      exit();
+  }
 
 
 include('../views/view-documents.php')

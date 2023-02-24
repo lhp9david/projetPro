@@ -1,3 +1,13 @@
+<?php
+session_start();
+include('../helpers/database.php');
+include('../config/env.php');
+include('../models/Child.php');
+include('../models/Event.php');
+$name = new Child();
+$nameList = $name-> displayChild();
+
+?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -25,8 +35,14 @@
             <form action="../controllers/controller-rdv.php" method="POST">
                 <div><input type="date" name="dateEvent" value="<?= $_GET['date'] ?? '' ?>"></div>
                 <div><input type="time" name="hourEvent"></div>
+                <div> <select name="childname" id="child">
+                        <option value="">--Choisir l'enfant--</option>
+                        <?php foreach ($nameList as $name) { ?>
+                        <option value="<?= $name['child_firstname'] ?? '' ?>">    <?= $name['child_firstname'] ?? '' ?></option>
+                        <?php } ?>
+                    </select></div>
                 <div> <select name="motifEvent" id="event-select">
-                        <option value="0">--Choisir evenement--</option>
+                        <option value="">--Choisir evenement--</option>
                         <option value="rdv médical">Rendez-vous médical</option>
                         <option value="Anniversaire">Anniversaire</option>
                         <option value="Sortie scolaire">Sortie scolaire</option>

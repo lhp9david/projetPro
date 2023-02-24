@@ -66,5 +66,18 @@ public function displayChildBirthday() {
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
     return $result;
 }
+
+/* verifier que l'enfant n'est pas deja inscrit */
+
+public function checkChild() {
+    $parentID = $_SESSION['user']['parent_id'];
+    $sql = 'SELECT child_firstname FROM child WHERE parent_id = :parent_id';
+    $stmt = $this->_pdo->prepare($sql);
+    $stmt->bindParam(':parent_id', $parentID);
+    $stmt->execute();
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return $result;
+
+}
 }
 ?>

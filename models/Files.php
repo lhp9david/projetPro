@@ -69,7 +69,7 @@ class Files
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         $childID = $result['child_id'];
 
-        $sql = 'SELECT file_name FROM files  WHERE child_id = :child_id';
+        $sql = 'SELECT file_name,file_id FROM files  WHERE child_id = :child_id';
         $stmt = $this->_pdo->prepare($sql);
         $stmt->bindParam(':child_id',$childID);
         $stmt->execute();
@@ -145,11 +145,11 @@ class Files
 
     /* supprimer un fichier */
 
-    public function deleteFile()
+    public function deleteFile($id)
     {
         $sql = 'DELETE FROM files WHERE file_id = :file_id';
         $stmt = $this->_pdo->prepare($sql);
-        $stmt->bindParam(':file_id', $_GET['file_id']);
+        $stmt->bindParam(':file_id', $id);
         $stmt->execute();
         return true;
     }
