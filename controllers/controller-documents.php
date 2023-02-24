@@ -45,8 +45,18 @@ verifier la variable $_FILE['name']['error']*/
 
 $path = new Files();
 $folderPath = $path->getFilePath();
-$files = new Files();
-$fileList = $files->getFiles();
+if(isset($_GET['date'])){
+        $date = $_GET['date'];
+      $files = new Files();
+      $fileList= $files->getFilesByDate($date);
+    
+  } else {
+
+    $files = new Files();
+    $fileList = $files->getFiles();
+  }
+
+
 
 
 if(isset($_GET['id'])){
@@ -56,6 +66,8 @@ if(isset($_GET['id'])){
       header('Location: controller-documents.php');
       exit();
   }
+
+
 
 
 include('../views/view-documents.php')

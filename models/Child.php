@@ -47,7 +47,7 @@ class Child {
 
 public function displayChild() {
     $parentID = $_SESSION['user']['parent_id'];
-    $sql = 'SELECT child_firstname FROM child WHERE parent_id = :parent_id';
+    $sql = 'SELECT child_firstname, child_id,birthdate FROM child WHERE parent_id = :parent_id';
     $stmt = $this->_pdo->prepare($sql);
     $stmt->bindParam(':parent_id', $parentID);
     $stmt->execute();

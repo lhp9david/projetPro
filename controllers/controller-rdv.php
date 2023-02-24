@@ -28,18 +28,27 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 $name = new Child();
 $nameList = $name-> displayChild();
 
-$event = new Event();
-$eventList = $event-> showAllEvent();
+if(isset($_GET['idChild'])){
+    $id = $_GET['idChild'];
+    $event = new Event();
+    $eventList= $event->showEvent($id);
+   
+} else {
+    $event = new Event();
+    $eventList = $event-> showAllEvent();
+}
 
 
-if(isset($_GET['id'])){
-  $id = $_GET['id'];
+
+
+if(isset($_GET['idEvent'])){
+  $id = $_GET['idEvent'];
     $event = new Event();
     $event->deleteEvent($id);
     header('Location: controller-rdv.php');
     exit();
 }
 
-include('../views/view-rdv.php');
 
-?>
+
+include('../views/view-rdv.php');

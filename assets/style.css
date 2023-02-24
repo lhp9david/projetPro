@@ -59,8 +59,8 @@ body {
 }
 
 /***********************Choix du mois et de l'année**************************/
-.choice,
-.doc {
+.choice
+ {
   width: fit-content;
   border: 1px solid black;
   background-color: gold;
@@ -190,6 +190,7 @@ td:hover {
 .box-doc {
   display: flex;
   justify-content: space-between;
+  min-height:70vh;
 }
 
 .month-side {
@@ -250,7 +251,6 @@ textarea {
 
 
 
-
 /***************************footer**************************/
 footer {
   background-color: gold;
@@ -292,8 +292,7 @@ footer {
     padding: 0.4em;
   }
 
-  .choice,
-  .doc {
+  .choice{
     font-size: 0.6em;
     padding: 0.5em;
   }

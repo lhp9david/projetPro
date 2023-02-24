@@ -133,11 +133,12 @@ class Files
         move_uploaded_file($_FILES['userFile']['tmp_name'], $targetPath);
 
         // Enregistrer le fichier dans la base de données
-        $sql = 'INSERT INTO files (file_name, file_type_id, child_id) VALUES (:file_name, :file_type_id, :child_id)';
+        $sql = 'INSERT INTO files (file_name, file_type_id, child_id,file_date) VALUES (:file_name, :file_type_id, :child_id,:file_date)';
         $stmt = $this->_pdo->prepare($sql);
         $stmt->bindValue(':file_name', ($uniqueId . '_' . $_FILES['userFile']['name']));
         $stmt->bindParam(':file_type_id', $fileTypeID);
         $stmt->bindParam(':child_id', $childID);
+        $stmt->bindValue(':file_date', date('m-Y'));
         $stmt->execute();
 
         return true;
@@ -152,5 +153,26 @@ class Files
         $stmt->bindParam(':file_id', $id);
         $stmt->execute();
         return true;
+    }
+
+    /* afficher les fichier selon la date */
+
+    public function getFilesByDate($date)
+    {
+        /* recupere l'id de l'enfant du parent connecté */
+        $sql = 'SELECT child_id FROM child WHERE parent_id = :parent_id';
+        $stmt = $this->_pdo->prepare($sql);
+        $stmt->bindParam(':parent_id', $_SESSION['user']['parent_id']);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        $childID = $result['child_id'];
+
+        $sql = 'SELECT file_name,file_id FROM files  WHERE child_id = :child_id AND file_date = :file_date';
+        $stmt = $this->_pdo->prepare($sql);
+        $stmt->bindParam(':child_id', $childID);
+        $stmt->bindParam(':file_date', $date);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
     }
 }

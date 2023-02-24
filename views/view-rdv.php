@@ -17,15 +17,18 @@
     <?php include('../views/include/navbar.php');?>
 
         <?php foreach ($nameList as $name) { ?>
-            <h1><?= $name['child_firstname'] ?? '' ?></h1>
+         <button class="btn btn-warning fw-bold"><a class="text-black text-decoration-none" href="../controllers/controller-rdv.php?idChild=<?=$name['child_id'] ?>"><?= $name['child_firstname'] ?? '' ?></a></button>
             <?php } ?>
+
+            
+           
             <div class="container event-container">
                 <?php foreach ($eventList as $event) { ?>
                     <div class="event-container1 my-3 row event">
                         <p class="col-lg-3"><?= date('d-m-Y', strtotime($event['event_date'])) ?? ''; ?></p>
                         <p class="col-lg-3"><?= $event['event_name'] ?? '' ?></p>
                         <p class="col-lg-4"><?= $event['event_motif'] ?></p>
-                        <p class="col-lg-2"><?= $event['event_hour'] ?? '' ?><a href="../controllers/controller-rdv.php?id=<?= $event['event_id'] ?>"><img class="trash" src="../assets/img/delete.png" alt=""></a></p>
+                        <p class="col-lg-2"><?= $event['event_hour'] ?? '' ?><a href="../controllers/controller-rdv.php?idEvent=<?= $event['event_id'] ?>"><img class="trash" src="../assets/img/delete.png" alt=""></a></p>
                     </div>
                 <?php  } ?>
             </div>

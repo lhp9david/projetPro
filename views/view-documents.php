@@ -24,28 +24,30 @@
                     <option value="ecole">ecole</option>
                     <option value="medical">medical</option>
                     <option value="autre">autre</option>
-                </select> <br>
-                <input multiple="multiple" type="file" name="userFile"><br> <span><?= $error ?? '' ?></span><br>
+                </select> 
+                <input multiple="multiple" type="file" name="userFile"> <span><?= $error ?? '' ?></span>
                 <input type="submit" value="Envoyer">
             </form>
         </div>
     </div>
-    <div class="container"> <p class="yearDoc">2023</p></div>
-   
+    <?php $year = date('Y'); ?>
+ 
+    <div class="container"> <p class="yearDoc"><?=$year?></p></div>
+    <hr>
     <div class="container box-doc my-2">
         <div class="month-side mt-5">
-            <button class="btn btn-warning fw-bold"><a class="text-black text-decoration-none" href="">Janvier</a></button>
-            <button class="btn btn-warning fw-bold"><a class="text-black text-decoration-none" href="">Février</a></button>
-            <button class="btn btn-warning fw-bold"><a class="text-black text-decoration-none" href="">Mars</a></button>
-            <button class="btn btn-warning fw-bold"><a class="text-black text-decoration-none" href="">Avril</a></button>
-            <button class="btn btn-warning fw-bold"><a class="text-black text-decoration-none" href="">Mai</a></button>
-            <button class="btn btn-warning fw-bold"><a class="text-black text-decoration-none" href="">Juin</a></button>
-            <button class="btn btn-warning fw-bold"><a class="text-black text-decoration-none" href="">Juillet</a></button>
-            <button class="btn btn-warning fw-bold"><a class="text-black text-decoration-none" href="">Août</a></button>
-            <button class="btn btn-warning fw-bold"><a class="text-black text-decoration-none" href="">Septembre</a></button>
-            <button class="btn btn-warning fw-bold"><a class="text-black text-decoration-none" href="">Octobre</a></button>
-            <button class="btn btn-warning fw-bold"><a class="text-black text-decoration-none" href="">Novembre</a></button>
-            <button class="btn btn-warning fw-bold"><a class="text-black text-decoration-none" href="">Décembre</a></button>
+            <button class="btn btn-warning fw-bold"><a class="text-black text-decoration-none" href="../controllers/controller-documents.php?date=01-<?=$year?>">Janvier</a></button>
+            <button class="btn btn-warning fw-bold"><a class="text-black text-decoration-none" href="../controllers/controller-documents.php?date=02-<?=$year?>">Février</a></button>
+            <button class="btn btn-warning fw-bold"><a class="text-black text-decoration-none" href="../controllers/controller-documents.php?date=03-<?=$year?>">Mars</a></button>
+            <button class="btn btn-warning fw-bold"><a class="text-black text-decoration-none" href="../controllers/controller-documents.php?date=04-<?=$year?>">Avril</a></button>
+            <button class="btn btn-warning fw-bold"><a class="text-black text-decoration-none" href="../controllers/controller-documents.php?date=05-<?=$year?>">Mai</a></button>
+            <button class="btn btn-warning fw-bold"><a class="text-black text-decoration-none" href="../controllers/controller-documents.php?date=06-<?=$year?>">Juin</a></button>
+            <button class="btn btn-warning fw-bold"><a class="text-black text-decoration-none" href="../controllers/controller-documents.php?date=07-<?=$year?>">Juillet</a></button>
+            <button class="btn btn-warning fw-bold"><a class="text-black text-decoration-none" href="../controllers/controller-documents.php?date=08-<?=$year?>">Août</a></button>
+            <button class="btn btn-warning fw-bold"><a class="text-black text-decoration-none" href="../controllers/controller-documents.php?date=09-<?=$year?>">Septembre</a></button>
+            <button class="btn btn-warning fw-bold"><a class="text-black text-decoration-none" href="../controllers/controller-documents.php?date=10-<?=$year?>">Octobre</a></button>
+            <button class="btn btn-warning fw-bold"><a class="text-black text-decoration-none" href="../controllers/controller-documents.php?date=11-<?=$year?>">Novembre</a></button>
+            <button class="btn btn-warning fw-bold"><a class="text-black text-decoration-none" href="../controllers/controller-documents.php?date=12-<?=$year?>">Décembre</a></button>
         </div>
 
 
@@ -54,6 +56,8 @@
                 <img class="elt" src="../controllers/<?= $folderPath . '/' . $value['file_name'] ?>" alt="">
                 <a href="../controllers/controller-documents.php?id=<?= $value['file_id'] ?>"><img class="trash" src="../assets/img/delete.png" alt=""></a>
             <?php } 
+
+ 
             ?>
         </div>
 
