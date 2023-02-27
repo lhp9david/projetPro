@@ -79,25 +79,19 @@ class Event
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
-    /* afficher les event d'un enfant */
-    // public function showEvent()
-    // {
 
-    //     /* recuperer le child_id du parent connecté */
-    //     $sql = 'SELECT child_id FROM child WHERE parent_id = :parent_id';
-    //     $stmt = $this->_pdo->prepare($sql);
-    //     $stmt->bindParam(':parent_id', $_SESSION['user']['parent_id']);
-    //     $stmt->execute();
-    //     $result = $stmt->fetch(PDO::FETCH_ASSOC);
-    //     $childID = $result['child_id'];
+    /* verifier que le child id correspond bien à l'id du parent connecté */
+    public function checkChildID($id)
+    {
+        $sql = 'SELECT child_id FROM child WHERE parent_id = :parent_id AND child_id = :child_id';
+        $stmt = $this->_pdo->prepare($sql);
+        $stmt->bindParam(':parent_id', $_SESSION['user']['parent_id']);
+        $stmt->bindParam(':child_id', $id);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result;
+    }
 
-    //     $sql = 'SELECT event_id,event_name, event_date, event_hour, event_motif FROM event WHERE child_id = :child_id';
-    //     $stmt = $this->_pdo->prepare($sql);
-    //     $stmt->bindParam(':child_id', $childID);
-    //     $stmt->execute();
-    //     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    //     return $result;
-    // }
 
     /* effacer un event */  
     public function deleteEvent($id)

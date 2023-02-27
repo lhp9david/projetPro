@@ -146,20 +146,20 @@ function showForm($month, $year)
     echo '  <form class="col-lg-6" action="" method="get">
             
             <label for="month"></label>';
-    echo '  </select><a class="" href="?month=' . (($month == '01') ? '12': $month - '01') . '&year=' . (($month == '01') ? $year - 1 : $year) . '"><img class="arrow" src="../assets/img/left.png" alt="gauche"></a>';
+    echo '  </select><a class="" href="?month=' . (($month == '1') ? '12': $month - '1') . '&year=' . (($month == '01') ? $year - 1 : $year) . '"><img class="arrow" src="../assets/img/left.png" alt="gauche"></a>';
     echo '  <select class = ""name="month">';
 
     // Génère une liste de mois de janvier à décembre, ucfirst() met la première lettre en majuscule
 
-    for ($m = '01'; $m <= '12'; $m++) {
-        $monthlist = $formatter->format(mktime(0, 0, 0, $m, 01, date('Y')));
+    for ($m = '1'; $m <= '12'; $m++) {
+        $monthlist = $formatter->format(mktime(0, 0, 0, $m, 1, date('Y')));
         if ($m == $month) {
             echo '<option selected value=' . $m . '>' . ucfirst($monthlist) . '</option>';
         } else {
             echo '<option value=' . $m . '>' . ucfirst($monthlist) . '</option>';
         }
     }
-    echo '  </select><a class="" href="?month=' . (($month == 12) ? '01' : $month + '1') . '&year=' . (($month == '12') ? $year + 1 : $year) . '"><img class="arrow" src="../assets/img/right.png" alt="droite"></a>';
+    echo '  </select><a class="" href="?month=' . (($month == 12) ? '1' : $month + '1') . '&year=' . (($month == '12') ? $year + 1 : $year) . '"><img class="arrow" src="../assets/img/right.png" alt="droite"></a>';
     echo '<label for="year" class="me-2"></label>';
     echo '<select class="" name="year">';
 
@@ -180,6 +180,7 @@ function showForm($month, $year)
 
 /*****************************fonction pour creer la modal  ******************************************************/
 function createModal($month, $i, $year, $holidays){ ?>
+
     <!-- Modal -->
 <div class="modal fade" id="modal-<?=$i?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -192,6 +193,7 @@ function createModal($month, $i, $year, $holidays){ ?>
         <?= $holidays[date('d-M-Y', mktime(00, 00, 00, $month, $i, $year))] ?? ' '?>
       </div>
       <div class="modal-footer">
+        <!-- <?php if($i<10){$i = '0'.$i;}; if($month<10){$month = '0'.$month;} ?> -->
         <button type="button" class="btn btn-dark fw-bold" data-bs-dismiss="modal">Close</button>
         <button type="button" class="btn btn-warning fw-bold "><a class="text-black" href="../views/add-event.php?<?='date='.$year.'-'.$month.'-'.$i?>">Ajouter un évènement</a> </button>
       </div>
@@ -208,6 +210,8 @@ function createModalBirthday($month, $i, $year){
 /* on instancie la class child et on utilise la methode displayChild pour recuperer le prenom de l'enfant */
     $child = new Child;
     $prénom = $child->displayChild();
+
+    $date = (date('d-M-Y', mktime(00, 00, 00, $month, $i, $year)));
     ?>
 
 
@@ -220,11 +224,13 @@ function createModalBirthday($month, $i, $year){
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <?php foreach($prénom as $value){ ?>
+        <?php foreach($prénom as $value){
+          if(date('d-M-'.$year, strtotime ($value['birthdate'])) == $date ) { ?>
             <p><?= 'Anniversaire de ' .$value['child_firstname'] ?></p>
-        <?php } ?>
+        <?php }} ?>
       </div>
       <div class="modal-footer">
+      <?php if($i<10){$i = '0'.$i;}; if($month<10){$month = '0'.$month;} ?>
         <button type="button" class="btn btn-dark fw-bold" data-bs-dismiss="modal">Fermer</button>
         <button type="button" class="btn btn-warning fw-bold "><a class="text-black" href="../views/add-event.php?<?='date='.$year.'-'.$month.'-'.$i?>">Ajouter un évènement</a> </button>
       </div>
@@ -265,6 +271,7 @@ function createModalEvent($month, $i, $year){
             <?php } ?>
           </div>
           <div class="modal-footer">
+          <?php if($i<10){$i = '0'.$i;}; if($month<10){$month = '0'.$month;} ?>
             <button type="button" class="btn btn-dark fw-bold" data-bs-dismiss="modal">Fermer</button>
             <button type="button" class="btn btn-warning fw-bold "><a class="text-black" href="../views/add-event.php?<?='date='.$year.'-'.$month.'-'.$i?>">Ajouter un évènement</a> </button>
           </div>

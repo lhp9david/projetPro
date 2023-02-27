@@ -1,6 +1,6 @@
 <?php
 session_start();
-if(!isset($_SESSION['user'])){
+if (!isset($_SESSION['user'])) {
     header('Location: controller-login.php');
     exit();
 }
@@ -11,38 +11,46 @@ include('../models/Child.php');
 include('../models/Event.php');
 
 
-if($_SERVER['REQUEST_METHOD'] === 'POST'){
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    if(!empty($_POST['motifEvent']) && !empty($_POST['dateEvent']) && !empty($_POST['hourEvent'])  && !empty($_POST['childname'])){
+    if (!empty($_POST['motifEvent']) && !empty($_POST['dateEvent']) && !empty($_POST['hourEvent'])  && !empty($_POST['childname'])) {
         $event = new Event();
         $event->createEvent();
-    }
-    else{
-        
+    } else {
+
         header('Location: ../views/add-event.php?error');
-          
     }
-    
 }
 
 $name = new Child();
-$nameList = $name-> displayChild();
+$nameList = $name->displayChild();
 
-if(isset($_GET['idChild'])){
+
+
+
+if (isset($_GET['idChild'])) {
     $id = $_GET['idChild'];
-    $event = new Event();
-    $eventList= $event->showEvent($id);
+    $check = new Event();
+    $checkList = $check->checkChildID($id);
+
+    if($checkList == false){
+        header('Location: ../controllers/controller-rdv.php');
+    } else {
+        $event = new Event();
+        $eventList = $event->showEvent($id);
+    }
+
    
 } else {
     $event = new Event();
-    $eventList = $event-> showAllEvent();
+    $eventList = $event->showAllEvent();
 }
 
 
 
 
-if(isset($_GET['idEvent'])){
-  $id = $_GET['idEvent'];
+if (isset($_GET['idEvent'])) {
+    $id = $_GET['idEvent'];
     $event = new Event();
     $event->deleteEvent($id);
     header('Location: controller-rdv.php');
