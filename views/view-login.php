@@ -32,7 +32,7 @@
 
         <div class="mb-3">
           <label for="email" class="form-label fw-bold fs-5 text-center">Identifiant</label>
-         <input class="form-control" value="<?= $_POST['mail'] ?? '' ?>" type="email" name="mail" id="mail"><span class='text-danger'><?= $errors['mail'] ?? '' ?></span>
+         <input class="form-control" value="<?= $_POST['mail'] ?? '' ?>" type="text" name="mail" id="mail"><span class='text-danger'><?= $errors['mail'] ?? '' ?></span>
         </div>
 
         <div class="mb-3">

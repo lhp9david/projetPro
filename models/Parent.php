@@ -49,21 +49,53 @@ class Paarent
 
 
     /**
-     * fonction pour se connecter
+     * fonction pour se connecter avec un des deux parents
+     * 
      * 
      */
+
+
     public function login($mail, $password)
+
     {
+    
        
+        /* verifie que le parent 1 existe dans la table parent */
 
         $query = $this->_pdo->prepare('SELECT * FROM parent WHERE mail = :mail');
         $query->bindValue(':mail', $mail);
         $query->execute();
         $result = $query->fetch();
+        /* si il n'existe pas, on verifie que le parent 2 existe dans la table parent */
 
         if(!$result) {
-          return $errors['error'] = 'Identifiants ou mot de passe incorrect';
+            $query = $this->_pdo->prepare('SELECT * FROM parent WHERE parent2_nickname = :mail');
+            $query->bindValue(':mail', $mail);
+            $query->execute();
+            $result = $query->fetch();
+/* si le parent 2 existe dans la table parent, on verifie que le mot de passe est correct */
+            if($result){
+                if (password_verify($password, $result['parent2_pass'])) {
+                    $_SESSION['user'] = [
+                        'parent_id' => $result['parent_id'],
+                        'parent_name' => $result['parent_name'],
+                        'parent_firstname' => $result['parent_firstname'],
+                        'mail' => $result['mail'],
+                        'parent_password' => $result['parent_password'],
+                        'parent2_nickname' => $result['parent2_nickname'],
+                        'parent2_pass' => $result['parent2_pass'],
+                    ];
+    
+                    $this->_success = true;
+    
+                    header('Location: controller-accueil.php');
+                }
+            }
+            if(!$result) {
+                $this->_errors['error'] = 'Identifiants ou mot de passe incorrect';
+            }
 
+/* autrement si le parent 1 existe, on vérifie son mot de passe, on vérifie si des enfants sont enregistrés et si il y a bien un 2eme parent sinon on redirige sur les page correspondante*/
         } else {
 
 
@@ -73,6 +105,13 @@ class Paarent
         $stmt->bindParam(':parent_id', $result['parent_id']);
         $stmt->execute();
         $result2 = $stmt->fetch();
+
+        /*verifier que le parent 2 existe dans la table parent*/
+        $sql2 = "SELECT * FROM parent WHERE parent2_nickname = :parent2_nickname";
+        $stmt2 = $this->_pdo->prepare($sql2);
+        $stmt2->bindParam(':parent2_nickname', $result['parent2_nickname']);
+        $stmt2->execute();
+        $result3 = $stmt2->fetch();
 
         if ($result) {
             // Un ou plusieurs enregistrements ont été trouvés, traiter les données ici
@@ -94,21 +133,28 @@ class Paarent
                     // Aucun enfant trouvé, on redirige vers la page d'inscription de l'enfant
                     header('Location: controller-inscription2.php');
                    
-                } else {
-                header('Location: controller-accueil.php');
+                } else if (!$result3) {
+                    // Aucun parent2 trouvé, on redirige vers la page d'inscription du parent2
+                    header('Location: controller-inscription3.php');
                 
+                } else {
+                    header('Location: controller-accueil.php');
                 }
             } 
         } else {
            $this->_errors['error'] = 'Identifiants ou mot de passe incorrect';
-        }}
+        }
     }
+    }
+
+
+
 
     /**
      * enregistre un nouveau parent dans la base de données
      * 
      */
-    public function createParent()
+    public function createParent($lastname, $firstname, $mail, $password)
     {
 
 
@@ -123,10 +169,10 @@ class Paarent
         } else {
             $sql = "INSERT INTO parent (parent_name, parent_firstname, mail,parent_password) VALUES (:lastname, :firstname, :mail, :password)";
             $stmt = $this->_pdo->prepare($sql);
-            $stmt->bindValue(':lastname', $_POST['lastname']);
-            $stmt->bindValue(':firstname', $_POST['firstname']);
-            $stmt->bindValue(':mail', $_POST['mail']);
-            $stmt->bindValue(':password', password_hash($_POST['password'], PASSWORD_DEFAULT), PDO::PARAM_STR);
+            $stmt->bindValue(':lastname', $lastname);
+            $stmt->bindValue(':firstname', $firstname);
+            $stmt->bindValue(':mail',$mail);
+            $stmt->bindValue(':password', password_hash($password, PASSWORD_DEFAULT), PDO::PARAM_STR);
             $stmt->execute();
             header('Location: controller-login.php?subscribed');
             exit();

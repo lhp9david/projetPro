@@ -27,9 +27,11 @@
                 </select> 
                 <input multiple="multiple" type="file" name="userFile"> <span><?= $error ?? '' ?></span>
                 <input type="submit" value="Envoyer">
+               
             </form>
         </div>
     </div>
+    
     <?php $year = date('Y'); ?>
  
     <div class="container"> <p class="yearDoc"><?=$year?></p></div>
@@ -56,24 +58,10 @@
                 <img class="elt" src="../controllers/<?= $folderPath . '/' . $value['file_name'] ?>" alt="">
                 <a href="../controllers/controller-documents.php?id=<?= $value['file_id'] ?>"><img class="trash" src="../assets/img/delete.png" alt=""></a>
             <?php } 
-
- 
             ?>
         </div>
 
     </div>
-
-
-                <div id="grand-format">
-                    <?php foreach ($fileList as $value) { ?>
-                        <img  src="../controllers/<?= $folderPath . '/' . $value['file_name'] ?>" alt="">
-                    <?php }  ?>
-                </div>
-
-
-
-
-
     <?php include('../views/include/footer.php') ?>
 
     <script src="../assets/js/bootstrap.bundle.js"></script>

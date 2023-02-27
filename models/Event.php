@@ -138,4 +138,18 @@ class Event
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
+
+
+    /*recuperer les event selon la date selectionnée */
+    public function showEventByDate($date)
+    {
+        $parentID = $_SESSION['user']['parent_id'];
+        $sql = 'SELECT event_id,event_name, event_date, event_hour, event_motif FROM event  where child_id in (SELECT child_id FROM child WHERE parent_id = :parent_id) AND event_date = :event_date';
+        $stmt = $this->_pdo->prepare($sql);
+        $stmt->bindParam(':parent_id', $parentID);
+        $stmt->bindParam(':event_date', $date);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
 }

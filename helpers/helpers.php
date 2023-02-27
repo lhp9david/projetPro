@@ -240,7 +240,8 @@ function createModalEvent($month, $i, $year){
     
   
         $event = new Event;
-        $events = $event->showAllEvent();
+        $events = $event->showEventByDate($year.'-'.$month.'-'.$i);
+        
         ?>
     
     
@@ -264,7 +265,7 @@ function createModalEvent($month, $i, $year){
             <?php } ?>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-dark fw-bold" data-bs-dismiss="modal">Fre</button>
+            <button type="button" class="btn btn-dark fw-bold" data-bs-dismiss="modal">Fermer</button>
             <button type="button" class="btn btn-warning fw-bold "><a class="text-black" href="../views/add-event.php?<?='date='.$year.'-'.$month.'-'.$i?>">Ajouter un évènement</a> </button>
           </div>
         </div>

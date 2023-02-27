@@ -33,10 +33,13 @@
                     <input type="date" class="form-control" id="birthdate" name="birthdate" value="<?= (isset($_POST['birthdate'])) ? $_POST['birthdate'] : ''; ?>"><span class="text-danger"><?= isset($errors['birthdate']) ? $errors['birthdate'] : '' ?></span>
                 </div>
             </div>
+            <?= (isset($errors['error'])) ? '<span class="text-danger">' . $errors['error'] . '</span>' : '' ?>
             <button type="submit" class="btn btn-warning fw-bold mx-auto d-block">Valider</button>
         </form>
     </div>
-    <button class="addChild btn btn-success fw-bold">Ajouter un enfant</button>
+   
+
+
 
     <script src="../assets/js/bootstrap.bundle.js"></script>
     <script src="../script.js"></script>

@@ -57,9 +57,14 @@ body {
 .navbar img {
   height: 2em;
 }
+/*******************************add-child************************************/
+.addChild a{
+  text-decoration: none;
+  color: white;
+}
 
 /***********************Choix du mois et de l'année**************************/
-.choice
+.choice,.doc
  {
   width: fit-content;
   border: 1px solid black;

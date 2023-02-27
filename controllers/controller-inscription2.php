@@ -15,6 +15,7 @@ $errors = [];
     
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
+    
         if (isset($_POST['childName'])) {
             if (empty($_POST['childName'])) {
                 $errors['childName'] = 'champ obligatoire';
@@ -42,23 +43,24 @@ $errors = [];
             // }
         }
 
-        
-
         if(empty($errors)){
-            
-
+          
+           
             $child = new Child();
             $check = $child->checkChild();
-            if($check){
-                $errors['error'] = 'Ce nom est déjà utilisé';
-            } else {
-                $child->createChild();
-                header('Location: controller-inscription3.php');
-                exit();
+
+            foreach($check as $value) {
+                if($value['child_firstname'] ==  $_POST['childFirstname']) {
+                    $errors['error'] = 'Ce prénom est déjà utilisé';
+                } else {
+                    $child->createChild();
+                    header('Location: controller-add-child.php');
+                }
             }
-           
         }
+
     }
+
 
         ?>
 

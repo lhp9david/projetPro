@@ -42,13 +42,13 @@ verifier la variable $_FILE['name']['error']*/
         }
 }
 
-
 $path = new Files();
 $folderPath = $path->getFilePath();
+
 if(isset($_GET['date'])){
-        $date = $_GET['date'];
-      $files = new Files();
-      $fileList= $files->getFilesByDate($date);
+    $date = $_GET['date'];
+    $files = new Files();
+    $fileList= $files->getFilesByDate($date);
     
   } else {
 

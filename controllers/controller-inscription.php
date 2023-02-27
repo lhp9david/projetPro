@@ -14,7 +14,9 @@ require '../helpers/database.php';
             }
             else if(!preg_match('/^[a-zA-ZÀ-ÿ-]+$/', $_POST['lastname'])) {
                 $errors['lastname'] = 'Veuillez respecter le format';
-            }
+            } else {{
+                $lastname = $_POST['lastname'];
+            }}
         }
     
     
@@ -25,6 +27,8 @@ require '../helpers/database.php';
             }
             else if (!preg_match('/^[a-zA-ZÀ-ÿ-]+$/', $_POST['firstname'])) {
                 $errors['firstname'] = 'Veuillez respecter le format';
+            } else {
+               $firstname = $_POST['firstname'];
             }
         }
     
@@ -36,6 +40,8 @@ require '../helpers/database.php';
             }
             else if (!preg_match('/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/', $_POST['mail'])) {
                 $errors['mail'] = 'Veuillez respecter le format';
+            } else {
+                $mail = $_POST['mail'];
             }
         }
     
@@ -45,13 +51,15 @@ require '../helpers/database.php';
             }
             else if (!preg_match('/^.{8,}$/', $_POST['password'])) {
                 $errors['password'] = '8 caractères minimum';
+            } else {
+               $password = $_POST['password'];
             }
         }
     
     
     
         if (isset($_POST['confirmPass'])) {
-            if ($_POST['password'] != $_POST['confirmPass']){
+            if ($password != $_POST['confirmPass']){
                 $errors['error'] = 'les mots de passe ne sont pas identique';
             }
             if (empty($_POST['confirmPass'])) {
@@ -72,7 +80,7 @@ require '../helpers/database.php';
         if(empty($errors)){
 
             $obj_user = new Paarent();
-            $obj_user->createParent();
+            $obj_user->createParent($lastname, $firstname, $mail, $password);
 
 
             }

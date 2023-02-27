@@ -39,8 +39,7 @@ class Child {
         $stmt->bindParam(':birthdate', $_POST['birthdate']);
         $stmt->bindParam(':parentID', $parentID);
         $stmt->execute();
-        header('Location: controller-inscription3.php');
-        exit();
+       
 }
 
 /* afficher les prenoms des enfants du parent connecté */
@@ -77,6 +76,7 @@ public function checkChild() {
     $stmt->execute();
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
     return $result;
+
 
 }
 }
