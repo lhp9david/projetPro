@@ -59,9 +59,11 @@ require '../helpers/database.php';
     
     
         if (isset($_POST['confirmPass'])) {
-            if ($password != $_POST['confirmPass']){
+            if (isset($password) ){
+                if($password != $_POST['confirmPass']){
                 $errors['error'] = 'les mots de passe ne sont pas identique';
             }
+        }
             if (empty($_POST['confirmPass'])) {
                 $errors['confirmPass'] = 'champ obligatoire';
             }
