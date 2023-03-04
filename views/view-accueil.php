@@ -17,7 +17,7 @@
 <body>
 
 
-    <?php include('../views/include/navbar.php') ?>
+    <?php include('../views/include/navbar.php')?>
 
     <div class="container mb-5">
         <?php if (isset($_GET['year']) && isset($_GET['month'])) {

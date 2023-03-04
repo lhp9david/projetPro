@@ -56,7 +56,9 @@
         <div class="container-doc mt-5">
             <?php foreach ($fileList as $value) { ?>
                 <img class="elt" src="../controllers/<?= $folderPath . '/' . $value['file_name'] ?>" alt="">
+                <?php if (!isset($user['parent2']) ) { ?>
                 <a href="../controllers/controller-documents.php?id=<?= $value['file_id'] ?>"><img class="trash" src="../assets/img/delete.png" alt=""></a>
+                <?php } ?>
             <?php } 
             ?>
         </div>

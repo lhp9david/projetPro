@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -18,7 +20,7 @@
 
     <div class="container">
 
-        <form action="../controllers/controller-inscription2.php" method="POST" class="col-lg-6 mx-auto">
+        <form action="" method="POST" class="col-lg-6 mx-auto">
             <div class="child">
                 <div class="mb-3">
                     <label for="childFirstname" class="form-label fw-bold fs-5">Prénom</label>
@@ -35,6 +37,7 @@
             </div>
             <?= (isset($errors['error'])) ? '<span class="text-danger">' . $errors['error'] . '</span>' : '' ?>
             <button type="submit" class="btn btn-warning fw-bold mx-auto d-block">Valider</button>
+          
         </form>
     </div>
    

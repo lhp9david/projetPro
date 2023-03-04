@@ -84,6 +84,7 @@ class Paarent
                         'parent_password' => $result['parent_password'],
                         'parent2_nickname' => $result['parent2_nickname'],
                         'parent2_pass' => $result['parent2_pass'],
+                        'parent2' => true
                     ];
     
                     $this->_success = true;
@@ -125,6 +126,7 @@ class Paarent
                     'parent_password' => $result['parent_password'],
                     'parent2_nickname' => $result['parent2_nickname'],
                     'parent2_pass' => $result['parent2_pass'],
+                    
                 ];
 
                 $this->_success = true;

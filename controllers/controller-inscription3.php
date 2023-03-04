@@ -45,7 +45,7 @@ if(!isset($_SESSION['user'])){
                 $errors['password'] = 'Veuillez respecter le format';
             }
         }
-
+     /*  si tous les champs sont remplis et que les mots de passe sont identiques, on crée le paren 2 */
         if(empty($errors)){
 
           $obj_parent = new Paarent();

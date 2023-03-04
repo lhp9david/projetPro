@@ -42,5 +42,8 @@ $months = [
 
 
 <?php
+if (!isset($user['parent2'])){
+    echo '<h1>Bienvenue</h1>';
+}
 include('../views/view-accueil.php');
 ?>

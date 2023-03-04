@@ -78,7 +78,7 @@ require '../helpers/database.php';
         }
 
         if(empty($errors)){
-
+/** si tous les champs sont remplis on crée le parent */
             $obj_user = new Paarent();
             $obj_user->createParent($lastname, $firstname, $mail, $password);
 
@@ -90,3 +90,4 @@ require '../helpers/database.php';
     
 
     include('../views/view-inscription.php');
+?>

@@ -146,4 +146,19 @@ class Event
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
+
+    /* modifier un event */
+    public function updateEvent($id)
+    {
+        $sql = 'UPDATE event SET event_name = :event_name, event_date = :event_date, event_hour = :event_hour, event_motif = :event_motif WHERE event_id = :event_id';
+        $stmt = $this->_pdo->prepare($sql);
+        $stmt->bindParam(':event_name', $_POST['motifEvent']);
+        $stmt->bindParam(':event_date', $_POST['dateEvent']);
+        $stmt->bindParam(':event_hour', $_POST['hourEvent']);
+        $stmt->bindParam(':event_motif', $_POST['noteEvenement']);
+        $stmt->bindParam(':event_id', $id);
+        $stmt->execute();
+        header('Location: ../controllers/controller-rdv.php');
+        exit();
+    }
 }

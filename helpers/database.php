@@ -17,3 +17,4 @@ class Database
         return self::$_pdo;
     }
 }
+?>

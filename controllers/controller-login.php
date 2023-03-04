@@ -28,12 +28,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } 
 
     } 
+
+    /* si l'utilisateur clic sur le bouton se déconnecter, on détruit la session et on le redirige vers la page de connexion */
     if (isset($_GET['logout'])) {
 
         $disconnected = true;
         session_destroy();
     }
-
+  /* si l'inscription s'est bien déroulée, on affiche un message de confirmation */
     if (isset($_GET['subscribed'])) {
         $subscribed = true;
     }
