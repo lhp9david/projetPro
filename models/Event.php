@@ -158,7 +158,6 @@ class Event
         $stmt->bindParam(':event_motif', $_POST['noteEvenement']);
         $stmt->bindParam(':event_id', $id);
         $stmt->execute();
-        header('Location: ../controllers/controller-rdv.php');
-        exit();
+       
     }
 }

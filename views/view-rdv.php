@@ -68,7 +68,7 @@
 
 
                                 <button type="button" class="btn btn-dark fw-bold" data-bs-dismiss="modal">Close</button>
-                                <input type="submit" name="changeEvent" class="btn btn-warning fw-bold "><a class="text-black" href="../controllers/controller-rdv.php?change=<?= $event['event_id'] ?>"></a></input>
+                               <a class="text-black" href="../controllers/controller-rdv.php?change=<?= $event['event_id'] ?>"> <input type="submit" name="changeEvent" class="btn btn-warning fw-bold "></a></input>
                             </form>
                         </div>
                         <div class="modal-footer">

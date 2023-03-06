@@ -44,17 +44,17 @@ $errors = [];
         }
 
         if(empty($errors)){
-        
+       
            /* si tous les champs sont remplis, on vérifie si le prénom de l'enfant existe déjà dans la base de données */
             $child = new Child();
             $check = $child->checkChild();
 
            /* si le prénom n'existe pas, on crée l'enfant */
-            if(empty($check)) {
+            if(empty(!$check)) {
                 
                 $child->createChild();
                 header('Location: controller-add-child.php');
-                exit();
+                
             } else {
                 foreach ($check as $value){
                     if ($value == 'child_firstname') {

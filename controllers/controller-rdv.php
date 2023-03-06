@@ -13,13 +13,10 @@ include('../models/Child.php');
 include('../models/Event.php');
 
 
-if ($_SERVER['REQUEST_METHOD']==='POST' && isset($_POST['change'])){
-    if (isset($_GET['change'])){
-        $id = $_GET['change'];
-        $event = new Event();
-        $event->updateEvent($id);
-        exit();
-    }
+if(isset($_GET['change'])){
+    $id = $_GET['change'];
+    $event = new Event();
+    $event->updateEvent($id);
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
