@@ -66,7 +66,7 @@
                                     </select></div>
                                 <div><textarea name="noteEvenement" id="" cols="30" rows="5" value=""><?= $event['event_motif'] ?? '' ?></textarea></div>
 
-                                                <input type="text" name="idEvent" value="<?= $event['event_id'] ?>">
+                                                <input type="hidden" name="idEvent" value="<?= $event['event_id'] ?>">
                                 <button type="button" class="btn btn-dark fw-bold" data-bs-dismiss="modal">Close</button>
                                 <input type="submit" name="changeEvent" class="btn btn-warning fw-bold "></input>
                             </form>
