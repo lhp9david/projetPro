@@ -80,6 +80,8 @@ class Event
         return $result;
     }
 
+
+
     /* verifier que le child id correspond bien à l'id du parent connecté */
     public function checkChildID($id)
     {
@@ -160,4 +162,6 @@ class Event
         $stmt->execute();
        
     }
+
+    
 }

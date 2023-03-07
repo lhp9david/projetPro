@@ -16,9 +16,9 @@
     <?php include('../views/include/navbar.php'); ?>
     <div class="ms-5 mt-2">
 
-        <button class="btn btn-warning fw-bold"><a class="text-black text-decoration-none" href="../controllers/controller-rdv.php">Voir tous</a></button>
+    <a class="text-black text-decoration-none" href="../controllers/controller-rdv.php"><button class="btn btn-warning fw-bold">Voir tous</button></a>
         <?php foreach ($nameList as $name) { ?>
-            <button class="btn btn-warning fw-bold"><a class="text-black text-decoration-none" href="../controllers/controller-rdv.php?idChild=<?= $name['child_id'] ?>"><?= $name['child_firstname'] ?? '' ?></a></button>
+            <a class="text-black text-decoration-none" href="../controllers/controller-rdv.php?idChild=<?= $name['child_id'] ?>"><button class="btn btn-warning fw-bold"><?= $name['child_firstname'] ?? '' ?></button></a>
         <?php } ?>
     </div>
 

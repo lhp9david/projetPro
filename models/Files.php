@@ -77,7 +77,23 @@ class Files
         return $result;
     }
 
-    /* fonction qui recupere le chemin du fichier */
+/* fonction qui recupere le chemin du dossier de l'enfant selon son Id */
+
+    public function getFolderPath($id)
+    {
+        $sql = 'SELECT child_firstName, child_id FROM child WHERE parent_id = :parent_id AND child_id = :child_id';
+        $stmt = $this->_pdo->prepare($sql);
+        $stmt->bindParam(':parent_id', $_SESSION['user']['parent_id']);
+        $stmt->bindParam(':child_id', $id);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        $childName = $result['child_firstName'];
+        $folderName = $childName;
+        $folderPath = 'uploads/' . $folderName . '_' . $id;
+        return $folderPath;
+    }
+
+    /* fonction qui recupere le chemin du fichier  */
 
     public function getFilePath()
     {
@@ -93,7 +109,7 @@ class Files
         return $folderPath;
     }
 
-    public function saveFile()
+    public function saveFile($id)
     {
 
 
@@ -105,23 +121,17 @@ class Files
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         $fileTypeID = $result['file_type_id'];
 
-        // Récupérer le child_id du parent connecté
-        $sql = 'SELECT child_id FROM child WHERE parent_id = :parent_id';
-        $stmt = $this->_pdo->prepare($sql);
-        $stmt->bindParam(':parent_id', $_SESSION['user']['parent_id']);
-        $stmt->execute();
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        $childID = $result['child_id'];
+       
 
         // Créer un dossier unique pour stocker les fichiers au nom de l'enfant
         $sql = 'SELECT child_firstname FROM child WHERE child_id = :child_id';
         $stmt = $this->_pdo->prepare($sql);
-        $stmt->bindParam(':child_id', $childID);
+        $stmt->bindParam(':child_id', $id);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
         $childName = $result['child_firstname'];
-        $folderName = $childName . '_' . $childID;
+        $folderName = $childName . '_' . $id;
         $folderPath = 'uploads/' . $folderName;
         if (!file_exists($folderPath)) {
             mkdir($folderPath, 0777, true);
@@ -137,7 +147,7 @@ class Files
         $stmt = $this->_pdo->prepare($sql);
         $stmt->bindValue(':file_name', ($uniqueId . '_' . $_FILES['userFile']['name']));
         $stmt->bindParam(':file_type_id', $fileTypeID);
-        $stmt->bindParam(':child_id', $childID);
+        $stmt->bindParam(':child_id', $id);
         $stmt->bindValue(':file_date', date('m-Y'));
         $stmt->execute();
 
@@ -157,22 +167,18 @@ class Files
 
     /* afficher les fichier selon la date */
 
-    public function getFilesByDate($date)
-    {
-        /* recupere l'id de l'enfant du parent connecté */
-        $sql = 'SELECT child_id FROM child WHERE parent_id = :parent_id';
-        $stmt = $this->_pdo->prepare($sql);
-        $stmt->bindParam(':parent_id', $_SESSION['user']['parent_id']);
-        $stmt->execute();
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        $childID = $result['child_id'];
 
-        $sql = 'SELECT file_name,file_id FROM files  WHERE child_id = :child_id AND file_date = :file_date';
+
+    /* afficher les fichiers selon l'Id de l'enfant */
+
+    public function getFilesByChildId($id)
+    {
+        $sql = 'SELECT file_name,file_id FROM files  WHERE child_id = :child_id';
         $stmt = $this->_pdo->prepare($sql);
-        $stmt->bindParam(':child_id', $childID);
-        $stmt->bindParam(':file_date', $date);
+        $stmt->bindParam(':child_id', $id);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
+
 }

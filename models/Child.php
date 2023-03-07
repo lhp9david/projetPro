@@ -79,5 +79,17 @@ public function checkChild() {
 
 
 }
+
+/* afficher les infos de l'enfant par rapport à l'id de l'enfant */
+
+public function displayChildInfo($id) {
+   
+    $sql = 'SELECT child_firstname, child_lastname, birthdate FROM child WHERE child_id = :child_id';
+    $stmt = $this->_pdo->prepare($sql);
+    $stmt->bindParam(':child_id', $id);
+    $stmt->execute();
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    return $result;
+}
 }
 ?>

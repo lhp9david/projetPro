@@ -11,6 +11,7 @@ include('../helpers/helpers.php');
 include('../models/Files.php');
 include('../config/env.php');
 include('../helpers/database.php');
+include('../models/Child.php');
 
 
 
@@ -32,7 +33,8 @@ verifier la variable $_FILE['name']['error']*/
             $error = 'Veuillez choisir un fichier de type pdf, png, jpg, jpeg';
             } else {
             $error = 'Votre fichier a bien été téléchargé';
-            $folder->saveFile();
+            $id = $_POST['child'];
+            $folder->saveFile($id);
             header('Location: controller-documents.php');
             }
     
@@ -41,14 +43,25 @@ verifier la variable $_FILE['name']['error']*/
         }
 }
 
+/* appelle  la fonction displayChild() pour afficher la liste des enfants sur les boutons  */
+$name = new Child();
+$nameList = $name->displayChild();
+
+/* recuperer le chemin du fichier  */
 $path = new Files();
 $folderPath = $path->getFilePath();
 
-if(isset($_GET['date'])){
-    $date = $_GET['date'];
+/* recuperer l'ID de l'enfant au clic du bouton et afficher les fichiers de l'enfant  */
+
+if(isset($_GET['idChild'])){
+    $id = $_GET['idChild'];
     $files = new Files();
-    $fileList= $files->getFilesByDate($date);
+    $folderPath = $files->getFolderPath($id);
+    $fileList = $files->getFilesByChildId($id);
+    $names = new Child();
+    $firstname = $names->displayChildInfo($id);
     
+    /*sinon afficher tous les fichiers  */
   } else {
 
     $files = new Files();
@@ -57,6 +70,8 @@ if(isset($_GET['date'])){
 
 
 
+
+/* supprimer  un fichier au clic de la corbeille en recuperant l' ID */
 
 if(isset($_GET['id'])){
     $id = $_GET['id'];
