@@ -78,3 +78,4 @@ if (isset($_GET['idEvent'])) {
 
 
 include('../views/view-rdv.php');
+?>

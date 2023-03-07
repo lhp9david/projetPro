@@ -15,7 +15,7 @@
 <body>
     <?php include('../views/include/navbar.php') ?>
 
-    <div class="container">
+    <div class="container ">
     <div class="doc mt-2">
             <p>Partager un document</p>
             <form action="" method="POST" enctype="multipart/form-data">
@@ -34,7 +34,7 @@
     
     <?php $year = date('Y'); ?>
  
-    <div class="container"> <p class="yearDoc"><?=$year?></p></div>
+    <div class="container mx-0"> <p class="yearDoc"><?=$year?></p></div>
     <hr>
     <div class="container box-doc my-2">
         <div class="month-side mt-5">

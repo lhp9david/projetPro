@@ -56,3 +56,4 @@ if(!isset($_SESSION['user'])){
 
 
     include('../views/view-inscription3.php');
+    ?>

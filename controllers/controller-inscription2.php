@@ -48,17 +48,23 @@ $errors = [];
            /* si tous les champs sont remplis, on vérifie si le prénom de l'enfant existe déjà dans la base de données */
             $child = new Child();
             $check = $child->checkChild();
+            var_dump($check);
 
            /* si le prénom n'existe pas, on crée l'enfant */
-            if(empty(!$check)) {
+            if(empty($check)) {
                 
                 $child->createChild();
                 header('Location: controller-add-child.php');
                 
             } else {
                 foreach ($check as $value){
-                    if ($value == 'child_firstname') {
+                    if ($value['child_firstname'] == $_POST['childFirstname']) {
                         $errors['error'] = 'Ce prénom est déjà utilisé';
+                        var_dump($check);
+                    } else {
+                        $child->createChild();
+                        header('Location: controller-add-child.php');
+                        
                     }
                 }
             }

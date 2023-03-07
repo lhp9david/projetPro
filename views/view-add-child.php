@@ -13,14 +13,16 @@
 </head>
 
 <body>
+
+<div class="container message">
 <?php foreach($childList as $child) { ?>
-  <p> <?= $child['child_firstname'] ?> à bien été ajouté(e) </p> 
+  <p> <span class="fw-bold"><?= $child['child_firstname'] ?></span>  à bien été ajouté(e) </p> 
 
     <?php } ?>
 
-<button class="addChild btn btn-success fw-bold"><a href="../controllers/controller-inscription2.php">Ajouter un enfant</a></button>
+<button class="addChild btn btn-success fw-bold my-2"><a href="../controllers/controller-inscription2.php">Ajouter un enfant</a></button>
 <button class="addChild btn btn-success fw-bold"><a href="../controllers/controller-inscription3.php">j'ai fini</a></button>
-
+</div>
 
     <script src="../assets/js/bootstrap.bundle.js"></script>
     <script src="../script.js"></script>

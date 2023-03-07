@@ -32,6 +32,16 @@ body {
   margin-left: 2em;
 }
 
+.message {
+  display: flex;
+  margin: auto;
+  text-align: center;
+  flex-direction: column;
+  width: fit-content;
+  height: 100vh;
+  justify-content: center;
+}
+
 /********************************************************Inscription****************************************************/
 .inscription {
   width: fit-content;
@@ -104,6 +114,7 @@ table {
 
 th,
 td {
+  height: 8em;
   border: 1px solid #ddd;
   padding: 8px;
   width: 100px;
@@ -114,6 +125,7 @@ td {
 }
 
 th {
+  height: 2em;
   background-color: gold;
   color: black;
   border: 1px solid black;
@@ -288,7 +300,7 @@ footer {
   }
 
   table {
-    height: 90vh;
+    height: auto;
   }
 
   th,
@@ -304,6 +316,7 @@ footer {
 
   .doc {
     margin-left: 0 important;
+    width: auto;
   }
 
   .bell {
