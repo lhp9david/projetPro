@@ -66,9 +66,9 @@
                                     </select></div>
                                 <div><textarea name="noteEvenement" id="" cols="30" rows="5" value=""><?= $event['event_motif'] ?? '' ?></textarea></div>
 
-
+                                                <input type="text" name="idEvent" value="<?= $event['event_id'] ?>">
                                 <button type="button" class="btn btn-dark fw-bold" data-bs-dismiss="modal">Close</button>
-                               <a class="text-black" href="../controllers/controller-rdv.php?change=<?= $event['event_id'] ?>"> <input type="submit" name="changeEvent" class="btn btn-warning fw-bold "></a></input>
+                                <input type="submit" name="changeEvent" class="btn btn-warning fw-bold "></input>
                             </form>
                         </div>
                         <div class="modal-footer">

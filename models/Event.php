@@ -150,18 +150,41 @@ class Event
     }
 
     /* modifier un event */
-    public function updateEvent($id)
+    public function updateEvent()
     {
-        $sql = 'UPDATE event SET event_name = :event_name, event_date = :event_date, event_hour = :event_hour, event_motif = :event_motif WHERE event_id = :event_id';
+
+        /* recuperer la valeur du event_type_id avec l'event_id */
+        $sql = 'SELECT event_type_id FROM event WHERE event_id = :event_id';
+        $stmt = $this->_pdo->prepare($sql);
+        $stmt->bindParam(':event_id', $_POST['idEvent']);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        $eventTypeID = $result['event_type_id'];
+      
+
+        /* recuperer la valeur du child_id avec l'event_id */
+        $sql = 'SELECT child_id FROM event WHERE event_id = :event_id';
+        $stmt = $this->_pdo->prepare($sql);
+        $stmt->bindParam(':event_id', $_POST['idEvent']);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        $childID = $result['child_id'];
+
+        /* modifier l'event */
+        $sql = 'UPDATE event SET event_name = :event_name, event_date = :event_date, event_hour = :event_hour, child_id = :child_id, event_type_id = :event_type_id, event_motif = :event_motif WHERE event_id = :event_id';
         $stmt = $this->_pdo->prepare($sql);
         $stmt->bindParam(':event_name', $_POST['motifEvent']);
         $stmt->bindParam(':event_date', $_POST['dateEvent']);
         $stmt->bindParam(':event_hour', $_POST['hourEvent']);
+        $stmt->bindParam(':child_id', $childID);
+        $stmt->bindParam(':event_type_id', $eventTypeID);
         $stmt->bindParam(':event_motif', $_POST['noteEvenement']);
-        $stmt->bindParam(':event_id', $id);
+        $stmt->bindParam(':event_id', $_POST['idEvent']);
         $stmt->execute();
+  
        
     }
 
     
 }
+$sql = 'INSERT INTO event (event_name, event_date, event_hour, child_id, event_type_id,event_motif) VALUES (:event_name, :event_date, :event_hour, :child_id, :event_type_id, :event_motif)';

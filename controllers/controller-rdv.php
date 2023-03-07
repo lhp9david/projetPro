@@ -13,10 +13,12 @@ include('../models/Child.php');
 include('../models/Event.php');
 
 
-if(isset($_GET['change'])){
-    $id = $_GET['change'];
+if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['changeEvent'])){
+   
     $event = new Event();
-    $event->updateEvent($id);
+    $event->updateEvent();
+    header('Location: ../controllers/controller-rdv.php');
+    exit();
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
