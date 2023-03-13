@@ -123,6 +123,21 @@ class Event
    
     }
 
+    /* afficher les events en joignant la table child pour afficher le prenom de l'enfant*/
+
+    public function showAllEventJoinChild()
+    {
+        $parentID = $_SESSION['user']['parent_id'];
+        $sql = 'SELECT event_id,event_name, event_date, event_hour, event_motif, child_firstname FROM event  INNER JOIN child ON event.child_id = child.child_id WHERE child.parent_id = :parent_id';
+        $stmt = $this->_pdo->prepare($sql);
+        $stmt->bindParam(':parent_id', $parentID);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+
+   
+    }
+
     /* recuperer les event_date sous forme de tableau */
     public function showEventDate()
     {
@@ -187,4 +202,3 @@ class Event
 
     
 }
-$sql = 'INSERT INTO event (event_name, event_date, event_hour, child_id, event_type_id,event_motif) VALUES (:event_name, :event_date, :event_hour, :child_id, :event_type_id, :event_motif)';

@@ -27,6 +27,7 @@
 
     <div class="container event-container">
         <?php foreach ($eventList as $event) { ?>
+            <h3 class="text-end"><?=$event['child_firstname'] ?? ''?></h3>
             <div class="event-container1 my-3 row event">
                 <p class="col-lg-3"><?= date('d-m-Y', strtotime($event['event_date'])) ?? ''; ?></p>
                 <p class="col-lg-3"><?= $event['event_name'] ?? '' ?></p>

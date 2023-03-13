@@ -61,7 +61,7 @@ if (isset($_GET['idChild'])) {
    
 } else {
     $event = new Event();
-    $eventList = $event->showAllEvent();
+    $eventList = $event->showAllEventJoinChild();
 }
 
 
