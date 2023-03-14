@@ -204,6 +204,7 @@ td:hover {
   align-items: center;
   flex-wrap: wrap; 
   gap: 1em;
+  min-height: 45vh;
 }
 
 .box-doc {
