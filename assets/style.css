@@ -167,6 +167,7 @@ td:hover {
   height: 1em;
   margin-left: 1em;
   cursor: pointer;
+  position: relative;
 }
 
 /***********************************************view-doc**********************************************************/

@@ -154,10 +154,24 @@ class Files
         return true;
     }
 
-    /* supprimer un fichier */
+    /* supprimer un fichier dans la base de donnée*/
 
     public function deleteFile($id)
     {
+        /* recupere le nom du fichier selon son Id */
+        $sql = 'SELECT file_name FROM files WHERE file_id = :file_id';
+        $stmt = $this->_pdo->prepare($sql);
+        $stmt->bindParam(':file_id', $id);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        $fileName = $result['file_name'];
+        /* faire le chemin du fichier et le supprimer */
+        $filePath = $this->getFilePath() . '/' . $fileName;
+
+        if (file_exists($filePath)) {
+            unlink($filePath);
+        }
+        /* supprimer le fichier dans la base de donnée */
         $sql = 'DELETE FROM files WHERE file_id = :file_id';
         $stmt = $this->_pdo->prepare($sql);
         $stmt->bindParam(':file_id', $id);
@@ -165,9 +179,7 @@ class Files
         return true;
     }
 
-    /* afficher les fichier selon la date */
-
-
+    /* méthode pour supprimer un fichier dans le dossier si il n'existe plus dans la base de donnée */
 
     /* afficher les fichiers selon l'Id de l'enfant */
 
