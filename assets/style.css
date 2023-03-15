@@ -163,8 +163,8 @@ td:hover {
 }
 
 .trash {
-  width: 1em;
-  height: 1em;
+  width: 2em;
+  height: 2em;
   margin-left: 1em;
   cursor: pointer;
   position: relative;
@@ -336,7 +336,7 @@ footer {
   }
 
   .container-doc img {
-    width: 100px;
+    width: auto;
     height: 100px;
   }
 }

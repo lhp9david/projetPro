@@ -61,20 +61,14 @@ class Files
 
     public function getFiles()
     {
-        /* recupere l'id de l'enfant du parent connecté */
-        $sql = 'SELECT child_id FROM child WHERE parent_id = :parent_id';
+        $parentID = $_SESSION['user']['parent_id'];
+        $sql = 'SELECT * FROM files  INNER JOIN child ON files.child_id = child.child_id WHERE child.parent_id = :parent_id';
         $stmt = $this->_pdo->prepare($sql);
-        $stmt->bindParam(':parent_id', $_SESSION['user']['parent_id']);
-        $stmt->execute();
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        $childID = $result['child_id'];
-
-        $sql = 'SELECT file_name,file_id FROM files  WHERE child_id = :child_id';
-        $stmt = $this->_pdo->prepare($sql);
-        $stmt->bindParam(':child_id',$childID);
+        $stmt->bindParam(':parent_id', $parentID);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
+
     }
 
 /* fonction qui recupere le chemin du dossier de l'enfant selon son Id */
@@ -145,7 +139,7 @@ class Files
         // Enregistrer le fichier dans la base de données
         $sql = 'INSERT INTO files (file_name, file_type_id, child_id,file_date) VALUES (:file_name, :file_type_id, :child_id,:file_date)';
         $stmt = $this->_pdo->prepare($sql);
-        $stmt->bindValue(':file_name', ($uniqueId . '_' . $_FILES['userFile']['name']));
+        $stmt->bindValue(':file_name', $targetPath);
         $stmt->bindParam(':file_type_id', $fileTypeID);
         $stmt->bindParam(':child_id', $id);
         $stmt->bindValue(':file_date', date('m-Y'));

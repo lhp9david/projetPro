@@ -60,12 +60,21 @@ if(isset($_GET['idChild'])){
     $fileList = $files->getFilesByChildId($id);
     $names = new Child();
     $firstname = $names->displayChildInfo($id);
+    if(!$fileList){
+      $message = "Aucun document à afficher";
+    }
+  
+
     
     /*sinon afficher tous les fichiers  */
   } else {
 
     $files = new Files();
     $fileList = $files->getFiles();
+    if(!$fileList){
+      $message = "Aucun document à afficher"; 
+    }
+ 
   }
 
 

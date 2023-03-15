@@ -27,7 +27,7 @@
                 </select>
                 <select name="child" id="">
                     <?php foreach ($nameList as $child) { ?>
-                        <option value="<?= $child['child_id'] ?>"><?= $child['child_firstname'] ?></option>
+                        <option value="<?= $child['child_id'] ?>"><?= ucfirst($child['child_firstname']) ?></option>
                     <?php } ?>
                     <input multiple="multiple" type="file" name="userFile"> <span><?= $error ?? '' ?></span>
                     <input type="submit" value="Envoyer">
@@ -43,7 +43,7 @@
     </div>
     <hr>
     <div class="ms-5 mt-2">
-
+    <a class="text-black text-decoration-none" href="../controllers/controller-documents.php"><button class="btn btn-warning fw-bold">Voir tous</button></a>
         <?php foreach ($nameList as $name) { ?>
             <a class="text-black text-decoration-none" href="../controllers/controller-documents.php?idChild=<?= $name['child_id'] ?>"> <button class="btn btn-warning fw-bold"><?= $name['child_firstname'] ?? '' ?></button></a>
         <?php } ?>
@@ -51,31 +51,11 @@
 
 
     <div class="container-doc mt-5">
-
+    <p class="text-center fw-bold fs-5"><?=$message ?? '' ?></p>
         <?php foreach ($fileList as $value) { ?>
-            <div>
-                <img class="elt" src="../controllers/<?= $folderPath . '/' . $value['file_name'] ?>" alt="">
-                <?php if (!isset($user['parent2'])) { ?>
-                    <img class="trash" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal<?= $value['file_id'] ?>" src="../assets/img/delete.png" alt="">
-                    <!-- Modal -->
-                    <div class="modal fade" id="exampleModal<?= $value['file_id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Supprimer le fichier</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    Êtes-vous sûr de vouloir supprimer ce fichier ?
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-                                    <a href="../controllers/controller-documents.php?id=<?= $value['file_id'] ?>"><button type="button" class="btn btn-danger">Supprimer</button></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                <?php } ?>
+            <div class="border border-dark d-flex flex-column-reverse">
+                <img class="elt" src="../controllers/<?=$value['file_name'] ?>" alt="">
+
             </div>
         <?php }
         ?>

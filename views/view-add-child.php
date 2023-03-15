@@ -16,7 +16,7 @@
 
 <div class="container message">
 <?php foreach($childList as $child) { ?>
-  <p> <span class="fw-bold"><?= $child['child_firstname'] ?></span>  à bien été ajouté(e) </p> 
+  <p> <span class="fw-bold"><?= ucfirst($child['child_firstname']) ?></span>  à bien été ajouté(e) </p> 
 
     <?php } ?>
 

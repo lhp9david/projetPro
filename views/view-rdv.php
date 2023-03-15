@@ -26,11 +26,12 @@
 
 
     <div class="container event-container">
+        <p class="text-center fw-bold fs-5"><?=$message ?? '' ?></p>
         <?php foreach ($eventList as $event) { ?>
-            <h3 class="text-end"><?=$event['child_firstname'] ?? ''?></h3>
+            <h3 class="text-end"><?php if (isset($event['child_firstname'])) {echo ucfirst($event['child_firstname']);}else{ '';}?></h3>
             <div class="event-container1 my-3 row event">
                 <p class="col-lg-3"><?= date('d-m-Y', strtotime($event['event_date'])) ?? ''; ?></p>
-                <p class="col-lg-3"><?= $event['event_name'] ?? '' ?></p>
+                <p class="col-lg-3"><?= ucfirst($event['event_name']) ?? '' ?></p>
                 <p class="col-lg-4"><?= $event['event_motif'] ?></p>
                 <p class="col-lg-2"><?= $event['event_hour'] ?? '' ?>
                 <?php if(!isset($user['parent2'])) { ?>
@@ -60,7 +61,7 @@
                                     </select></div>
                                 <div> <select name="motifEvent" id="event-select">
                                         <option value=""><?= $event['event_name'] ?? '' ?></option>
-                                        <option value="rdv médical">Rendez-vous médical</option>
+                                        <option value="rdv medical">Rendez-vous médical</option>
                                         <option value="Anniversaire">Anniversaire</option>
                                         <option value="Sortie scolaire">Sortie scolaire</option>
                                         <option value="Autre">Autre</option>

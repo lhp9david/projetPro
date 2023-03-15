@@ -56,12 +56,18 @@ if (isset($_GET['idChild'])) {
     } else {
         $event = new Event();
         $eventList = $event->showEvent($id);
+        if (!$eventList){
+            $message = "Aucun événement à venir";
+        }
     }
 
    
 } else {
     $event = new Event();
     $eventList = $event->showAllEventJoinChild();
+    if (!$eventList){
+        $message = "Aucun événement à venir";
+    }
 }
 
 
