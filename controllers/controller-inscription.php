@@ -15,7 +15,7 @@ require '../helpers/database.php';
             else if(!preg_match('/^[a-zA-ZÀ-ÿ-]+$/', $_POST['lastname'])) {
                 $errors['lastname'] = 'Veuillez respecter le format';
             } else {{
-                $lastname = $_POST['lastname'];
+                $lastname = ($_POST['lastname']);
             }}
         }
     

@@ -231,4 +231,17 @@ class Paarent
             }
         }
     }
+
+
+    /**méthode pour recuperer toutes les informations des parents et de ses enfants inner join */
+
+    public function getAllParent($id)
+    {
+        $sql = "SELECT * FROM parent  WHERE parent.parent_id = :parent_id";
+        $stmt = $this->_pdo->prepare($sql);
+        $stmt->bindParam(':parent_id', $id);
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        return $result;
+    }
 }

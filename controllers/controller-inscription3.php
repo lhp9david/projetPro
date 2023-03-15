@@ -15,37 +15,37 @@ if(!isset($_SESSION['user'])){
     
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
-        if (isset($_POST['lastname'])) {
-            if (empty($_POST['lastname'])) {
-                $errors['lastname'] = 'champ obligatoire';
+        if (isset($_POST['pseudoParent2'])) {
+            if (empty($_POST['pseudoParent2'])) {
+                $errors['pseudoParent2'] = 'champ obligatoire';
             }
-            else if(!preg_match('/^[a-zA-ZÀ-ÿ-]+$/', $_POST['lastname'])) {
-                $errors['lastname'] = 'Veuillez respecter le format';
+            else if(!preg_match('/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/', $_POST['pseudoParent2'])) {
+                $errors['pseudoParent2'] = 'Veuillez respecter le format';
             }
         }
-        if (isset($_POST['password'])) {
-            if (empty($_POST['password'])) {
-                $errors['password'] = 'champ obligatoire';
+        if (isset($_POST['passwordParent2'])) {
+            if (empty($_POST['passwordParent2'])) {
+                $errors['passwordParent2'] = 'champ obligatoire';
             }
-            else if (!preg_match('/^.{8,}$/', $_POST['password'])) {
-                $errors['password'] = '8 caractères minimum';
+            else if (!preg_match('/^.{8,}$/', $_POST['passwordParent2'])) {
+                $errors['passwordParent2'] = '8 caractères minimum';
             }
         }
     
     
     
-        if (isset($_POST['confirmPass'])) {
-            if ($_POST['password'] != $_POST['confirmPass']){
-                $errors['error'] = 'les mots de passe ne sont pas identique';
+        if (isset($_POST['confirmPassParent2'])) {
+            if ($_POST['passwordParent2'] != $_POST['confirmPassParent2']){
+                $errors['confirmPassParent2'] = 'les mots de passe ne sont pas identique';
             }
-            if (empty($_POST['confirmPass'])) {
-                $errors['confirmPass'] = 'champ obligatoire';
+            if (empty($_POST['confirmPassParent2'])) {
+                $errors['confirmPassParent2'] = 'champ obligatoire';
             }
-            else if (!preg_match('/^.{8,}$/', $_POST['confirmPass'])) {
-                $errors['password'] = 'Veuillez respecter le format';
+            else if (!preg_match('/^.{8,}$/', $_POST['confirmPassParent2'])) {
+                $errors['confirmPassPArent2'] = 'Veuillez respecter le format';
             }
         }
-     /*  si tous les champs sont remplis et que les mots de passe sont identiques, on crée le paren 2 */
+     /*  si tous les champs sont remplis et que les mots de passe sont identiques, on crée le parent 2 */
         if(empty($errors)){
 
           $obj_parent = new Paarent();

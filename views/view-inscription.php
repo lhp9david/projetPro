@@ -30,10 +30,10 @@
         <label for="email" class="form-label fw-bold fs-5">Adresse email</label>
         <input type="email" class="form-control" id="email" name="mail" value="<?= (isset($_POST['mail'])) ? $_POST['mail'] : ''; ?>"><span class="text-danger"><?= isset($errors['mail']) ? $errors['mail'] : '' ?></span>
       </div>
-      <div class="mb-3">
+      <!-- <div class="mb-3">
         <label for="confirmMail" class="form-label fw-bold  fs-5">Confirmer votre email</label>
         <input type="email" class="form-control" id="confirmMail" name="confirMmail">
-      </div>
+      </div> -->
       <div class="mb-3">
         <label for="password" class="form-label fw-bold  fs-5">Veuillez choisir un mot de passe</label>
         <input type="password" class="form-control" id="password" name="password"><span class="text-danger"><?= isset($errors['password']) ? $errors['password'] : '' ?></span>

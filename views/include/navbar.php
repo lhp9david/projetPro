@@ -10,6 +10,7 @@
         <a class="nav-link active" aria-current="page" href="../controllers/controller-accueil.php?month=<?=date('m')?>&year=<?=date('Y')?>">Accueil</a>
         <a class="nav-link" href="../controllers/controller-documents.php">Documents</a>
         <a class="nav-link" href="../controllers/controller-rdv.php">Evenements</a>
+        <a class="nav-link" href="../controllers/controller-infos.php">Mes infos</a>
         <a class="nav-link" href="../controllers/controller-login.php?logout">Deconnexion</a>
       </div>
     </div>
