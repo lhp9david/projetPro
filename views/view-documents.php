@@ -57,6 +57,7 @@
                 <img class="elt" src="../controllers/<?=$value['file_name'] ?>" alt="">
                 <?php if (!isset($user['parent2'])) { ?>
                     <img class="trash" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal<?= $value['file_id'] ?>" src="../assets/img/delete.png" alt="">
+                    <?php } ?>
             </div>
                     <!-- Modal -->
                     <div class="modal fade" id="exampleModal<?= $value['file_id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -76,7 +77,7 @@
                             </div>
                         </div>
                     </div>
-                <?php } ?>
+                
           
             
         <?php }
