@@ -27,7 +27,8 @@
 
     <div class="container event-container">
         <p class="text-center fw-bold fs-5"><?=$message ?? '' ?></p>
-        <?php foreach ($eventList as $event) { ?>
+       
+     <?php foreach ($eventList as $event) { ?>
             <h3 class="text-end"><?php if (isset($event['child_firstname'])) {echo ucfirst($event['child_firstname']);}else{ '';}?></h3>
             <div class="event-container1 my-3 row event">
                 <p class="col-lg-3"><?= date('d-m-Y', strtotime($event['event_date'])) ?? ''; ?></p>
@@ -60,7 +61,7 @@
                                         <?php } ?>
                                     </select></div>
                                 <div> <select name="motifEvent" id="event-select">
-                                        <option value=""><?= $event['event_name'] ?? '' ?></option>
+                                        <option value=""><?= $event['event_name']?? '' ?></option>
                                         <option value="rdv medical">Rendez-vous médical</option>
                                         <option value="Anniversaire">Anniversaire</option>
                                         <option value="Sortie scolaire">Sortie scolaire</option>
@@ -69,8 +70,8 @@
                                 <div><textarea name="noteEvenement" id="" cols="30" rows="5" value=""><?= $event['event_motif'] ?? '' ?></textarea></div>
 
                                                 <input type="hidden" name="idEvent" value="<?= $event['event_id'] ?>">
-                                <button type="button" class="btn btn-dark fw-bold" data-bs-dismiss="modal">Close</button>
-                                <input type="submit" name="changeEvent" class="btn btn-warning fw-bold "></input>
+                                <button type="button" class="btn btn-dark fw-bold" data-bs-dismiss="modal">Fermer</button>
+                                <input type="submit" name="changeEvent" class="btn btn-warning fw-bold " value="Modifier"></input>
                             </form>
                         </div>
                         <div class="modal-footer">

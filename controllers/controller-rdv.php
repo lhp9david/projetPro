@@ -54,6 +54,8 @@ if (isset($_GET['idChild'])) {
 
         /*** sinon on affiche les rdv de l'enfant  */
     } else {
+        $firstname = new Child();
+        $firstnameList = $firstname->displayChildInfo($id);
         $event = new Event();
         $eventList = $event->showEvent($id);
         if (!$eventList){

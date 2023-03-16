@@ -155,7 +155,7 @@ class Event
     public function showEventByDate($date)
     {
         $parentID = $_SESSION['user']['parent_id'];
-        $sql = 'SELECT event_id,event_name, event_date, event_hour, event_motif FROM event  where child_id in (SELECT child_id FROM child WHERE parent_id = :parent_id) AND event_date = :event_date';
+        $sql = 'SELECT event_id,event_name, event_date, event_hour, event_motif,child_firstname  FROM event INNER JOIN child ON event.child_id = child.child_id WHERE child.parent_id = :parent_id AND event_date = :event_date ORDER BY event_date ASC, event_hour ASC';
         $stmt = $this->_pdo->prepare($sql);
         $stmt->bindParam(':parent_id', $parentID);
         $stmt->bindParam(':event_date', $date);

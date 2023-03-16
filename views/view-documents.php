@@ -39,7 +39,7 @@
     <?php ?>
 
     <div class="container mx-0">
-        <p class="yearDoc"><?= $firstname['child_firstname'] ?? '' ?></p>
+        <p class="yearDoc"><?= $firstname['child_firstname'] ?? 'Tous les documents' ?></p>
     </div>
     <hr>
     <div class="ms-5 mt-2">
@@ -55,8 +55,30 @@
         <?php foreach ($fileList as $value) { ?>
             <div class="border border-dark d-flex flex-column-reverse">
                 <img class="elt" src="../controllers/<?=$value['file_name'] ?>" alt="">
-
+                <?php if (!isset($user['parent2'])) { ?>
+                    <img class="trash" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal<?= $value['file_id'] ?>" src="../assets/img/delete.png" alt="">
             </div>
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal<?= $value['file_id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Supprimer le fichier</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    Êtes-vous sûr de vouloir supprimer ce fichier ?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                                    <a href="../controllers/controller-documents.php?id=<?= $value['file_id'] ?>"><button type="button" class="btn btn-danger">Supprimer</button></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <?php } ?>
+          
+            
         <?php }
         ?>
     </div>

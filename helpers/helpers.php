@@ -230,7 +230,7 @@ function createModalBirthday($month, $i, $year)
         <div class="modal-body">
           <?php foreach ($prénom as $value) {
             if (date('d-M-' . $year, strtotime($value['birthdate'])) == $date) { ?>
-              <p><?= 'Anniversaire de ' . $value['child_firstname'] ?></p>
+              <p><?= 'Anniversaire de '.'<span class=fw-bold>' . $value['child_firstname'] ?></span></p>
           <?php }
           } ?>
         </div>
@@ -273,6 +273,7 @@ function createModalEvent($month, $i, $year)
         <div class="modal-body">
           <?php foreach ($events as $value) { ?>
             <div>
+              <p class="fw-bold"><?= $value['child_firstname'] ?></p>
               <p><?= $value['event_name'] ?></p>
               <p><?= $value['event_hour'] ?></p>
               <p><?= $value['event_motif'] ?></p>
