@@ -2,7 +2,7 @@
 
         <div class="row">
             <div class="col-lg-12">
-                <div class="footer text-center ">
+                <div class="footer text-center">
                     <p>© 2023 </p>
                    <p type="button" class= "btn-small btn-outline-dark rounded-5" data-bs-toggle="modal" data-bs-target="#mentions"><a href="#">Mentions légales</a></p> 
                 </div>
@@ -12,7 +12,7 @@
 </footer>
 
 <!-- Modal -->
-<div class="modal fade" id="mentions" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal modal-xl fade" id="mentions" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">

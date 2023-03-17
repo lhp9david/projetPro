@@ -16,7 +16,7 @@
     <?php include('../views/include/navbar.php'); ?>
     <div class="ms-5 mt-2">
 
-    <a class="text-black text-decoration-none" href="../controllers/controller-rdv.php"><button class="btn btn-warning fw-bold">Voir tous</button></a>
+        <a class="text-black text-decoration-none" href="../controllers/controller-rdv.php"><button class="btn btn-warning fw-bold">Voir tous</button></a>
         <?php foreach ($nameList as $name) { ?>
             <a class="text-black text-decoration-none" href="../controllers/controller-rdv.php?idChild=<?= $name['child_id'] ?>"><button class="btn btn-warning fw-bold"><?= $name['child_firstname'] ?? '' ?></button></a>
         <?php } ?>
@@ -26,23 +26,48 @@
 
 
     <div class="container event-container">
-        <p class="text-center fw-bold fs-5"><?=$message ?? '' ?></p>
-       
-     <?php foreach ($eventList as $event) { ?>
-            <h3 class="text-end"><?php if (isset($event['child_firstname'])) {echo ucfirst($event['child_firstname']);}else{ '';}?></h3>
-            <div class="event-container1 my-3 row event">
-                <p class="col-lg-3"><?= date('d-m-Y', strtotime($event['event_date'])) ?? ''; ?></p>
-                <p class="col-lg-3"><?= ucfirst($event['event_name']) ?? '' ?></p>
-                <p class="col-lg-4"><?= $event['event_motif'] ?></p>
-                <p class="col-lg-2"><?= $event['event_hour'] ?? '' ?>
-                <?php if(!isset($user['parent2'])) { ?>
-                    <a href="../controllers/controller-rdv.php?idEvent=<?= $event['event_id'] ?>"><img class="trash" src="../assets/img/delete.png" alt=""></a>
-                    <a class="type=" button data-bs-toggle="modal" data-bs-target="#modal-<?= $event['event_id'] ?>"><img class="trash" src="../assets/img/edit.png" alt=""></a>
-                <?php } ?>
-                </p>
-            </div>
+        <p class="text-center fw-bold fs-5"><?= $message ?? '' ?></p>
 
+        <?php foreach ($eventList as $event) { ?>
+            <h3 class="text-end"><?php if (isset($event['child_firstname'])) {
+                                        echo ucfirst($event['child_firstname']);
+                                    } else {
+                                        '';
+                                    } ?></h3>
+            
+                <div class="my-3 row event">
+                    <p class="col-lg-3"><?= date('d-m-Y', strtotime($event['event_date'])) ?? ''; ?></p>
+                    <p class="col-lg-3"><?= ucfirst($event['event_name']) ?? '' ?></p>
+                    <p class="col-lg-4"><?= $event['event_motif'] ?? '' ?></p>
+                    <p class="col-lg-2"><?= $event['event_hour'] ?? '' ?>
+                        <?php if (!isset($user['parent2'])) { ?>
+                            <img class="trash" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal<?= $event['event_id'] ?>" src="../assets/img/delete.png" alt="">
+                            <a class="type=" button data-bs-toggle="modal" data-bs-target="#modal-<?= $event['event_id'] ?>"><img class="trash" src="../assets/img/edit.png" alt=""></a>
+                        <?php } ?>
+                    </p>
+                </div>
 
+                                   <!-- Modal de suppression -->
+                                   <div class="modal fade" id="exampleModal<?= $event['event_id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Supprimer le fichier</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    Êtes-vous sûr de vouloir supprimer ce fichier ?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                                    <a href="../controllers/controller-rdv.php?idEvent=<?= $event['event_id'] ?>"><button type="button" class="btn btn-danger">Supprimer</button></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+          
+
+                                <!-- modal de modification -->
             <div class="modal fade" id="modal-<?= $event['event_id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -50,26 +75,27 @@
                             <h1 class="modal-title fs-5" id="exampleModalLabel">Modifier</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
+                      <?= var_dump($event)?>
                         <div class="modal-body">
                             <form action="" method="POST">
-                                <div><input type="date" name="dateEvent" value="<?= $event['event_date'] ?>"></div>
+                                <div><input type="date" name="dateEvent" value="<?= $event['event_date'] ?? '' ?>"></div>
                                 <div><input type="time" name="hourEvent" value="<?= $event['event_hour'] ?? '' ?>"></div>
                                 <div> <select name="childname" id="child">
-                                        <option value=""><?= $name['child_firstname'] ?? '' ?></option>
-                                        <?php foreach ($nameList as $name) { ?>
-                                            <option value="<?= $name['child_firstname'] ?? '' ?>"> <?= $name['child_firstname'] ?? '' ?></option>
-                                        <?php } ?>
+                                        <option value=""><?= $event['child_firstname'] ?? '' ?></option>  
                                     </select></div>
+                                    
                                 <div> <select name="motifEvent" id="event-select">
-                                        <option value=""><?= $event['event_name']?? '' ?></option>
-                                        <option value="rdv medical">Rendez-vous médical</option>
-                                        <option value="Anniversaire">Anniversaire</option>
-                                        <option value="Sortie scolaire">Sortie scolaire</option>
-                                        <option value="Autre">Autre</option>
+                                        
+                                        <option <?=($event['event_type_id'] == 1) ? 'selected' : ''?> value="1">Rendez-vous médical</option>
+                                        <option <?=($event['event_type_id'] == 2) ? 'selected' : ''?> value="2">Anniversaire</option>
+                                        <option <?=($event['event_type_id'] == 3) ? 'selected' : ''?> value="3">Sport</option>
+                                        <option <?=($event['event_type_id'] == 4) ? 'selected' : ''?> value="4">Sortie scolaire</option>
+                                        <option <?=($event['event_type_id'] == 5) ? 'selected' : ''?> value="5">Autre</option>
+
                                     </select></div>
                                 <div><textarea name="noteEvenement" id="" cols="30" rows="5" value=""><?= $event['event_motif'] ?? '' ?></textarea></div>
 
-                                                <input type="hidden" name="idEvent" value="<?= $event['event_id'] ?>">
+                                <input type="hidden" name="idEvent" value="<?= $event['event_id'] ?>">
                                 <button type="button" class="btn btn-dark fw-bold" data-bs-dismiss="modal">Fermer</button>
                                 <input type="submit" name="changeEvent" class="btn btn-warning fw-bold " value="Modifier"></input>
                             </form>

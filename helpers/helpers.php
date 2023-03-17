@@ -59,7 +59,7 @@ function showCalendar($month, $year)
   $daysInMonth = cal_days_in_month(CAL_GREGORIAN, $month, $year);
   echo     '
     
-    <table class="col-12">
+    <table class="col-12 shadow">
         <thead>
             <tr>
                 <th>Lundi</th>
@@ -83,7 +83,7 @@ function showCalendar($month, $year)
       echo '<tr>';
       for ($j = 1; $j < $dayOfWeek; $j++) {
 
-        echo '<td class="bg-secondary"></td>';
+        echo '<td class="grey"></td>';
       }
     }
     // afficher les jrs du mois
@@ -91,7 +91,7 @@ function showCalendar($month, $year)
     // date d'aujourd'hui en jaune
     if (date('d-M-Y', mktime(0, 0, 0, $month, $i, $year)) == date('d-M-Y')) {
 
-      echo '<td class="bg-warning text-black type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-' . $i . '"">' . $i . '</td>';
+      echo '<td class="bg-warning text-black"  data-bs-toggle="modal" data-bs-target="#modal-' . $i . '"">'.'<span class="number">' . $i .'</span>' .'</td>';
       createModal($month, $i, $year, $holidays);
 
 
@@ -115,7 +115,7 @@ function showCalendar($month, $year)
       echo '<td class="bg-danger text-black type="button" data-bs-toggle="modal" data-bs-target="#modal-' . $i . '">' . '<img class="present" src="../assets/img/notes.png" alt="">' . '</td>';
       createModalEvent($month, $i, $year);
     } else {
-      echo '<td class="type="button" data-bs-toggle="modal" data-bs-target="#modal-' . $i . '">' . $i . '</td>';
+      echo '<td class="type="button" data-bs-toggle="modal" data-bs-target="#modal-' . $i . '">'.'<span class="number">' . $i .'</span>' .'</td>';
       createModal($month, $i, $year, $holidays);
     }
 
@@ -124,7 +124,7 @@ function showCalendar($month, $year)
       echo '</tr>';
     } else if ($i == $daysInMonth) {
       for ($j = $dayOfWeek; $j < 7; $j++) {
-        echo '<td class="bg-secondary "></td>';
+        echo '<td class="grey"></td>';
       }
       echo '</tr>';
     }

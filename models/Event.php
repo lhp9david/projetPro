@@ -35,22 +35,15 @@ class Event
     public function createEvent()
     {
 
-        /* recuperer l'event type id en fonction du nom de l'event */
-        $sql = 'SELECT event_type_id FROM event_type WHERE event_type = :event_type_name';
+        /* recuperer le type d'event par rapport à l'id */
+        $sql = 'SELECT event_type FROM event_type WHERE event_type_id = :event_type_id';
         $stmt = $this->_pdo->prepare($sql);
-        $stmt->bindParam(':event_type_name', $_POST['motifEvent']);
+        $stmt->bindParam(':event_type_id', $_POST['motifEvent']);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        $eventTypeID = $result['event_type_id'];
+        $eventTypeName = $result['event_type'];
 
-        /* recuperer la valeur du child_id du bon enfant grace à l'id du parent connecté  et au prenom de l'enfant*/
-        $sql = 'SELECT child_id FROM child WHERE parent_id = :parent_id AND child_firstname = :child_firstname';
-        $stmt = $this->_pdo->prepare($sql);
-        $stmt->bindParam(':parent_id', $_SESSION['user']['parent_id']);
-        $stmt->bindParam(':child_firstname', $_POST['childname']);
-        $stmt->execute();
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        $childID = $result['child_id'];
+      
 
 
 
@@ -58,11 +51,11 @@ class Event
 
         $sql = 'INSERT INTO event (event_name, event_date, event_hour, child_id, event_type_id,event_motif) VALUES (:event_name, :event_date, :event_hour, :child_id, :event_type_id, :event_motif)';
         $stmt = $this->_pdo->prepare($sql);
-        $stmt->bindParam(':event_name', $_POST['motifEvent']);
+        $stmt->bindParam(':event_name', $eventTypeName);
         $stmt->bindParam(':event_date', $_POST['dateEvent']);
         $stmt->bindParam(':event_hour', $_POST['hourEvent']);
-        $stmt->bindParam(':child_id', $childID);
-        $stmt->bindParam(':event_type_id', $eventTypeID);
+        $stmt->bindParam(':child_id', $_POST['childname']);
+        $stmt->bindParam(':event_type_id', $_POST['motifEvent']);
         $stmt->bindParam(':event_motif', $_POST['noteEvenement']);
         $stmt->execute();
         header('Location: ../controllers/controller-rdv.php');
@@ -128,7 +121,7 @@ class Event
     public function showAllEventJoinChild()
     {
         $parentID = $_SESSION['user']['parent_id'];
-        $sql = 'SELECT event_id,event_name, event_date, event_hour, event_motif, child_firstname FROM event  INNER JOIN child ON event.child_id = child.child_id WHERE child.parent_id = :parent_id ORDER BY event_date ASC, event_hour ASC';
+        $sql = 'SELECT event_type_id,event_id,event_name, event_date, event_hour, event_motif, child_firstname FROM event  INNER JOIN child ON event.child_id = child.child_id WHERE child.parent_id = :parent_id ORDER BY event_date ASC, event_hour ASC';
         $stmt = $this->_pdo->prepare($sql);
         $stmt->bindParam(':parent_id', $parentID);
         $stmt->execute();
@@ -168,13 +161,13 @@ class Event
     public function updateEvent()
     {
 
-        /* recuperer la valeur du event_type_id avec l'event_id */
-        $sql = 'SELECT event_type_id FROM event WHERE event_id = :event_id';
+        /* recuperer le type avec l'event_type_id */
+        $sql = 'SELECT event_type FROM event_type WHERE event_type_id = :event_type_id';
         $stmt = $this->_pdo->prepare($sql);
-        $stmt->bindParam(':event_id', $_POST['idEvent']);
+        $stmt->bindParam(':event_type_id', $_POST['motifEvent']);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        $eventTypeID = $result['event_type_id'];
+        $eventName = $result['event_type'];
       
 
         /* recuperer la valeur du child_id avec l'event_id */
@@ -188,11 +181,11 @@ class Event
         /* modifier l'event */
         $sql = 'UPDATE event SET event_name = :event_name, event_date = :event_date, event_hour = :event_hour, child_id = :child_id, event_type_id = :event_type_id, event_motif = :event_motif WHERE event_id = :event_id';
         $stmt = $this->_pdo->prepare($sql);
-        $stmt->bindParam(':event_name', $_POST['motifEvent']);
+        $stmt->bindParam(':event_name', $eventName );
         $stmt->bindParam(':event_date', $_POST['dateEvent']);
         $stmt->bindParam(':event_hour', $_POST['hourEvent']);
         $stmt->bindParam(':child_id', $childID);
-        $stmt->bindParam(':event_type_id', $eventTypeID);
+        $stmt->bindParam(':event_type_id', $_POST['motifEvent'] );
         $stmt->bindParam(':event_motif', $_POST['noteEvenement']);
         $stmt->bindParam(':event_id', $_POST['idEvent']);
         $stmt->execute();

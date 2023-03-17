@@ -33,24 +33,26 @@ $nameList = $name-> displayChild();
         <div class="doc  my-5 mx-auto ">
             <h3>Ajouter un événement</h3>
             <form action="../controllers/controller-rdv.php" method="POST">
-                <div><input type="date" name="dateEvent" value="<?= $_GET['date'] ?? '' ?>"></div>
-                <div><input type="time" name="hourEvent"></div>
-                <div> <select name="childname" id="child">
+                <div><input class="w-100" type="date" name="dateEvent" value="<?= $_GET['date'] ?? '' ?>"></div>
+                <div><input class="w-100" type="time" name="hourEvent"></div>
+                <div> <select class="w-100" name="childname" id="child">
                         <option value="">--Choisir l'enfant--</option>
                         <?php foreach ($nameList as $name) { ?>
-                        <option value="<?= $name['child_firstname'] ?? '' ?>">    <?= $name['child_firstname'] ?? '' ?></option>
+                        <option value="<?= $name['child_id'] ?? '' ?>">    <?= $name['child_firstname'] ?? '' ?></option>
                         <?php } ?>
                     </select></div>
-                <div> <select name="motifEvent" id="event-select">
+                <div> <select class="w-100" name="motifEvent" id="event-select">
                         <option value="">--Choisir evenement--</option>
-                        <option value="rdv médical">Rendez-vous médical</option>
-                        <option value="Anniversaire">Anniversaire</option>
-                        <option value="Sortie scolaire">Sortie scolaire</option>
-                        <option value="Autre">Autre</option>
-                    </select></div>
-                <div><textarea name="noteEvenement" id="" cols="30" rows="5"></textarea></div>
+                        <option value="1">Rendez-vous médical</option>
+                        <option value="2">Anniversaire</option>
+                        <option value="3">Sport</option>
+                        <option value="4">Sortie scolaire</option>
+                        <option value="5">Autre</option>
 
-                <div><input type="submit" value="Ajouter"></div>
+                    </select></div>
+                <div><textarea class="w-100" name="noteEvenement" id="" cols="30" rows="5"></textarea></div>
+
+                <div class='text-center'><input type="submit" value="Ajouter"></div>
                 <?php if (isset($_GET['error'])) { echo 'Veuillez remplir tous les champs';} else { '';} ?>
             </form>
 
