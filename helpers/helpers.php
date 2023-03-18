@@ -59,7 +59,7 @@ function showCalendar($month, $year)
   $daysInMonth = cal_days_in_month(CAL_GREGORIAN, $month, $year);
   echo     '
     
-    <table class="col-12 shadow">
+    <table class="col-12 shadow table">
         <thead>
             <tr>
                 <th>Lundi</th>
@@ -107,7 +107,7 @@ function showCalendar($month, $year)
 
       // anniversaire en vert
     } else if (in_array(date('d-M-Y', mktime(0, 0, 0, $month, $i, $year)), $birthday)) {
-      echo '<td class="bg-success text-black type="button" data-bs-toggle="modal" data-bs-target="#modal-' . $i . '">' . '<img class="present" src="../assets/img/cadeau.png" alt="">' . '</td>';
+      echo '<td class=" text-black type="button" data-bs-toggle="modal" data-bs-target="#modal-' . $i . '">' .'<img class="present" src="../assets/img/cadeau.png" alt="">' . '</td>';
       createModalBirthday($month, $i, $year);
 
       //  événement en rouge

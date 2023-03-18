@@ -30,7 +30,7 @@
                         <option value="<?= $child['child_id'] ?>"><?= ucfirst($child['child_firstname']) ?></option>
                     <?php } ?>
                     <input multiple="multiple" type="file" name="userFile"> <span><?= $error ?? '' ?></span>
-                    <input type="submit" value="Envoyer">
+                    <input type="submit" value="Ajouter">
 
             </form>
         </div>
@@ -52,7 +52,7 @@
 
     <div class=" mt-2 row mx-0">
 
-        <div class="col-lg-1 button_type_doc mx-0">
+        <div class="col-lg-2 button_type_doc mx-0">
             <button id="photo">Photos</button>
             <button id="ecole">Ecole</button>
             <button id="medical">Médical</button>
