@@ -1,26 +1,72 @@
-// /* ajouter les input pour l'ajout des enfants */
+let photoBouton = document.getElementById("photo");
+let ecoleBouton = document.getElementById("ecole");
+let medicalBouton = document.getElementById("medical");
+let autreBouton = document.getElementById("autre");
 
-// let addChild = document.querySelector('.addChild');
-// addChild.addEventListener('click', function() {
+let photo = document.querySelectorAll(".photo");
+let ecole = document.querySelectorAll(".ecole");
+let medical = document.querySelectorAll(".medical");
+let autre = document.querySelectorAll(".autre");
 
-//     let i = document.querySelectorAll('.child').length + 1;
+photoBouton.addEventListener('click', ()=>{
+    photo.forEach((element) => {
+    element.classList.remove ("hide");
+    });
+    ecole.forEach((element) => {
+    element.classList.add ("hide");
+    });
+    medical.forEach((element) => {
+    element.classList.add ("hide");
+    });
+    autre.forEach((element) => {
+    element.classList.add ("hide");
+    });
+})
 
+ecoleBouton.addEventListener('click', ()=>{
+    ecole.forEach((element) => {
+    element.classList.remove ("hide");
+    });
+    photo.forEach((element) => {
+    element.classList.add ("hide");
+    });
+    medical.forEach((element) => {
+    element.classList.add ("hide");
+    });
+    autre.forEach((element) => {
+    element.classList.add ("hide");
+    });
+})
 
-//     let newChild = document.createElement('div');
-//     newChild.innerHTML = `             <div class="mb-3">
-//     <label for="childFirstname${i}" class="form-label fw-bold fs-5">Prénom</label>
-//     <input type="text" class="form-control" id="childFirstname${i}" name="childFirstname" value=""><span class="text-danger"><?= isset($errors['childFirstname']) ? $errors['childFirstname'] : '' ?></span>
-// </div>
-// <div class="mb-3">
-//     <label for="childName${i}" class="form-label fw-bold fs-5">Nom</label>
-//     <input type="text" class="form-control" id="childName${i}" name="childName" value=""><span class="text-danger"><?= isset($errors['childName']) ? $errors['childName'] : '' ?></span>
-// </div>
-// <div class="mb-3">
-//     <label for="birthdate${i}" class="form-label fw-bold fs-5">Date de naissance</label>
-//     <input type="date" class="form-control" id="birthdate${i}" name="birthdate" value=""><span class="text-danger"><?= isset($errors['birthdate']) ? $errors['birthdate'] : '' ?></span>
-// </div>`;
-//     document.querySelector('.child').appendChild(newChild);
-// })
+medicalBouton.addEventListener('click', ()=>{
+    medical.forEach((element) => {
+    element.classList.remove ("hide");
+    });
+    photo.forEach((element) => {
+    element.classList.add ("hide");
+    });
+    ecole.forEach((element) => {
+    element.classList.add ("hide");
+    });
+    autre.forEach((element) => {
+    element.classList.add ("hide");
+    });
+})
+
+autreBouton.addEventListener('click', ()=>{
+    autre.forEach((element) => {
+    element.classList.remove ("hide");
+    });
+    photo.forEach((element) => {
+    element.classList.add ("hide");
+    });
+    ecole.forEach((element) => {
+    element.classList.add ("hide");
+    });
+    medical.forEach((element) => {
+    element.classList.add ("hide");
+    });
+})
 
 
 

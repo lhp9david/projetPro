@@ -164,7 +164,6 @@ td:hover {
   font-weight: bold;
   padding: 1em;
   text-align: center;
-  background-color: #f7c9ad;
   border-radius: 10px 0 10px 0;
 }
 
@@ -181,27 +180,66 @@ td:hover {
   cursor: pointer;
 }
 
+.medecin,#medecin {
+  border: 5px solid #28a745;
+}
+.anniv,#anniv {
+  border:5px solid #ffc107;
+}
+.sport,#sport {
+  border: 5px solid #dc3545;
+}
+.scolaire,#scolaire {
+  border: 5px solid #17a2b8;
+}
+.other,#other {
+  border: 5px solid #6c757d;
+}
+
+
 /***********************************************view-doc**********************************************************/
 .elt {
   height: 150px;
 }
 
-.photo {
+.photo,#photo {
   border: 5px solid blueviolet;
 }
-.ecole {
+
+.ecole,#ecole {
   border: 5px solid #ffc107;
 }
-.medical {
+.hide {
+  display: none !important;
+}
+.medical,#medical {
   border: 5px solid #28a745;
 }
-.autre {
+
+.autre,#autre {
   border: 5px solid #dc3545;
 }
+
 .elt:hover{
-  transform: scale(1.1);
-  transition: 0.3s;
+
   cursor: pointer;
+}
+.doc_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1em;
+  min-height: 50vh;
+}
+.button_type_doc {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 0.5em;
+  flex-wrap: wrap;
+  gap: 1em;
+  min-height: 50vh;
 }
 .container-doc {
   display: flex;
@@ -218,12 +256,7 @@ td:hover {
   min-height:70vh;
 }
 
-.month-side {
-  display:flex;
-  flex-direction: column;
-  justify-content: space-between;
 
-}
 
 .doc {
   border-radius: 10px;
@@ -252,7 +285,7 @@ textarea {
 
 .event-container {
   width: 100%;
-  min-height: 100vh;
+  min-height: 68vh;
 
 }
 

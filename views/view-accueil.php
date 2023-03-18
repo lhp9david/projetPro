@@ -43,7 +43,7 @@
     </div>
     <?php include('../views/include/footer.php') ?>
     <script src="../assets/js/bootstrap.bundle.js"></script>
-    <script src="script.js"></script>
+    <script src="../script.js"></script>
 </body>
 
 </html>

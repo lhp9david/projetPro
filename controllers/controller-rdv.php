@@ -56,6 +56,8 @@ if (isset($_GET['idChild'])) {
     } else {
         $firstname = new Child();
         $firstnameList = $firstname->displayChildInfo($id);
+        $names = new Child();
+        $firstname = $names->displayChildInfo($id);
         $event = new Event();
         $eventList = $event->showEvent($id);
         if (!$eventList){

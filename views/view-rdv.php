@@ -23,19 +23,35 @@
     </div>
 
 
+    <div class="container mx-0">
+        <p class="yearDoc"><?= $firstname['child_firstname'] ?? 'Tous les rendez-vous' ?></p>
+    </div>
+    <hr>
 
+    <div class=" event-container row mx-auto">
+    <p class="text-center fw-bold fs-5"><?= $message ?? '' ?></p>
+        <div class="col-lg-2 button_type_doc">
+            <button id="medecin">Médical</button>
+            <button id="anniv">Anniversaire</button>
+            <button id="sport">Sport</button>
+            <button id="scolaire">Sortie scolaire</button>
+            <button id="other">Autre</button>
+        </div>
+        <div class="col-lg-6 mx-auto">
+            <?php foreach ($eventList as $event) { ?>
+               
 
-    <div class="container event-container">
-        <p class="text-center fw-bold fs-5"><?= $message ?? '' ?></p>
-
-        <?php foreach ($eventList as $event) { ?>
-            <h3 class="text-end"><?php if (isset($event['child_firstname'])) {
-                                        echo ucfirst($event['child_firstname']);
-                                    } else {
-                                        '';
-                                    } ?></h3>
-            
-                <div class="my-3 row event">
+                <div class="my-3 row event <?php if ($event['event_type_id'] == 1) {
+                                                echo 'medecin';
+                                            } elseif ($event['event_type_id'] == 2) {
+                                                echo 'anniv';
+                                            } elseif ($event['event_type_id'] == 3) {
+                                                echo 'sport';
+                                            } elseif ($event['event_type_id'] == 4) {
+                                                echo 'scolaire';
+                                            } elseif ($event['event_type_id'] == 5) {
+                                                echo 'other';
+                                            } ?>">
                     <p class="col-lg-3"><?= date('d-m-Y', strtotime($event['event_date'])) ?? ''; ?></p>
                     <p class="col-lg-3"><?= ucfirst($event['event_name']) ?? '' ?></p>
                     <p class="col-lg-4"><?= $event['event_motif'] ?? '' ?></p>
@@ -47,67 +63,68 @@
                     </p>
                 </div>
 
-                                   <!-- Modal de suppression -->
-                                   <div class="modal fade" id="exampleModal<?= $event['event_id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Supprimer le fichier</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    Êtes-vous sûr de vouloir supprimer ce fichier ?
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-                                    <a href="../controllers/controller-rdv.php?idEvent=<?= $event['event_id'] ?>"><button type="button" class="btn btn-danger">Supprimer</button></a>
-                                </div>
+                <!-- Modal de suppression -->
+                <div class="modal fade" id="exampleModal<?= $event['event_id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Supprimer le fichier</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                Êtes-vous sûr de vouloir supprimer ce fichier ?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                                <a href="../controllers/controller-rdv.php?idEvent=<?= $event['event_id'] ?>"><button type="button" class="btn btn-danger">Supprimer</button></a>
                             </div>
                         </div>
                     </div>
-          
-
-                                <!-- modal de modification -->
-            <div class="modal fade" id="modal-<?= $event['event_id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">Modifier</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                    
-                        <div class="modal-body">
-                            <form action="" method="POST">
-                                <div><input type="date" name="dateEvent" value="<?= $event['event_date'] ?? '' ?>"></div>
-                                <div><input type="time" name="hourEvent" value="<?= $event['event_hour'] ?? '' ?>"></div>
-                                <div> <select name="childname" id="child">
-                                        <option value=""><?= $event['child_firstname'] ?? '' ?></option>  
-                                    </select></div>
-                                    
-                                <div> <select name="motifEvent" id="event-select">
-                                        
-                                        <option <?=($event['event_type_id'] == 1) ? 'selected' : ''?> value="1">Rendez-vous médical</option>
-                                        <option <?=($event['event_type_id'] == 2) ? 'selected' : ''?> value="2">Anniversaire</option>
-                                        <option <?=($event['event_type_id'] == 3) ? 'selected' : ''?> value="3">Sport</option>
-                                        <option <?=($event['event_type_id'] == 4) ? 'selected' : ''?> value="4">Sortie scolaire</option>
-                                        <option <?=($event['event_type_id'] == 5) ? 'selected' : ''?> value="5">Autre</option>
-
-                                    </select></div>
-                                <div><textarea name="noteEvenement" id="" cols="30" rows="5" value=""><?= $event['event_motif'] ?? '' ?></textarea></div>
-
-                                <input type="hidden" name="idEvent" value="<?= $event['event_id'] ?>">
-                                <button type="button" class="btn btn-dark fw-bold" data-bs-dismiss="modal">Fermer</button>
-                                <input type="submit" name="changeEvent" class="btn btn-warning fw-bold " value="Modifier"></input>
-                            </form>
-                        </div>
-                        <div class="modal-footer">
+                </div>
 
 
+                <!-- modal de modification -->
+                <div class="modal fade" id="modal-<?= $event['event_id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Modifier</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+
+                            <div class="modal-body">
+                                <form action="" method="POST">
+                                    <div><input type="date" name="dateEvent" value="<?= $event['event_date'] ?? '' ?>"></div>
+                                    <div><input type="time" name="hourEvent" value="<?= $event['event_hour'] ?? '' ?>"></div>
+                                    <div> <select name="childname" id="child">
+                                            <option value=""><?= $event['child_firstname'] ?? '' ?></option>
+                                        </select></div>
+
+                                    <div> <select name="motifEvent" id="event-select">
+
+                                            <option <?= ($event['event_type_id'] == 1) ? 'selected' : '' ?> value="1">Rendez-vous médical</option>
+                                            <option <?= ($event['event_type_id'] == 2) ? 'selected' : '' ?> value="2">Anniversaire</option>
+                                            <option <?= ($event['event_type_id'] == 3) ? 'selected' : '' ?> value="3">Sport</option>
+                                            <option <?= ($event['event_type_id'] == 4) ? 'selected' : '' ?> value="4">Sortie scolaire</option>
+                                            <option <?= ($event['event_type_id'] == 5) ? 'selected' : '' ?> value="5">Autre</option>
+
+                                        </select></div>
+                                    <div><textarea name="noteEvenement" id="" cols="30" rows="5" value=""><?= $event['event_motif'] ?? '' ?></textarea></div>
+
+                                    <input type="hidden" name="idEvent" value="<?= $event['event_id'] ?>">
+                                    <button type="button" class="btn btn-dark fw-bold" data-bs-dismiss="modal">Fermer</button>
+                                    <input type="submit" name="changeEvent" class="btn btn-warning fw-bold " value="Modifier"></input>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+
+
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        <?php  } ?>
+            <?php  } ?>
+        </div>
     </div>
 
     </div>
@@ -117,9 +134,9 @@
 
     <?= $error ?? '' ?>
     <?php include('../views/include/footer.php') ?>
-
+    <script src="../rdv.js"></script>
     <script src="../assets/js/bootstrap.bundle.js"></script>
-    <script src="../script.js"></script>
+
 </body>
 
 </html>
