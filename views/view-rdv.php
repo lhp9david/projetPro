@@ -14,17 +14,17 @@
 
 <body>
     <?php include('../views/include/navbar.php'); ?>
-    <div class="ms-5 mt-2">
+    
 
-        <a class="text-black text-decoration-none" href="../controllers/controller-rdv.php"><button class="btn btn-warning fw-bold">Voir tous</button></a>
+        
+
+
+
+    <div class="container text-end mt-5 mx-0">
+    <a class="text-black text-decoration-none" href="../controllers/controller-rdv.php"><button class="btn btn-warning fw-bold">Voir tous</button></a>
         <?php foreach ($nameList as $name) { ?>
             <a class="text-black text-decoration-none" href="../controllers/controller-rdv.php?idChild=<?= $name['child_id'] ?>"><button class="btn btn-warning fw-bold"><?= $name['child_firstname'] ?? '' ?></button></a>
         <?php } ?>
-    </div>
-
-
-    <div class="container mx-0">
-        <p class="yearDoc"><?= $firstname['child_firstname'] ?? 'Tous les rendez-vous' ?></p>
     </div>
     <hr>
 
