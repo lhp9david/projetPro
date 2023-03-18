@@ -7,7 +7,7 @@ body {
 }
 
 body {
-  background-image: url(/assets/img/planner-g95658c39c_1920.jpg);
+  /* background-image: url(/assets/img/planner-g95658c39c_1920.jpg); */
   background-size: cover;
 
 }
@@ -186,7 +186,18 @@ td:hover {
   height: 150px;
 }
 
-
+.photo {
+  border: 5px solid blueviolet;
+}
+.ecole {
+  border: 5px solid #ffc107;
+}
+.medical {
+  border: 5px solid #28a745;
+}
+.autre {
+  border: 5px solid #dc3545;
+}
 .elt:hover{
   transform: scale(1.1);
   transition: 0.3s;

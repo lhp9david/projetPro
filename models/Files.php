@@ -179,7 +179,7 @@ class Files
 
     public function getFilesByChildId($id)
     {
-        $sql = 'SELECT file_name,file_id FROM files  WHERE child_id = :child_id';
+        $sql = 'SELECT * FROM files  WHERE child_id = :child_id';
         $stmt = $this->_pdo->prepare($sql);
         $stmt->bindParam(':child_id', $id);
         $stmt->execute();

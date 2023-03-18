@@ -50,11 +50,14 @@
     </div>
 
 
-    <div class="container-doc mt-5">
+    <div class="container-doc mt-5 ">
     <p class="text-center fw-bold fs-5"><?=$message ?? '' ?></p>
         <?php foreach ($fileList as $value) { ?>
-            <div class="border border-dark d-flex flex-column-reverse">
-                <img class="elt" src="../controllers/<?=$value['file_name'] ?>" alt="">
+            <div class=" d-flex flex-column-reverse">
+            <?php if (isset($user['parent2'])) { ?>
+            <a download="document" class="text-center pt-1" href="../controllers/<?=$value['file_name'] ?>"><button class="btn btn-success">Télécharger</button></a>
+            <?php } ?>
+               <a href="../controllers/<?=$value['file_name']?>"  target="_blank"> <img class="elt <?php if($value['file_type_id'] == 1){echo 'photo';}else if ($value['file_type_id'] == 2){echo 'ecole';} else if ($value['file_type_id']==3){echo 'medical';}else if ($value['file_type_id']==4){echo 'autre';}?>" src="../controllers/<?=$value['file_name'] ?>" alt=""></a>
                 <?php if (!isset($user['parent2'])) { ?>
                     <img class="trash" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal<?= $value['file_id'] ?>" src="../assets/img/delete.png" alt="">
                     <?php } ?>
@@ -82,6 +85,8 @@
             
         <?php }
         ?>
+        
+       
     </div>
 
 

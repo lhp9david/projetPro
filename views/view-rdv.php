@@ -75,7 +75,7 @@
                             <h1 class="modal-title fs-5" id="exampleModalLabel">Modifier</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                      <?= var_dump($event)?>
+                    
                         <div class="modal-body">
                             <form action="" method="POST">
                                 <div><input type="date" name="dateEvent" value="<?= $event['event_date'] ?? '' ?>"></div>
