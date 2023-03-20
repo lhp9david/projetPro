@@ -26,14 +26,14 @@
             $year = $_GET['year'];
             echo '<div class="row">';
             showForm($month, $year);
-            echo '<h1 class="col-lg-6 text-end">'.$months[$month].' '.$year.'</h1>';
+            echo '<h1 class="col-lg-6 text-end mt-5">'.$months[$month].' '.$year.'</h1>';
             echo '</div>';
             showCalendar($month, $year);
             
         } else {
             echo '<div class="row">';
             showForm(date('m'), date('Y'));
-            echo '<h1 class="col-lg-6 text-end">'.$months[date('m')].' '.date('Y').'</h1>';
+            echo '<h1 class="col-lg-6 text-end mt-5">'.$months[date('m')].' '.date('Y').'</h1>';
             echo '</div>';
             showCalendar(date('m'), date('Y'));
         }

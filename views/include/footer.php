@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="footer text-center">
-                    <p>© 2023 </p>
+                    <p class="">© 2023 </p>
                    <p type="button" class= "btn-small btn-outline-dark rounded-5" data-bs-toggle="modal" data-bs-target="#mentions"><a href="#">Mentions légales</a></p> 
                 </div>
             </div>

@@ -135,7 +135,7 @@ class Event
     public function showEventDate()
     {
         $parentID = $_SESSION['user']['parent_id'];
-        $sql = 'SELECT event_date FROM event  where child_id in (SELECT child_id FROM child WHERE parent_id = :parent_id)';
+        $sql = 'SELECT event_date,event_type_id FROM event  where child_id in (SELECT child_id FROM child WHERE parent_id = :parent_id)';
         $stmt = $this->_pdo->prepare($sql);
         $stmt->bindParam(':parent_id', $parentID);
         $stmt->execute();

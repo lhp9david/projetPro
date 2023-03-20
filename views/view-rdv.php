@@ -21,15 +21,15 @@
 
 
     <div class="container text-end mt-5 mx-0">
-    <a class="text-black text-decoration-none" href="../controllers/controller-rdv.php"><button class="btn btn-warning fw-bold">Voir tous</button></a>
+    <a class="text-black text-decoration-none" href="../controllers/controller-rdv.php"><button class="btn <?php if(!isset($_GET['idChild'])){echo'btn-warning';}else{'';} ?> fw-bold">Voir tous</button></a>
         <?php foreach ($nameList as $name) { ?>
-            <a class="text-black text-decoration-none" href="../controllers/controller-rdv.php?idChild=<?= $name['child_id'] ?>"><button class="btn btn-warning fw-bold"><?= $name['child_firstname'] ?? '' ?></button></a>
+            <a class="text-black text-decoration-none" href="../controllers/controller-rdv.php?idChild=<?= $name['child_id'] ?>"><button class="btn <?php if( isset($_GET['idChild']) && $_GET['idChild'] == $name['child_id'] ){ echo  'btn-warning';}else{ '';} ?>  fw-bold"><?= $name['child_firstname'] ?? '' ?></button></a>
         <?php } ?>
     </div>
     <hr>
 
     <div class=" event-container row mx-auto">
-    <p class="text-center fw-bold fs-5"><?= $message ?? '' ?></p>
+  
         <div class="col-lg-2 button_type_doc">
             <button id="medecin">Médical</button>
             <button id="anniv">Anniversaire</button>
@@ -38,6 +38,7 @@
             <button id="other">Autre</button>
         </div>
         <div class="col-lg-6 mx-auto">
+        <p class="text-center fw-bold fs-5 mt-5"><?= $message ?? '' ?></p>
             <?php foreach ($eventList as $event) { ?>
                
 
@@ -52,13 +53,13 @@
                                             } elseif ($event['event_type_id'] == 5) {
                                                 echo 'other';
                                             } ?>">
-                    <p class="col-lg-3"><?= date('d-m-Y', strtotime($event['event_date'])) ?? ''; ?></p>
-                    <p class="col-lg-3"><?= ucfirst($event['event_name']) ?? '' ?></p>
+                    <p class="col-lg-3"><?= date('d-m-Y', strtotime($event['event_date'])) ?? ''; ?> <br> <?= $event['event_hour'] ?? '' ?></p>
+                    <p class="col-lg-2"><?= ucfirst($event['event_name']) ?? '' ?></p>
                     <p class="col-lg-4"><?= $event['event_motif'] ?? '' ?></p>
-                    <p class="col-lg-2"><?= $event['event_hour'] ?? '' ?>
+                    <p class="col-lg-3">
                         <?php if (!isset($user['parent2'])) { ?>
                             <img class="trash" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal<?= $event['event_id'] ?>" src="../assets/img/delete.png" alt="">
-                            <a class="type=" button data-bs-toggle="modal" data-bs-target="#modal-<?= $event['event_id'] ?>"><img class="trash" src="../assets/img/edit.png" alt=""></a>
+                            <img class="trash" type=" button" data-bs-toggle="modal" data-bs-target="#modal-<?= $event['event_id'] ?>"  src="../assets/img/edit.png" alt="">
                         <?php } ?>
                     </p>
                 </div>

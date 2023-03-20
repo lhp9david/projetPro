@@ -31,7 +31,7 @@
     <p>Votre Identifiant : <span class="fw-bold"><?=$info['parent2_nickname']?></span></p>
     <p>Vos enfant(s) :
     <?php foreach($childList as $child) { ?>
-    <span class="fw-bold"><?=ucfirst($child['child_firstname'])?> </span> 
+    <span class="fw-bold">( <?=ucfirst($child['child_firstname'])?> )</span> 
     <?php } ?></p>
     <p>Calendrier partagé avec : <span class="fw-bold"><?=$info['mail']?></span>  </p>
   <?php  }} ?>

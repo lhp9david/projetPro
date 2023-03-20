@@ -7,7 +7,7 @@ class Database
 
     public static function connect(): object
     {
-        // instation d'un objet PDO à l'aide des constantes définies dans le fichier env.php
+        // instanciation d'un objet PDO à l'aide des constantes définies dans le fichier env.php
         self::$_pdo = new PDO(DSN, USER, PASSWORD);
 
         // nous activons les erreurs PDO et les exceptions PDO

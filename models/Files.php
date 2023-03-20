@@ -159,11 +159,10 @@ class Files
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         $fileName = $result['file_name'];
-        /* faire le chemin du fichier et le supprimer */
-        $filePath = $this->getFilePath() . '/' . $fileName;
+   
 
-        if (file_exists($filePath)) {
-            unlink($filePath);
+        if (file_exists($fileName)) {
+            unlink($fileName);
         }
         /* supprimer le fichier dans la base de donnée */
         $sql = 'DELETE FROM files WHERE file_id = :file_id';

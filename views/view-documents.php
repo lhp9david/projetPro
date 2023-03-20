@@ -20,10 +20,10 @@
             <p>Partager un document</p>
             <form action="" method="POST" enctype="multipart/form-data">
                 <select name="type" id="">
-                    <option value="photo">photo</option>
-                    <option value="ecole">ecole</option>
-                    <option value="medical">medical</option>
-                    <option value="autre">autre</option>
+                    <option value="photo">Photo</option>
+                    <option value="ecole">Ecole</option>
+                    <option value="medical">Médical</option>
+                    <option value="autre">Autre</option>
                 </select>
                 <select name="child" id="">
                     <?php foreach ($nameList as $child) { ?>
@@ -39,9 +39,9 @@
     <?php ?>
 
     <div class="container text-end mx-0">
-    <a class="text-black text-decoration-none" href="../controllers/controller-documents.php"><button class="btn btn-warning fw-bold">Voir tous</button></a>
+    <a class="text-black text-decoration-none" href="../controllers/controller-documents.php"><button class="btn <?php if(!isset($_GET['idChild'])){echo'btn-warning';}else{'';} ?> fw-bold">Voir tous</button></a>
         <?php foreach ($nameList as $name) { ?>
-            <a class="text-black text-decoration-none" href="../controllers/controller-documents.php?idChild=<?= $name['child_id'] ?>"> <button class="btn btn-warning fw-bold"><?= $name['child_firstname'] ?? '' ?></button></a>
+            <a class="text-black text-decoration-none" href="../controllers/controller-documents.php?idChild=<?= $name['child_id'] ?>"> <button class="btn <?php if( isset($_GET['idChild']) && $_GET['idChild'] == $name['child_id'] ){ echo  'btn-warning';}else{ '';} ?> fw-bold"><?= $name['child_firstname'] ?? '' ?></button></a>
         <?php } ?>
       
     </div>
@@ -72,7 +72,7 @@
                                                             echo 'autre';
                                                         } ?>">
 
-                    <a href="../controllers/<?= $value['file_name'] ?>" target="_blank"> <img class="elt p-1" src="../controllers/<?= $value['file_name'] ?>" alt=""></a>
+                    <a href="../controllers/<?= $value['file_name'] ?>" target="_blank"> <img class="elt p-1" src="<?php if (preg_match('/\.pdf/', $value['file_name'])){echo '../assets/img/fichier-pdf.png';}else{echo "../controllers/".$value['file_name'];}?>" alt="aperçu document"></a>
                     <?php if (isset($user['parent2'])) { ?>
                         <a download="document" class="text-center pt-1" href="../controllers/<?= $value['file_name'] ?>"><button class="btn btn-success">Télécharger</button></a>
                     <?php } ?>

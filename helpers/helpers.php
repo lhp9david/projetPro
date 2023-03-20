@@ -22,11 +22,9 @@ function showCalendar($month, $year)
   $event = $events->showEventDate();
   foreach ($event as $value) {
 
-    array_push($event_date, date('d-M-Y', strtotime($value['event_date'])));
+    array_push($event_date, (date('d-M-Y', strtotime($value['event_date']))));
   }
-
-
-
+  var_dump($event_date);
   $birthday = [];
   $birthdate = new Child;
   $date = $birthdate->displayChildBirthday();
@@ -34,9 +32,27 @@ function showCalendar($month, $year)
     array_push($birthday, date('d-M-' . $year, strtotime($value['birthdate'])));
   }
 
+  $typeColor = [
+    1 => 'bg-success',
+    2 => 'bg-danger',
+    3 => 'bg-warning',
+    4 => 'bg-info',
+    5 => 'bg-primary'
+  ];
+  var_dump($event);
 
+  function checkEvent($event, $date)
+  {
 
-
+    $result = [];
+    foreach ($event as $value) {
+      if (in_array($date, $value)) {
+        array_push($result, $value['event_type_id']);
+      }
+    }
+    return $result;
+  }
+  var_dump(checkEvent($event, '2023-03-26'));
   // tableau des jours fériés
   $holidays = [
     date("d-M-Y", mktime(0, 0, 0, 1, 1, $year)) => 'Nouvel an',
@@ -86,36 +102,52 @@ function showCalendar($month, $year)
         echo '<td class="grey"></td>';
       }
     }
-    // afficher les jrs du mois
-
-    // date d'aujourd'hui en jaune
-    if (date('d-M-Y', mktime(0, 0, 0, $month, $i, $year)) == date('d-M-Y')) {
-
-      echo '<td class="bg-warning text-black"  data-bs-toggle="modal" data-bs-target="#modal-' . $i . '"">'.'<span class="number">' . $i .'</span>' .'</td>';
-      createModal($month, $i, $year, $holidays);
-
-
-      // jours fériés en blanc
-    } else if (in_array(date('d-M-Y', mktime(0, 0, 0, $month, $i, $year)), $event_date) && array_key_exists(date('d-M-Y', mktime(0, 0, 0, $month, $i, $year)), $holidays)) {
-      echo '<td class="bg-danger text-black type="button" data-bs-toggle="modal" data-bs-target="#modal-' . $i . '">' . '<img class="present" src="../assets/img/notes.png" alt="">' .'<br>'.  $holidays[date('d-M-Y', mktime(00, 00, 00, $month, $i, $year))]   . '</td>';
+    // afficher aujourd'hui  et evenements
+    if (in_array(date('d-M-Y', mktime(0, 0, 0, $month, $i, $year)), $event_date) && date('d-M-Y', mktime(0, 0, 0, $month, $i, $year)) == date('d-M-Y')) {
+      echo '<td class="double text-black type="button" data-bs-toggle="modal" data-bs-target="#modal-' . $i . '">' . '<img class="present" src="../assets/img/notes.png" alt="">' . '</td>';
+      createModalEvent($month, $i, $year);
+    }
+    //  événement pastille verte 
+    else if (in_array(date('d-M-Y', mktime(0, 0, 0, $month, $i, $year)), $event_date)) {
+      echo '<td class=" text-black type="button" data-bs-toggle="modal" data-bs-target="#modal-' . $i . '">'. '<span class="number">' . $i . '</span>' . '<div class="pastille"></div>'. '</td>';
       createModalEvent($month, $i, $year);
 
+    // else if (!empty(checkEvent($event, date('Y-m-d', mktime(0, 0, 0, $month, $i, $year)))) && in_array('2', checkEvent($event, date('Y-m-d', mktime(0, 0, 0, $month, $i, $year))))) {
+
+
+    //   echo '<td class=" text-black type="button" data-bs-toggle="modal" data-bs-target="#modal-' . $i . '">' . '<span class="number">' . $i . '</span>';
+    //   foreach (checkEvent($event, date('Y-m-d', mktime(0, 0, 0, $month, $i, $year))) as $value) {
+
+    //     echo '<div class="pastille ' . $typeColor[$value] . '">' . $value . '</div>';
+    //   }
+
+    //   echo '</td>';
+      createModalEvent($month, $i, $year);
+    } else if (in_array(date('d-M-Y', mktime(0, 0, 0, $month, $i, $year)), $event_date) && array_key_exists(date('d-M-Y', mktime(0, 0, 0, $month, $i, $year)), $holidays)) {
+      echo '<td class="bg-danger text-black type="button" data-bs-toggle="modal" data-bs-target="#modal-' . $i . '">' . '<img class="present" src="../assets/img/notes.png" alt="">' . '<br>' .  $holidays[date('d-M-Y', mktime(00, 00, 00, $month, $i, $year))]   . '</td>';
+      createModalEvent($month, $i, $year);
+      // si jour férié
     } else if (array_key_exists(date('d-M-Y', mktime(0, 0, 0, $month, $i, $year)), $holidays)) {
 
-      echo '<td class="bg-light text-black border border-dark type="button" data-bs-toggle="modal" data-bs-target="#modal-' . $i . '">' . $holidays[date('d-M-Y', mktime(00, 00, 00, $month, $i, $year))]   . '</td>';
+      echo '<td class="grey text-black border border-dark type="button" data-bs-toggle="modal" data-bs-target="#modal-' . $i . '">' . $holidays[date('d-M-Y', mktime(00, 00, 00, $month, $i, $year))]   . '</td>';
       createModal($month, $i, $year, $holidays);
 
       // anniversaire en vert
     } else if (in_array(date('d-M-Y', mktime(0, 0, 0, $month, $i, $year)), $birthday)) {
-      echo '<td class=" text-black type="button" data-bs-toggle="modal" data-bs-target="#modal-' . $i . '">' .'<img class="present" src="../assets/img/cadeau.png" alt="">' . '</td>';
+      echo '<td class=" text-black type="button" data-bs-toggle="modal" data-bs-target="#modal-' . $i . '">' . '<img class="present" src="../assets/img/cadeau.png" alt="">' . '</td>';
       createModalBirthday($month, $i, $year);
 
-      //  événement en rouge
-    } else if (in_array(date('d-M-Y', mktime(0, 0, 0, $month, $i, $year)), $event_date)) {
-      echo '<td class="bg-danger text-black type="button" data-bs-toggle="modal" data-bs-target="#modal-' . $i . '">' . '<img class="present" src="../assets/img/notes.png" alt="">' . '</td>';
-      createModalEvent($month, $i, $year);
+      // date d'aujourd'hui en jaune
+    } else if (date('d-M-Y', mktime(0, 0, 0, $month, $i, $year)) == date('d-M-Y')) {
+
+      echo '<td class="bg-warning text-black"  data-bs-toggle="modal" data-bs-target="#modal-' . $i . '"">' . '<span class="number">' . $i . '</span>' . '</td>';
+      createModal($month, $i, $year, $holidays);
+      //samedi et dimanche en gris
+    } else if ($dayOfWeek == 6 || $dayOfWeek == 7) {
+      echo '<td class="grey type="button" data-bs-toggle="modal" data-bs-target="#modal-' . $i . '">' . '<span class="number">' . $i . '</span>' . '</td>';
+      createModal($month, $i, $year, $holidays);
     } else {
-      echo '<td class="type="button" data-bs-toggle="modal" data-bs-target="#modal-' . $i . '">'.'<span class="number">' . $i .'</span>' .'</td>';
+      echo '<td class="type="button" data-bs-toggle="modal" data-bs-target="#modal-' . $i . '">' . '<span class="number">' . $i . '</span>' . '</td>';
       createModal($month, $i, $year, $holidays);
     }
 
@@ -140,7 +172,7 @@ function showForm($month, $year)
 {
   $formatter = new IntlDateFormatter('fr_FR', IntlDateFormatter::FULL, IntlDateFormatter::NONE, 'Europe/Paris', IntlDateFormatter::GREGORIAN);
   $formatter->setPattern('MMMM');
-  echo '  <form class="col-lg-6" action="" method="get">
+  echo '  <form class="col-lg-6 mt-5" action="" method="get">
             
             <label for="month"></label>';
   echo '  </select><a class="" href="?month=' . (($month == '1') ? '12' : $month - '1') . '&year=' . (($month == '01') ? $year - 1 : $year) . '"><img class="arrow" src="../assets/img/left.png" alt="gauche"></a>';
@@ -197,7 +229,7 @@ function createModal($month, $i, $year, $holidays)
                 if ($month < 10) {
                   $month = '0' . $month;
                 } ?> -->
-          <button type="button" class="btn btn-dark fw-bold" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-dark fw-bold" data-bs-dismiss="modal">Fermer</button>
           <button type="button" class="btn btn-warning fw-bold "><a class="text-black" href="../views/add-event.php?<?= 'date=' . $year . '-' . $month . '-' . $i ?>">Ajouter un évènement</a> </button>
         </div>
       </div>
@@ -230,7 +262,7 @@ function createModalBirthday($month, $i, $year)
         <div class="modal-body">
           <?php foreach ($prénom as $value) {
             if (date('d-M-' . $year, strtotime($value['birthdate'])) == $date) { ?>
-              <p><?= 'Anniversaire de '.'<span class=fw-bold>' . $value['child_firstname'] ?></span></p>
+              <p><?= 'Anniversaire de ' . '<span class=fw-bold>' . $value['child_firstname'] ?></span></p>
           <?php }
           } ?>
         </div>
