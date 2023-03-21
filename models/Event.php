@@ -65,7 +65,7 @@ class Event
     /* afficher seulement les event du l'enfant selon le parametre $id par ordre chronologique*/
     public function showEvent($id)
     {
-        $sql = 'SELECT * FROM event WHERE child_id = :child_id ORDER BY event_date ASC, event_hour ASC';
+        $sql = 'SELECT * FROM event WHERE child_id = :child_id ORDER BY event_date DESC, event_hour DESC';
         $stmt = $this->_pdo->prepare($sql);
         $stmt->bindParam(':child_id', $id);
         $stmt->execute();
@@ -121,7 +121,7 @@ class Event
     public function showAllEventJoinChild()
     {
         $parentID = $_SESSION['user']['parent_id'];
-        $sql = 'SELECT event_type_id,event_id,event_name, event_date, event_hour, event_motif, child_firstname FROM event  INNER JOIN child ON event.child_id = child.child_id WHERE child.parent_id = :parent_id ORDER BY event_date ASC, event_hour ASC';
+        $sql = 'SELECT event_type_id,event_id,event_name, event_date, event_hour, event_motif, child_firstname FROM event  INNER JOIN child ON event.child_id = child.child_id WHERE child.parent_id = :parent_id ORDER BY event_date DESC, event_hour DESC';
         $stmt = $this->_pdo->prepare($sql);
         $stmt->bindParam(':parent_id', $parentID);
         $stmt->execute();

@@ -3,13 +3,13 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  min-height: 100vh;
+ 
 }
 
 body {
   /* background-image: url(/assets/img/planner-g95658c39c_1920.jpg); */
   background-size: cover;
-
+  
 }
 
 /*****************************login***************************************************************************************/
@@ -20,6 +20,7 @@ body {
   background-color: #ffc107;
   padding: 0.2em;
   border-radius: 10px 0 10px 0;
+  padding: 0.5em 1em;
 }
 
 .guillemetGauche {
@@ -128,9 +129,10 @@ td {
   padding: 8px;
   width: 100px;
   text-align: center;
-  background-color: #f7c9ad;
+  /* background-color: #f7c9ad; */
   color: black;
   font-weight: bold;
+  position: relative;
 }
 
 th {
@@ -163,11 +165,43 @@ td:hover {
   background: linear-gradient(to left, #ff0000 50%, yellow 50%);
 }
 
+.container_pastille {
+  position: absolute;
+  top: 0;
+  right: 5px;
+}
+
 .pastille {
   width: 1.5em;
   height: 1.5em;
   border-radius: 50%;
- 
+}
+
+.eventMedecin {
+  background-color:  #28a745;
+}
+.eventScolaire {
+background-color:  #ffc107;
+}
+.eventSport {
+  background-color:  #dc3545;
+}
+.eventAnniv {
+ background-color:  #17a2b8;
+}
+.eventAutre {
+  background-color:  #6c757d;
+}
+
+
+.legend {
+  display: flex;
+  justify-content: space-between;
+}
+.legend_pastille {
+  display: flex;
+  justify-content: space-between;
+  gap: 1em;
 }
 /*********************************************************view-rdv****************************************************/
 
@@ -194,51 +228,52 @@ td:hover {
 }
 
 .medecin,#medecin {
-  border: 5px solid #28a745;
+  border: 0.2em solid #28a745;
 }
 .anniv,#anniv {
-  border:5px solid #ffc107;
+  border:0.2em solid #17a2b8;
 }
 .sport,#sport {
-  border: 5px solid #dc3545;
+  border: 0.2em solid #dc3545;
 }
 .scolaire,#scolaire {
-  border: 5px solid #17a2b8;
+  border: 0.2em solid #ffc107;
 }
 .other,#other {
-  border: 5px solid #6c757d;
+  border: 0.2em solid #6c757d;
 }
 
 
 /***********************************************view-doc**********************************************************/
 .elt {
-  height: 150px;
+  height: 10em;
+  display:block;
+  margin:auto;
 }
 
 .photo,#photo {
-  border: 5px solid blueviolet;
+  border: 0.2em solid blueviolet;
   border-radius: 10px;
 }
 
 .ecole,#ecole {
-  border: 5px solid #ffc107;
+  border: 0.2em solid #ffc107;
   border-radius: 10px;
 }
 .hide {
   display: none !important;
 }
 .medical,#medical {
-  border: 5px solid #28a745;
+  border: 0.2em solid #28a745;
   border-radius: 10px;
 }
 
 .autre,#autre {
-  border: 5px solid #6c757d;
+  border: 0.2em solid #6c757d;
   border-radius: 10px;
 }
 
 .elt:hover{
-
   cursor: pointer;
 }
 .doc_container {
@@ -248,24 +283,20 @@ td:hover {
   flex-wrap: wrap;
   gap: 1em;
   min-height: 50vh;
-  border-left: 5px solid black;
+
 }
 .button_type_doc {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   margin-left: 0.5em;
   flex-wrap: wrap;
   gap: 1em;
-  min-height: 50vh;
+
 }
 
 .button_type_doc button {
   border-radius: 10px;
   font-weight: bold;
-  font-size: 1.2em;
-  padding: 0.5em;
-  
 }
 .container-doc {
   display: flex;
@@ -345,6 +376,8 @@ textarea {
 /***************************footer**************************/
 footer {
   /* background-color: #aeacb3; */
+
+  width: 100%;
   color: black;
   font-weight: bold;
   padding: 1em;
@@ -369,6 +402,12 @@ footer {
 
 
 @media screen and (max-width: 520px) {
+  html,body {
+    font-size: 0.8em;
+  }
+  button {
+    font-size: 0.8em !important;
+  }
   .container {
     width: 90%;
     margin: auto;
@@ -376,9 +415,9 @@ footer {
 
   }
 
-  table {
-    height: auto;
-  }
+.table {
+  height: 50vh;
+}
 
   th,
   td {
@@ -407,4 +446,16 @@ footer {
     height: 100px;
    
   }
+
+  .button_type_doc {
+    flex-direction: row;
+    min-height: auto;
+    margin: auto;
+    margin-bottom: 1em;
+    justify-content: center;
+  }
+  .legend_pastille{
+    gap: 0;
+  }
+
 }

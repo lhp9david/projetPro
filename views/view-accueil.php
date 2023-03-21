@@ -39,7 +39,13 @@
         }
 
         ?>
-
+<div class="legend">
+<div class="legend_pastille"><div class="pastille eventMedecin"></div><div>Medical</div></div>
+<div class="legend_pastille"><div class="pastille eventAnniv"></div><div>Anniversaire</div></div>
+<div class="legend_pastille"><div class="pastille eventSport"></div><div>Sport</div></div>
+<div class="legend_pastille"><div class="pastille eventScolaire"></div><div>Ecole</div></div>
+<div class="legend_pastille"><div class="pastille eventAutre"></div><div>Autre</div></div>
+</div>
     </div>
     <?php include('../views/include/footer.php') ?>
     <script src="../assets/js/bootstrap.bundle.js"></script>

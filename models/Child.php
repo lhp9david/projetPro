@@ -58,7 +58,7 @@ public function displayChild() {
 
 public function displayChildBirthday() {
     $parentID = $_SESSION['user']['parent_id'];
-    $sql = 'SELECT birthdate FROM child WHERE parent_id = :parent_id';
+    $sql = 'SELECT birthdate,child_firstname FROM child WHERE parent_id = :parent_id';
     $stmt = $this->_pdo->prepare($sql);
     $stmt->bindParam(':parent_id', $parentID);
     $stmt->execute();

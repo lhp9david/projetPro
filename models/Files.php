@@ -172,7 +172,7 @@ class Files
         return true;
     }
 
-    /* méthode pour supprimer un fichier dans le dossier si il n'existe plus dans la base de donnée */
+   
 
     /* afficher les fichiers selon l'Id de l'enfant */
 
