@@ -171,8 +171,8 @@ class Paarent
         } else {
             $sql = "INSERT INTO parent (parent_name, parent_firstname, mail,parent_password) VALUES (:lastname, :firstname, :mail, :password)";
             $stmt = $this->_pdo->prepare($sql);
-            $stmt->bindValue(':lastname', $lastname);
-            $stmt->bindValue(':firstname', $firstname);
+            $stmt->bindValue(':lastname', htmlspecialchars($lastname));
+            $stmt->bindValue(':firstname', htmlspecialchars($firstname));
             $stmt->bindValue(':mail',$mail);
             $stmt->bindValue(':password', password_hash($password, PASSWORD_DEFAULT), PDO::PARAM_STR);
             $stmt->execute();

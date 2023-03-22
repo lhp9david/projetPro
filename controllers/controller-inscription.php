@@ -38,7 +38,7 @@ require '../helpers/database.php';
             if (empty($_POST['mail'])) {
                 $errors['mail'] = 'champ obligatoire';
             }
-            else if (!preg_match('/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/', $_POST['mail'])) {
+            else if (filter_var($_POST['mail'], FILTER_VALIDATE_EMAIL)) {
                 $errors['mail'] = 'Veuillez respecter le format';
             } else {
                 $mail = $_POST['mail'];

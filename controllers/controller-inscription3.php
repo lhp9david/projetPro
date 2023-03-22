@@ -19,7 +19,7 @@ if(!isset($_SESSION['user'])){
             if (empty($_POST['pseudoParent2'])) {
                 $errors['pseudoParent2'] = 'champ obligatoire';
             }
-            else if(!preg_match('/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/', $_POST['pseudoParent2'])) {
+            else if(filter_var(($_POST['pseudoParent2']), FILTER_VALIDATE_EMAIL)) {
                 $errors['pseudoParent2'] = 'Veuillez respecter le format';
             }
         }

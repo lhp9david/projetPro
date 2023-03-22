@@ -37,7 +37,7 @@
             </div>
             <?= (isset($errors['error'])) ? '<span class="text-danger">' . $errors['error'] . '</span>' : '' ?>
             <button type="submit" class="btn btn-warning fw-bold mx-auto d-block">Valider</button>
-          
+            <a class="text-dark" href="../views/view-add-child.php"><i class="bi bi-arrow-right-circle-fill fs-1 mx-3"></i></a> 
         </form>
     </div>
    
