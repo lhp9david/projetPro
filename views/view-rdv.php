@@ -21,9 +21,9 @@
 
 
     <div class="container text-end mt-5 mx-0">
-    <a class="text-black text-decoration-none" href="../controllers/controller-rdv.php"><button class="btn <?php if(!isset($_GET['idChild'])){echo'btn-warning';}else{'';} ?> fw-bold">Voir tous</button></a>
+    <a class="text-black text-decoration-none" href="../controllers/controller-rdv.php"><button class="btn <?php if(!isset($_GET['idChild'])){echo'border border-3 border-dark rounded';}else{'';} ?> fw-bold">Voir tous</button></a>
         <?php foreach ($nameList as $name) { ?>
-            <a class="text-black text-decoration-none" href="../controllers/controller-rdv.php?idChild=<?= $name['child_id'] ?>"><button class="btn <?php if( isset($_GET['idChild']) && $_GET['idChild'] == $name['child_id'] ){ echo  'btn-warning';}else{ '';} ?>  fw-bold"><?= $name['child_firstname'] ?? '' ?></button></a>
+            <a class="text-black text-decoration-none" href="../controllers/controller-rdv.php?idChild=<?= $name['child_id'] ?>"><button class="btn <?php if( isset($_GET['idChild']) && $_GET['idChild'] == $name['child_id'] ){ echo  'border border-3 border-dark rounded';}else{ '';} ?>  fw-bold"><?= $name['child_firstname'] ?? '' ?></button></a>
         <?php } ?>
     </div>
     <hr>
@@ -42,7 +42,7 @@
             <?php foreach ($eventList as $event) { ?>
                
 
-                <div class="my-3 row event <?php if ($event['event_type_id'] == 1) {
+                <div class="bloc-event my-3 row event <?php if ($event['event_type_id'] == 1) {
                                                 echo 'medecin';
                                             } elseif ($event['event_type_id'] == 2) {
                                                 echo 'anniv';

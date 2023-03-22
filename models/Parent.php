@@ -244,4 +244,17 @@ class Paarent
         $result = $stmt->fetchAll();
         return $result;
     }
+
+
+    /**méthode pour supprimer le compte  */
+
+    public function deleteParent($id)
+    {
+        $sql = "DELETE FROM parent WHERE parent_id = :parent_id";
+        $stmt = $this->_pdo->prepare($sql);
+        $stmt->bindParam(':parent_id', $id);
+        $stmt->execute();
+        header('Location: controller-login.php?deleted');
+        exit();
+    }
 }

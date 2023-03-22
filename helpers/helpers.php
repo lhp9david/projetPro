@@ -52,7 +52,7 @@ function showCalendar($month, $year)
     }
     return $result;
   }
-  // var_dump(checkEvent($event, '2023-03-26'));
+  
   // tableau des jours fériés
   $holidays = [
     date("d-M-Y", mktime(0, 0, 0, 1, 1, $year)) => 'Nouvel an',
@@ -154,7 +154,7 @@ function showCalendar($month, $year)
 
       echo '<td class=" text-black" data-bs-toggle="modal" data-bs-target="#modal-' . $i . '">' . '<img class="present" src="../assets/img/cadeau.png" alt="">';
       echo '<div class="container_pastille">';
-      
+
       foreach (checkEvent($event, date('Y-m-d', mktime(0, 0, 0, $month, $i, $year))) as $value) {
         echo '<div class="pastille my-1 ' . $typeColor[$value] . '">' . '</div>';
       }
@@ -267,7 +267,7 @@ function createModal($month, $i, $year, $holidays)
 { ?>
 
   <!-- Modal -->
-  <div class="modal fade" id="modal-<?= $i ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade " id="modal-<?= $i ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -350,7 +350,7 @@ function createModalEvent($month, $i, $year)
 
 
   <!-- Modal -->
-  <div class="modal fade" id="modal-<?= $i ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade " id="modal-<?= $i ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">

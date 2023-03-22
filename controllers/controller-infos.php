@@ -19,6 +19,14 @@ $child = new Child();
 $childList = $child->displayChild();
 
 
+if (isset($_GET['id'])) {
+    $id = $_GET['id'];
+    $delete = new Paarent();
+    $delete->deleteParent($id);
+  
+}
+
+
 
 
 

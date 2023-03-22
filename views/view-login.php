@@ -20,6 +20,12 @@
    <p>Vous êtes bien Inscrit, vous allez recevoir un mail de confirmation</p>
    <button class="return btn btn-warning d-block mx-auto fw-bold"><a class="text-decoration-none text-black" href="../controllers/controller-login.php">Se connecter</a></button> 
    </div>
+   
+<?php }  else if (isset($deleted)) { ?>
+   <div class="container message">
+   <p>Votre compte a bien été supprimé</p>
+   <button class="return btn btn-warning d-block mx-auto fw-bold"><a class="text-decoration-none text-black" href="../controllers/controller-login.php">Se connecter</a></button> 
+   </div>
 
 <?php  } else if (isset($disconnected)) { ?>
   <div class="container message" >

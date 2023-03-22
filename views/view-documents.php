@@ -39,9 +39,9 @@
     <?php ?>
 
     <div class="container text-end mx-0">
-    <a class="text-black text-decoration-none" href="../controllers/controller-documents.php"><button class="btn <?php if(!isset($_GET['idChild'])){echo'btn-warning';}else{'';} ?> fw-bold">Voir tous</button></a>
+    <a class="text-black text-decoration-none" href="../controllers/controller-documents.php"><button class="btn <?php if(!isset($_GET['idChild'])){echo'border border-3 border-dark rounded';}else{'';} ?> fw-bold">Voir tous</button></a>
         <?php foreach ($nameList as $name) { ?>
-            <a class="text-black text-decoration-none" href="../controllers/controller-documents.php?idChild=<?= $name['child_id'] ?>"> <button class="btn <?php if( isset($_GET['idChild']) && $_GET['idChild'] == $name['child_id'] ){ echo  'btn-warning';}else{ '';} ?> fw-bold"><?= $name['child_firstname'] ?? '' ?></button></a>
+            <a class="text-black text-decoration-none" href="../controllers/controller-documents.php?idChild=<?= $name['child_id'] ?>"> <button class="btn <?php if( isset($_GET['idChild']) && $_GET['idChild'] == $name['child_id'] ){ echo  'border border-3 border-dark rounded';}else{ '';} ?> fw-bold"><?= $name['child_firstname'] ?? '' ?></button></a>
         <?php } ?>
       
     </div>
@@ -53,16 +53,16 @@
 
     <div class=" mt-2 row mx-0">
 
-        <div class="col-lg-2 button_type_doc mx-0">
+        <div class=" col-lg-2 button_type_doc mx-0">
             <button id="photo">Photos</button>
             <button id="ecole">Ecole</button>
             <button id="medical">Médical</button>
             <button id="autre">Autre</button>
         </div>
-        <div class="col-lg-10 doc_container mx-0">
+        <div class=" col-lg-10 doc_container mx-0">
             <p class="text-center fw-bold fs-5"><?= $message ?? '' ?></p>
             <?php foreach ($fileList as $value) { ?>
-                <div class=" d-flex flex-column <?php if ($value['file_type_id'] == 1) {
+                <div class="bloc-event d-flex flex-column <?php if ($value['file_type_id'] == 1) {
                                                             echo 'photo';
                                                         } else if ($value['file_type_id'] == 2) {
                                                             echo 'ecole';
@@ -98,8 +98,6 @@
                         </div>
                     </div>
                 </div>
-
-
 
             <?php }
             ?>

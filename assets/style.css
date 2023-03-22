@@ -60,7 +60,6 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 1em;
-  /* background-image: url(/assets/img/colour-gfbaa0f447_1920.jpg); */
   color: white !important;
   font-weight: bold;
   font-size: 1.2em;
@@ -176,6 +175,7 @@ td:hover {
   width: 1.5em;
   height: 1.5em;
   border-radius: 50%;
+  animation: opacity 1s;
 }
 
 .eventMedecin {
@@ -243,6 +243,26 @@ background-color:  #ffc107;
 .other,#other {
   border: 0.2em solid #6c757d;
 }
+/*keyframe apparition en fondu*/
+@keyframes opacity {
+  0% {
+    opacity: 0;
+   
+  }
+  100% {
+    opacity: 1;
+  
+  }
+}
+
+
+
+.bloc-event {
+  animation: opacity 0.5s ;
+}
+.slideUp {
+  animation: slideUp 0.5s ;
+}
 
 
 /***********************************************view-doc**********************************************************/
@@ -292,12 +312,19 @@ background-color:  #ffc107;
   margin-left: 0.5em;
   flex-wrap: wrap;
   gap: 1em;
+  align-items: center;
 
 }
 
 .button_type_doc button {
   border-radius: 10px;
   font-weight: bold;
+  width: 10em;
+}
+
+.button_type_doc button:hover {
+  scale: 1.1;
+  transition: 0.5s;
 }
 .container-doc {
   display: flex;
@@ -349,12 +376,9 @@ textarea {
 
 /**************************************view-infos************************************/
 .infos {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
   min-height: 75vh;
 }
+
 
 /*******************oublie de mot de passe**********************/
 
