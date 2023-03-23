@@ -1,4 +1,5 @@
 <?php
+/* on demarre la session */
 session_start();
 if (!isset($_SESSION['user'])) {
     header('Location: controller-login.php');
@@ -7,27 +8,36 @@ if (!isset($_SESSION['user'])) {
     $user = $_SESSION['user'];
 }
 
+/* on appelle les fichiers de config et de model */
 include('../helpers/database.php');
 include('../config/env.php');
 include('../models/Child.php');
 include('../models/Event.php');
 
-
+/* si la métode POST est utilisé et que le bouton modifier est cliqué */
 if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['changeEvent'])){
-   
+  
+    
+
+/* on instancie la classe Event et on appelle la fonction updateEvent() pour modifier l'event en base de donnée */
     $event = new Event();
     $event->updateEvent();
+    /* on redirige vers la page rdv */
     header('Location: ../controllers/controller-rdv.php');
     exit();
 }
 
+/* si la métode POST est utilisé  */
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
  
     /*** si les champs existe et qu'ils ne sont pas vide alors on crée un nouvel event en base de donnée  */
-
     if (!empty($_POST['motifEvent']) && !empty($_POST['dateEvent']) && !empty($_POST['hourEvent'])  && !empty($_POST['childname'])) {
+
+/* on instancie la classe Event et on appelle la fonction createEvent() pour créer un nouvel event en base de donnée */
         $event = new Event();
         $event->createEvent();
+
+
     } else {
 
         header('Location: ../views/add-event.php?error');
@@ -44,31 +54,21 @@ $nameList = $name->displayChild();
 if (isset($_GET['idChild'])) {
     $id = $_GET['idChild'];
 
-    /*** verifie si il y a des rdv avec cet ID  */
-    $check = new Event();
-    $checkList = $check->checkChildID($id);
-
-    /*** si il n'y a pas de rdv avec cet ID on affiche tous les rdv  */
-    if($checkList == false){
-        header('Location: ../controllers/controller-rdv.php');
-
-        /*** sinon on affiche les rdv de l'enfant  */
-    } else {
-        $firstname = new Child();
-        $firstnameList = $firstname->displayChildInfo($id);
-        $names = new Child();
-        $firstname = $names->displayChildInfo($id);
+    /*** on instancie la classe Event et on appelle la fonction showEvent() pour afficher les rdv de l'enfant  */
         $event = new Event();
         $eventList = $event->showEvent($id);
+
+    /*** si la liste est vide on affiche un message  */
         if (!$eventList){
             $message = "Aucun événement à venir";
         }
-    }
+    } else {
 
-   
-} else {
+    /*** sinon on affiche tous les rdv  */
     $event = new Event();
-    $eventList = $event->showAllEventJoinChild();
+    $eventList = $event->showAllEvent();
+
+    /*** si la liste est vide on affiche un message  */
     if (!$eventList){
         $message = "Aucun événement à venir";
     }
@@ -76,7 +76,6 @@ if (isset($_GET['idChild'])) {
 
 
 /** un get avec l'ID de l'enfant sur la corbeille permet d'effacer l'event  */
-
 if (isset($_GET['idEvent'])) {
     $id = $_GET['idEvent'];
     $event = new Event();
@@ -88,6 +87,6 @@ if (isset($_GET['idEvent'])) {
 
 
 
-
+/*on appelle la vue */
 include('../views/view-rdv.php');
 ?>

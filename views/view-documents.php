@@ -51,7 +51,7 @@
 
 
 
-    <div class=" mt-2 row mx-0">
+    <div class=" my-5 row mx-0">
 
         <div class=" col-lg-2 button_type_doc mx-0">
             <button id="photo">Photos</button>
@@ -77,7 +77,7 @@
                         <a download="document" class="text-center pt-1" href="../controllers/<?= $value['file_name'] ?>"><button class="btn btn-success">Télécharger</button></a>
                     <?php } ?>
                     <?php if (!isset($user['parent2'])) { ?>
-                        <a class="text-center pt-1" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal<?= $value['file_id'] ?>"><button class="btn btn-danger">Supprimer</button></a>
+                        <a class="text-center p-1" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal<?= $value['file_id'] ?>"><button class="btn btn-danger">Supprimer</button></a>
                     <?php } ?>
                 </div>
                 <!-- Modal -->

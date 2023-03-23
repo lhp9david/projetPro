@@ -29,9 +29,6 @@ class Files
     }
 
 
-
-
-
     /* VERIFIER QUE LE FICHIER NE FASSE PAS PLUS DE 5MO */
 
     public function checkFileSize()
@@ -71,37 +68,7 @@ class Files
 
     }
 
-/* fonction qui recupere le chemin du dossier de l'enfant selon son Id */
 
-    public function getFolderPath($id)
-    {
-        $sql = 'SELECT child_firstName, child_id FROM child WHERE parent_id = :parent_id AND child_id = :child_id';
-        $stmt = $this->_pdo->prepare($sql);
-        $stmt->bindParam(':parent_id', $_SESSION['user']['parent_id']);
-        $stmt->bindParam(':child_id', $id);
-        $stmt->execute();
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        $childName = $result['child_firstName'];
-        $folderName = $childName;
-        $folderPath = 'uploads/' . $folderName . '_' . $id;
-        return $folderPath;
-    }
-
-    /* fonction qui recupere le chemin du fichier  */
-
-    public function getFilePath()
-    {
-        $sql = 'SELECT child_firstName, child_id FROM child WHERE parent_id = :parent_id';
-        $stmt = $this->_pdo->prepare($sql);
-        $stmt->bindParam(':parent_id', $_SESSION['user']['parent_id']);
-        $stmt->execute();
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        $id = $result['child_id'];
-        $childName = $result['child_firstName'];
-        $folderName = $childName;
-        $folderPath = 'uploads/' . $folderName . '_' . $id;
-        return $folderPath;
-    }
 
     public function saveFile($id)
     {
@@ -152,9 +119,10 @@ class Files
 
     public function deleteFile($id)
     {
-        /* recupere le nom du fichier selon son Id */
-        $sql = 'SELECT file_name FROM files WHERE file_id = :file_id';
+        /* recupere le nom du fichier selon son Id  et selon le parent_id */
+        $sql = 'SELECT file_name FROM files  INNER JOIN child ON files.child_id = child.child_id WHERE child.parent_id = :parent_id AND files.file_id = :file_id';
         $stmt = $this->_pdo->prepare($sql);
+        $stmt->bindParam(':parent_id', $_SESSION['user']['parent_id']);
         $stmt->bindParam(':file_id', $id);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -163,27 +131,30 @@ class Files
 
         if (file_exists($fileName)) {
             unlink($fileName);
+           /* supprimer le fichier dans la base de donnée */
+           $sql = 'DELETE FROM files WHERE file_id = :file_id';
+           $stmt = $this->_pdo->prepare($sql);
+           $stmt->bindParam(':file_id', $id);
+           $stmt->execute();
+           return true;
         }
-        /* supprimer le fichier dans la base de donnée */
-        $sql = 'DELETE FROM files WHERE file_id = :file_id';
-        $stmt = $this->_pdo->prepare($sql);
-        $stmt->bindParam(':file_id', $id);
-        $stmt->execute();
-        return true;
+ 
     }
 
    
 
-    /* afficher les fichiers selon l'Id de l'enfant */
+    /* afficher les fichiers selon l'Id de l'enfant et l'id de $_SESSION['parent_id] */
 
-    public function getFilesByChildId($id)
-    {
-        $sql = 'SELECT * FROM files  WHERE child_id = :child_id';
+    public function getFilesByChildId($id){
+
+        $sql = 'SELECT * FROM files  INNER JOIN child ON files.child_id = child.child_id WHERE child.parent_id = :parent_id AND files.child_id = :child_id';
         $stmt = $this->_pdo->prepare($sql);
+        $stmt->bindParam(':parent_id', $_SESSION['user']['parent_id']);
         $stmt->bindParam(':child_id', $id);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
+
 
 }

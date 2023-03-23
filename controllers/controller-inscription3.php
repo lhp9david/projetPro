@@ -19,7 +19,7 @@ if(!isset($_SESSION['user'])){
             if (empty($_POST['pseudoParent2'])) {
                 $errors['pseudoParent2'] = 'champ obligatoire';
             }
-            else if(filter_var(($_POST['pseudoParent2']), FILTER_VALIDATE_EMAIL)) {
+            else if(!filter_var(($_POST['pseudoParent2']), FILTER_VALIDATE_EMAIL)) {
                 $errors['pseudoParent2'] = 'Veuillez respecter le format';
             }
         }

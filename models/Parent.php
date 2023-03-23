@@ -33,21 +33,6 @@ class Paarent
         $this->_pdo = Database::connect();
     }
 
-    // nous avons besoin d'un constructeur pour instancier la connexion à la base de données
-    public function register($parent_name, $parent_firstname, $mail, $parent_password, $parent2_nickname, $parent2_pass)
-    {
-
-        $this->_parent_name = $parent_name;
-        $this->_parent_firstname = $parent_firstname;
-        $this->_mail = $mail;
-        $this->_parent_password = $parent_password;
-        $this->_parent2_nickname = $parent2_nickname;
-        $this->_parent2_pass = $parent2_pass;
-
-        $this->_pdo = Database::connect();
-    }
-
-
     /**
      * fonction pour se connecter avec un des deux parents
      * 
@@ -161,7 +146,7 @@ class Paarent
 
 
         $query = $this->_pdo->prepare('SELECT * FROM parent WHERE mail = :mail');
-        $query->bindValue(':mail', $_POST['mail']);
+        $query->bindValue(':mail', filter_var($_POST['mail'], FILTER_VALIDATE_EMAIL));
         $query->execute();
         $result = $query->fetch();
         if ($result) {
@@ -171,9 +156,9 @@ class Paarent
         } else {
             $sql = "INSERT INTO parent (parent_name, parent_firstname, mail,parent_password) VALUES (:lastname, :firstname, :mail, :password)";
             $stmt = $this->_pdo->prepare($sql);
-            $stmt->bindValue(':lastname', htmlspecialchars($lastname));
-            $stmt->bindValue(':firstname', htmlspecialchars($firstname));
-            $stmt->bindValue(':mail',$mail);
+            $stmt->bindValue(':lastname', htmlspecialchars(trim($lastname)));
+            $stmt->bindValue(':firstname', htmlspecialchars(trim($firstname)));
+            $stmt->bindValue(':mail',filter_var($mail, FILTER_VALIDATE_EMAIL));
             $stmt->bindValue(':password', password_hash($password, PASSWORD_DEFAULT), PDO::PARAM_STR);
             $stmt->execute();
             header('Location: controller-login.php?subscribed');
@@ -254,7 +239,6 @@ class Paarent
         $stmt = $this->_pdo->prepare($sql);
         $stmt->bindParam(':parent_id', $id);
         $stmt->execute();
-        header('Location: controller-login.php?deleted');
-        exit();
+        
     }
 }

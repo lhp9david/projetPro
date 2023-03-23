@@ -1,12 +1,18 @@
 <?php
+/* on demarre la session */
 session_start();
+
+/* si l'utilisateur n'est pas connecté, on le redirige vers la page de connexion */
 if(!isset($_SESSION['user'])){
     header('Location: controller-login.php');
     exit();
+
+/* sinon on recupere les informations de l'utilisateur connecté */
 } else {
     $user = $_SESSION['user'];
 }
 
+/* on appelle les fichiers de config et de model */
 include('../helpers/helpers.php');
 include('../models/Files.php');
 include('../config/env.php');
@@ -14,23 +20,23 @@ include('../helpers/database.php');
 include('../models/Child.php');
 
 
-
-
+/* si la métode POST est utilisé */
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
 
-/*
-verifier la variable $_FILE['name']['error']*/
+/*On vérifie que le fichier a bien été envoyé et qu'il n'y a pas d'erreur */
 
         if($_FILES['userFile']['error'] === 0){
 
-        
+        /* on instancie la classe Files et on appelle les fonctions checkFileSize() et checkFileType() pour vérifier la taille et le type du fichier */
             $folder = new Files();
 
             if(!$folder->checkFileSize()) {
             $error = 'Veuillez choisir un fichier de moins de 5mo';
             } else if (!$folder->checkFileType()) {
             $error = 'Veuillez choisir un fichier de type pdf, png, jpg, jpeg';
+
+        /* si le fichier est valide, on appelle la fonction saveFile() pour enregistrer le fichier dans le dossier uploads et on redirige vers la page documents */
             } else {
             $error = 'Votre fichier a bien été téléchargé';
             $id = $_POST['child'];
@@ -47,24 +53,19 @@ verifier la variable $_FILE['name']['error']*/
 $name = new Child();
 $nameList = $name->displayChild();
 
-/* recuperer le chemin du fichier  */
-$path = new Files();
-$folderPath = $path->getFilePath();
 
 /* recuperer l'ID de l'enfant au clic du bouton et afficher les fichiers de l'enfant  */
-
 if(isset($_GET['idChild'])){
     $id = $_GET['idChild'];
+
+    /*methode pour afficher les fichiers d'un enfant specifique */
     $files = new Files();
-    $folderPath = $files->getFolderPath($id);
     $fileList = $files->getFilesByChildId($id);
-    $names = new Child();
-    $firstname = $names->displayChildInfo($id);
+
+    /* si aucun fichier n'est trouvé, afficher un message */
     if(!$fileList){
       $message = "Aucun document à afficher";
     }
-  
-
     
     /*sinon afficher tous les fichiers  */
   } else {
@@ -76,9 +77,6 @@ if(isset($_GET['idChild'])){
     }
  
   }
-
-
-
 
 /* supprimer  un fichier au clic de la corbeille en recuperant l' ID */
 
@@ -93,7 +91,6 @@ if(isset($_GET['id'])){
 
 
 
-
+/* on appelle la vue */
 include('../views/view-documents.php')
-
 ?>

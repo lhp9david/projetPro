@@ -3,14 +3,13 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
- 
+  height: 100%;
+}
+body {
+  display: flex;
+  flex-direction: column;
 }
 
-body {
-  /* background-image: url(/assets/img/planner-g95658c39c_1920.jpg); */
-  background-size: cover;
-  
-}
 
 /*****************************login***************************************************************************************/
 
@@ -46,7 +45,7 @@ body {
 /********************************************************Inscription****************************************************/
 .inscription {
   width: fit-content;
-  margin: auto;
+  margin: 1em auto;
   background-color: #ffc107;
   padding: 0.2em;
   border-radius: 10px 0 10px 0;
@@ -120,6 +119,7 @@ justify-content: space-between;
 .table {
   border-collapse: collapse;
   width: 100%;
+
 }
 
 th,
@@ -129,7 +129,7 @@ td {
   padding: 8px;
   width: 100px;
   text-align: center;
-  /* background-color: #f7c9ad; */
+
   color: black;
   font-weight: bold;
   position: relative;
@@ -198,6 +198,7 @@ background-color:  #ffc107;
 .legend {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 .legend_pastille {
   display: flex;
@@ -303,7 +304,7 @@ background-color:  #ffc107;
   align-items: center;
   flex-wrap: wrap;
   gap: 1em;
-  min-height: 50vh;
+ 
 
 }
 .button_type_doc {
@@ -332,13 +333,13 @@ background-color:  #ffc107;
   align-items: center;
   flex-wrap: wrap; 
   gap: 1em;
-  min-height: 45vh;
+ 
 }
 
 .box-doc {
   display: flex;
   justify-content: space-between;
-  min-height:70vh;
+
 }
 
 
@@ -370,15 +371,43 @@ textarea {
 
 .event-container {
   width: 100%;
-  min-height: 68vh;
+
 
 }
 
 /**************************************view-infos************************************/
-.infos {
-  min-height: 75vh;
+
+.infosEnfant,.infosParent,.infosParent2 {
+  display: flex;
+  flex-direction: column;
+  justify-content:center;
+  align-items: center;
+  border-radius: 50%;
+  height: 20em;
+  width: 20em;
+  margin: 4em auto;
 }
 
+.infosParent {
+  border:0.5em solid orange;
+}
+
+.infosEnfant {
+  border:  0.5em solid;
+  border-top-color:blue;
+  border-right-color:blue;
+  border-bottom-color:orange;
+  border-left-color:orange;
+}
+
+.infosParent2 {
+  border:0.5em solid blue;
+}
+
+.infos img {
+  width: 5em;
+  height: 5em;
+}
 
 /*******************oublie de mot de passe**********************/
 
@@ -408,7 +437,7 @@ footer {
   padding: 1em;
   text-align: center;
   box-shadow: grey 0px 0px 10px 0px;
-  /* background-image: url(/assets/img/colour-gfbaa0f447_1920.jpg); */
+  margin-top: auto;
 }
 
 .footer {
@@ -427,22 +456,17 @@ footer {
 
 
 @media screen and (max-width: 520px) {
-  html,body {
-    font-size: 0.8em;
-  }
+ 
   button {
     font-size: 0.8em !important;
   }
   .container {
-    width: 90%;
-    margin: auto;
+  
     padding: 0;
 
   }
 
-.table {
-  height: 50vh;
-}
+
 
   th,
   td {
@@ -474,13 +498,31 @@ footer {
 
   .button_type_doc {
     flex-direction: row;
-    min-height: auto;
     margin: auto;
     margin-bottom: 1em;
     justify-content: center;
+  }
+  .button_type_doc button {
+    width: auto;
   }
   .legend_pastille{
     gap: 0;
   }
 
+}
+
+@media screen and (max-width: 992px){
+  .button_type_doc {
+    flex-direction: row;
+    margin: auto;
+    margin-bottom: 1em;
+    justify-content: center;
+  }
+  .button_type_doc button {
+    width: auto;
+  }
+  .pastille {
+    width: 1em;
+    height: 1em;
+  }
 }

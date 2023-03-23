@@ -24,7 +24,7 @@
 <?php }  else if (isset($deleted)) { ?>
    <div class="container message">
    <p>Votre compte a bien été supprimé</p>
-   <button class="return btn btn-warning d-block mx-auto fw-bold"><a class="text-decoration-none text-black" href="../controllers/controller-login.php">Se connecter</a></button> 
+   <button class="return btn btn-warning d-block mx-auto fw-bold"><a class="text-decoration-none text-black" href="../controllers/controller-login.php">Retour à l'accueil</a></button> 
    </div>
 
 <?php  } else if (isset($disconnected)) { ?>

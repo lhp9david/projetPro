@@ -19,7 +19,7 @@ function showCalendar($month, $year)
 
   $event_date = [];
   $events = new Event;
-  $event = $events->showEventDate();
+  $event = $events->showAllEvent();
   foreach ($event as $value) {
 
     array_push($event_date, (date('d-M-Y', strtotime($value['event_date']))));
@@ -27,7 +27,7 @@ function showCalendar($month, $year)
 
   $birthday = [];
   $birthdate = new Child;
-  $date = $birthdate->displayChildBirthday();
+  $date = $birthdate->displayChild();
   foreach ($date as $value) {
     array_push($birthday, date('d-M-' . $year, strtotime($value['birthdate'])));
   }
@@ -317,7 +317,7 @@ function createModalBirthday($month, $i, $year)
         <div class="modal-body">
           <?php foreach ($prénom as $value) {
             if (date('d-M-' . $year, strtotime($value['birthdate'])) == $date) { ?>
-              <p><?= 'Anniversaire de ' . '<span class=fw-bold>' . $value['child_firstname'] ?></span></p>
+              <p><?= 'Anniversaire de ' . '<span class=fw-bold>' . ucfirst($value['child_firstname']) ?></span></p>
           <?php }
           } ?>
         </div>
@@ -360,7 +360,7 @@ function createModalEvent($month, $i, $year)
         <div class="modal-body">
           <?php foreach ($events as $value) { ?>
             <div>
-              <p class="fw-bold"><?= $value['child_firstname'] ?></p>
+              <p class="fw-bold"><?= ucfirst($value['child_firstname']) ?></p>
               <p><?= $value['event_name'] ?></p>
               <p><?= $value['event_hour'] ?></p>
               <p><?= $value['event_motif'] ?></p>

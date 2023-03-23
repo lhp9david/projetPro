@@ -15,7 +15,10 @@
 </head>
 
 <body>
-    <a class="text-dark" href="/index.php"><i class="bi bi-arrow-left-circle-fill fs-1 mx-3"></i></a>
+<div class='row'>  
+    <div class="col-lg-6"><a class="text-dark" href="/index.php"><i class="bi bi-arrow-left-circle-fill fs-1 mx-3"></i></a></div>
+    <div class="col-lg-6 text-end"><a class="text-dark" href="/controllers/controller-add-child.php"><i class="bi bi-arrow-right-circle-fill fs-1 mx-3"></i></a></div>
+</div>
     <h1 class="inscription text-center fw-bold fs-1">Ajout de vos enfants</h1>
 
     <div class="container">
@@ -37,7 +40,7 @@
             </div>
             <?= (isset($errors['error'])) ? '<span class="text-danger">' . $errors['error'] . '</span>' : '' ?>
             <button type="submit" class="btn btn-warning fw-bold mx-auto d-block">Valider</button>
-            <a class="text-dark" href="../views/view-add-child.php"><i class="bi bi-arrow-right-circle-fill fs-1 mx-3"></i></a> 
+            
         </form>
     </div>
    

@@ -12,57 +12,77 @@
     <title>Calendrier</title>
 </head>
 
-<?php include('../views/include/navbar.php')?>
+<?php include('../views/include/navbar.php') ?>
 
-<div class="infos container">
-<h2 class="my-5">Mes infos</h2>
-<?php if(!isset($user['parent2'])) { ?>
+<div class="infos row mx-0">
+    <h2 class="my-5 text-center">Mes infos</h2>
+    <?php if (!isset($user['parent2'])) { ?>
 
-<?php foreach($infoList as $info) { ?>
-<p>Votre Identifiant : <input class="fw-bold" value="<?=$info['mail']?>"></input></p>
-<div class="infoModif">
-<p>Vos enfant(s) : </p>
-<?php foreach($childList as $child) { ?>
-<input class="fw-bold" value="<?=$child['child_firstname']?>"></input> 
-<?php } ?></p><button class="btn btn-primary ">Modifier</button>
+        <?php foreach ($infoList as $info) { ?>
+
+            <div class="infosParent col-lg-4 text-center ">
+                <div><img src="../assets/img/user.png" alt=""></div>
+                <p class="fw-bold"><?= $info['mail'] ?></p>
+            </div>
+            <div class="infosEnfant col-lg-4  text-center">
+                <div><img src="../assets/img/boy.png" alt=""></div>
+                <?php foreach ($childList as $child) { ?>
+                    <p class="fw-bold"><?= ucfirst($child['child_firstname']) ?></p>
+                <?php } ?>
+            </div>
+            <div class="infosParent2 col-lg-4 text-center">
+                <div><img src="../assets/img/user.png" alt=""></div>
+                <p class="fw-bold"><?= $info['parent2_nickname'] ?></p>
+            </div>
+            <div class=" text-center mb-2 col-lg-6"><button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModalDelete">Modifier mon mot de passe</button></div>
+            <div class=" text-center mb-2 col-lg-6"><button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModalDelete">Supprimer le compte</button></div>
+
+
+
+        <?php }
+    } else { ?>
+        <?php foreach ($infoList as $info) { ?>
+            <div class="infosParent col-lg-4 text-center ">
+                <div><img src="../assets/img/user.png" alt=""></div>
+                <p class="fw-bold"><?= $info['parent2_nickname'] ?></p>
+            </div>
+            <div class="infosEnfant col-lg-4  text-center">
+                <div><img src="../assets/img/boy.png" alt=""></div>
+                <?php foreach ($childList as $child) { ?>
+                    <p class="fw-bold"><?= ucfirst($child['child_firstname']) ?></p>
+                <?php } ?>
+            </div>
+            <div class="infosParent2 col-lg-4 text-center">
+                <div><img src="../assets/img/user.png" alt=""></div>
+                <p class="fw-bold"><?= $info['mail'] ?></p>
+            </div>
+    <?php  }
+    } ?>
 </div>
-<p>Calendrier partagé avec : <span class="fw-bold"><?=$info['parent2_nickname']?></span></p>
-<button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModalDelete">Supprimer le compte</button>
 
-    <?php } } else { ?>
-        <?php foreach($infoList as $info) { ?>
-    <p>Votre Identifiant : <span class="fw-bold"><?=$info['parent2_nickname']?></span></p>
-    <p>Vos enfant(s) :
-    <?php foreach($childList as $child) { ?>
-    <span class="fw-bold">( <?=ucfirst($child['child_firstname'])?> )</span> 
-    <?php } ?></p>
-    <p>Calendrier partagé avec : <span class="fw-bold"><?=$info['mail']?></span>  </p>
-  <?php  }} ?>
+
+<!-- Modal de suppression du compte  -->
+<div class="modal fade" id="exampleModalDelete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Supprimer votre compte</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Attention la suppression de votre compte est définitive. Vos données seront perdues.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                <a href="../controllers/controller-infos.php?delete"><button type="button" class="btn btn-danger">Supprimer</button></a>
+            </div>
+        </div>
+    </div>
 </div>
-
-
-                <!-- Modal -->
-                <div class="modal fade" id="exampleModalDelete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="exampleModalLabel">Supprimer votre compte</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                Attention la suppression de votre compte est définitive. Vos données seront perdues.
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-                                <a href="../controllers/controller-infos.php?id=<?=$user['parent_id']?>"><button type="button" class="btn btn-danger">Supprimer</button></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
 <?php include('../views/include/footer.php') ?>
-    <script src="../assets/js/bootstrap.bundle.js"></script>
-    <script src="script.js"></script>
+<script src="../assets/js/bootstrap.bundle.js"></script>
+<script src="script.js"></script>
 </body>
 
 </html>

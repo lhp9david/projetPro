@@ -40,6 +40,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $subscribed = true;
     }
 
+/* si la suppression s'est bien déroulée, on affiche un message de confirmation */
+    if (isset($_GET['deleted'])) {
+        $deleted = true;
+    }
+
 
 ?>
 
