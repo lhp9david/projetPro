@@ -54,8 +54,5 @@ public function displayChild() {
     return $result;
 }
 
-
-
-
 }
 ?>

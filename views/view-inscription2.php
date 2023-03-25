@@ -14,7 +14,7 @@
     <title>Ajout des enfants</title>
 </head>
 
-<body>
+<body class='bloc-inscription'>
 <div class='row'>  
     <div class="col-lg-6"><a class="text-dark" href="/index.php"><i class="bi bi-arrow-left-circle-fill fs-1 mx-3"></i></a></div>
     <div class="col-lg-6 text-end"><a class="text-dark" href="/controllers/controller-add-child.php"><i class="bi bi-arrow-right-circle-fill fs-1 mx-3"></i></a></div>

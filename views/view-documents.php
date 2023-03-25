@@ -15,64 +15,78 @@
 <body>
     <?php include('../views/include/navbar.php') ?>
 
-    <div class="container ">
-        <div class="doc mt-2">
+
+
+
+
+
+    <div class="container mt-5 text-end mx-0">
+        <a class="text-black text-decoration-none" href="../controllers/controller-documents.php"><button class="btn <?php if (!isset($_GET['idChild'])) {
+                                                                                                                            echo 'border border-3 border-dark rounded';
+                                                                                                                        } else {
+                                                                                                                            '';
+                                                                                                                        } ?> fw-bold">Voir tous</button></a>
+        <?php foreach ($nameList as $name) { ?>
+            <a class="text-black text-decoration-none" href="../controllers/controller-documents.php?idChild=<?= $name['child_id'] ?>"> <button class="btn <?php if (isset($_GET['idChild']) && $_GET['idChild'] == $name['child_id']) {
+                                                                                                                                                                echo  'border border-3 border-dark rounded';
+                                                                                                                                                            } else {
+                                                                                                                                                                '';
+                                                                                                                                                            } ?> fw-bold"><?= $name['child_firstname'] ?? '' ?></button></a>
+        <?php } ?>
+
+    </div>
+    <hr>
+
+
+
+
+
+    <div class=" event-container row mx-0">
+
+
+        <div class="doc mx-auto col-lg-3">
             <p>Partager un document</p>
             <form action="" method="POST" enctype="multipart/form-data">
-                <select name="type" id="">
-                    <option value="photo">Photo</option>
-                    <option value="ecole">Ecole</option>
-                    <option value="medical">Médical</option>
-                    <option value="autre">Autre</option>
-                </select>
-                <select name="child" id="">
-                    <?php foreach ($nameList as $child) { ?>
-                        <option value="<?= $child['child_id'] ?>"><?= ucfirst($child['child_firstname']) ?></option>
-                    <?php } ?>
-                    <input multiple="multiple" type="file" name="userFile"> <span><?= $error ?? '' ?></span>
-                    <input type="submit" value="Ajouter">
+                <div> <select class="w-100" name="type" id="">
+                        <option value="photo">Photo</option>
+                        <option value="ecole">Ecole</option>
+                        <option value="medical">Médical</option>
+                        <option value="autre">Autre</option>
+                    </select></div>
+                <div> <select class="w-100" name="child" id="">
+                        <?php foreach ($nameList as $child) { ?>
+                            <option value="<?= $child['child_id'] ?>"><?= ucfirst($child['child_firstname']) ?></option>
+                        <?php } ?></select></div>
+                <div><input class="w-100" type="file" name="userFile"> <span><?= $error ?? '' ?></span></div>
+                <div class="mx-auto mt-5 text-center"> <input type="submit" value="Ajouter"></div>
 
             </form>
         </div>
-    </div>
 
-    <?php ?>
-
-    <div class="container text-end mx-0">
-    <a class="text-black text-decoration-none" href="../controllers/controller-documents.php"><button class="btn <?php if(!isset($_GET['idChild'])){echo'border border-3 border-dark rounded';}else{'';} ?> fw-bold">Voir tous</button></a>
-        <?php foreach ($nameList as $name) { ?>
-            <a class="text-black text-decoration-none" href="../controllers/controller-documents.php?idChild=<?= $name['child_id'] ?>"> <button class="btn <?php if( isset($_GET['idChild']) && $_GET['idChild'] == $name['child_id'] ){ echo  'border border-3 border-dark rounded';}else{ '';} ?> fw-bold"><?= $name['child_firstname'] ?? '' ?></button></a>
-        <?php } ?>
-      
-    </div>
-    <hr>
-    
- 
-
-
-
-    <div class=" my-5 row mx-0">
-
-        <div class=" col-lg-2 button_type_doc mx-0">
+        <div class=" col-lg-2 button_type_doc mx-auto">
             <button id="photo">Photos</button>
             <button id="ecole">Ecole</button>
             <button id="medical">Médical</button>
             <button id="autre">Autre</button>
         </div>
-        <div class=" col-lg-10 doc_container mx-0">
+        <div class=" col-lg-7 doc_container mx-auto">
             <p class="text-center fw-bold fs-5"><?= $message ?? '' ?></p>
             <?php foreach ($fileList as $value) { ?>
                 <div class="bloc-event d-flex flex-column <?php if ($value['file_type_id'] == 1) {
-                                                            echo 'photo';
-                                                        } else if ($value['file_type_id'] == 2) {
-                                                            echo 'ecole';
-                                                        } else if ($value['file_type_id'] == 3) {
-                                                            echo 'medical';
-                                                        } else if ($value['file_type_id'] == 4) {
-                                                            echo 'autre';
-                                                        } ?>">
+                                                                echo 'photo';
+                                                            } else if ($value['file_type_id'] == 2) {
+                                                                echo 'ecole';
+                                                            } else if ($value['file_type_id'] == 3) {
+                                                                echo 'medical';
+                                                            } else if ($value['file_type_id'] == 4) {
+                                                                echo 'autre';
+                                                            } ?>">
 
-                    <a href="../controllers/<?= $value['file_name'] ?>" target="_blank"> <img class="elt p-1" src="<?php if (preg_match('/\.pdf/', $value['file_name'])){echo '../assets/img/fichier-pdf.png';}else{echo "../controllers/".$value['file_name'];}?>" alt="aperçu document"></a>
+                    <a href="../controllers/<?= $value['file_name'] ?>" target="_blank"> <img class="elt p-1" src="<?php if (preg_match('/\.pdf/', $value['file_name'])) {
+                                                                                                                        echo '../assets/img/fichier-pdf.png';
+                                                                                                                    } else {
+                                                                                                                        echo "../controllers/" . $value['file_name'];
+                                                                                                                    } ?>" alt="aperçu document"></a>
                     <?php if (isset($user['parent2'])) { ?>
                         <a download="document" class="text-center pt-1" href="../controllers/<?= $value['file_name'] ?>"><button class="btn btn-success">Télécharger</button></a>
                     <?php } ?>

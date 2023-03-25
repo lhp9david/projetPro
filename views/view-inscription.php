@@ -12,7 +12,7 @@
   <title>Inscription</title>
 </head>
 
-<body>
+<body class='bloc-inscription'>
  <a class="text-dark" href="/index.php"><i class="bi bi-arrow-left-circle-fill fs-1 mx-3"></i></a> 
   <h1 class="inscription text-center fw-bold fs-1">Inscription</h1>
   <div class="container">

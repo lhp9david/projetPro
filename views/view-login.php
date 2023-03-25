@@ -58,7 +58,7 @@
       <div class="col-lg-6 mx-auto">
       <div >
         <p class="text-center fw-bold">
-       <img class="guillemetGauche" src="/assets/img/signe-de-guillemets-a-gauche.png" alt="guillemet"> Bienvenue sur notre plateforme pour parents divorcés! Partagez en toute sécurité des photos et évènements importants de vos enfants. Connectez-vous dès maintenant. <img class="guillemetDroit" src="/assets/img/symbole-des-guillemets-droits.png" alt="guillemet">
+       <img class="guillemetGauche" src="/assets/img/signe-de-guillemets-a-gauche.png" alt="guillemet"> Bienvenue sur notre plateforme pour parents séparés! Partagez en toute sécurité des photos et évènements importants de vos enfants. Connectez-vous dès maintenant. <img class="guillemetDroit" src="/assets/img/symbole-des-guillemets-droits.png" alt="guillemet">
         </p>
       </div>
         <button type="button" class="btn btn-dark d-block mx-auto fw-bold"><a class="text-decoration-none text-white" href="../controllers/controller-inscription.php">Créer un nouveau compte</a></button>

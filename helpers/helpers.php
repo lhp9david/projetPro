@@ -126,7 +126,7 @@ function showCalendar($month, $year)
       // si evenement et jour férié
     } else if (!empty(checkEvent($event, date('Y-m-d', mktime(0, 0, 0, $month, $i, $year)))) && array_key_exists(date('d-M-Y', mktime(0, 0, 0, $month, $i, $year)), $holidays)) {
 
-      echo '<td class="grey text-black" data-bs-toggle="modal" data-bs-target="#modal-' . $i . '">' .  $holidays[date('d-M-Y', mktime(00, 00, 00, $month, $i, $year))]  ;
+      echo '<td class="grey flex p-0 text-black" data-bs-toggle="modal" data-bs-target="#modal-' . $i . '">' .  $holidays[date('d-M-Y', mktime(00, 00, 00, $month, $i, $year))]  ;
       echo '<div class="container_pastille">';
 
       foreach (checkEvent($event, date('Y-m-d', mktime(0, 0, 0, $month, $i, $year))) as $value) {
@@ -167,7 +167,7 @@ function showCalendar($month, $year)
       // si jour férié
     } else if (array_key_exists(date('d-M-Y', mktime(0, 0, 0, $month, $i, $year)), $holidays)) {
 
-      echo '<td class="grey text-black border border-dark" data-bs-toggle="modal" data-bs-target="#modal-' . $i . '">' . $holidays[date('d-M-Y', mktime(00, 00, 00, $month, $i, $year))]   . '</td>';
+      echo '<td class="grey flex p-0 text-black border border-dark" data-bs-toggle="modal" data-bs-target="#modal-' . $i . '">' . $holidays[date('d-M-Y', mktime(00, 00, 00, $month, $i, $year))]   . '</td>';
       createModal($month, $i, $year, $holidays);
 
       // anniversaire en vert
@@ -285,7 +285,7 @@ function createModal($month, $i, $year, $holidays)
                   $month = '0' . $month;
                 } ?> -->
           <button type="button" class="btn btn-dark fw-bold" data-bs-dismiss="modal">Fermer</button>
-          <button type="button" class="btn btn-warning fw-bold "><a class="text-black" href="../views/add-event.php?<?= 'date=' . $year . '-' . $month . '-' . $i ?>">Ajouter un évènement</a> </button>
+          <button type="button" class="btn btn-warning fw-bold "><a class="text-black" href="../controllers/controller-rdv.php?<?= 'date=' . $year . '-' . $month . '-' . $i ?>">Ajouter un évènement</a> </button>
         </div>
       </div>
     </div>
@@ -329,7 +329,7 @@ function createModalBirthday($month, $i, $year)
             $month = '0' . $month;
           } ?>
           <button type="button" class="btn btn-dark fw-bold" data-bs-dismiss="modal">Fermer</button>
-          <button type="button" class="btn btn-warning fw-bold "><a class="text-black" href="../views/add-event.php?<?= 'date=' . $year . '-' . $month . '-' . $i ?>">Ajouter un évènement</a> </button>
+          <button type="button" class="btn btn-warning fw-bold "><a class="text-black" href="../controllers/controller-rdv.php?<?= 'date=' . $year . '-' . $month . '-' . $i ?>">Ajouter un évènement</a> </button>
         </div>
       </div>
     </div>
@@ -371,13 +371,13 @@ function createModalEvent($month, $i, $year)
         </div>
         <div class="modal-footer">
           <?php if ($i < 10) {
-            $i = '0' . $i;
+            $i = 0 . $i;
           };
           if ($month < 10) {
-            $month = '0' . $month;
+            $month = 0 . $month;
           } ?>
           <button type="button" class="btn btn-dark fw-bold" data-bs-dismiss="modal">Fermer</button>
-          <button type="button" class="btn btn-warning fw-bold "><a class="text-black" href="../views/add-event.php?<?= 'date=' . $year . '-' . $month . '-' . $i ?>">Ajouter un évènement</a> </button>
+          <button type="button" class="btn btn-warning fw-bold "><a class="text-black" href="..controllers/controller-rdv.php?<?= 'date=' . $year . '-' . $month . '-' . $i ?>">Ajouter un évènement</a> </button>
         </div>
       </div>
     </div>

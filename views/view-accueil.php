@@ -25,8 +25,8 @@
             $month = $_GET['month'];
             $year = $_GET['year'];
             echo '<div class="row mx-0">';
-            showForm($month, $year);
-            echo '<h1 class="col-lg-6 text-end mt-5">'.$months[$month].' '.$year.'</h1>';
+            '<div class="col-lg-6">'. showForm($month, $year) .'</div>';
+            echo '<h1 class="col-lg-6 text-end mt-5 ">'.$months[$month].' '.$year.'</h1>';
             echo '</div>';
             showCalendar($month, $year);
             
@@ -40,11 +40,11 @@
 
         ?>
 <div class="legend">
-<div class="legend_pastille"><div class="pastille eventMedecin"></div><div>Medical</div></div>
-<div class="legend_pastille"><div class="pastille eventAnniv"></div><div>Anniversaire</div></div>
-<div class="legend_pastille"><div class="pastille eventSport"></div><div>Sport</div></div>
-<div class="legend_pastille"><div class="pastille eventScolaire"></div><div>Ecole</div></div>
-<div class="legend_pastille"><div class="pastille eventAutre"></div><div>Autre</div></div>
+<div class="legend_pastille"><img src="../assets/img/calendrier.png" alt=""><div>Medical</div></div>
+<div class="legend_pastille"><img src="../assets/img/invitation-danniversaire.png" alt=""><div>Anniversaire</div></div>
+<div class="legend_pastille"><img src="../assets/img/sports.png" alt=""><div>Sport</div></div>
+<div class="legend_pastille"><img src="../assets/img/cartable.png" alt=""><div>Ecole</div></div>
+<div class="legend_pastille"><img src="../assets/img/notes.png" alt=""><div>Autre</div></div>
 </div>
     </div>
     <?php include('../views/include/footer.php') ?>

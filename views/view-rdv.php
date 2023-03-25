@@ -14,56 +14,108 @@
 
 <body>
     <?php include('../views/include/navbar.php'); ?>
-    
+   
 
-        
+
 
 
 
     <div class="container text-end mt-5 mx-0">
-    <a class="text-black text-decoration-none" href="../controllers/controller-rdv.php"><button class="btn <?php if(!isset($_GET['idChild'])){echo'border border-3 border-dark rounded';}else{'';} ?> fw-bold">Voir tous</button></a>
+        <a class="text-black text-decoration-none" href="../controllers/controller-rdv.php"><button class="btn <?php if (!isset($_GET['idChild'])) {
+                                                                                                                    echo 'border border-3 border-dark rounded';
+                                                                                                                } else {
+                                                                                                                    '';
+                                                                                                                } ?> fw-bold">Voir tous</button></a>
         <?php foreach ($nameList as $name) { ?>
-            <a class="text-black text-decoration-none" href="../controllers/controller-rdv.php?idChild=<?= $name['child_id'] ?>"><button class="btn <?php if( isset($_GET['idChild']) && $_GET['idChild'] == $name['child_id'] ){ echo  'border border-3 border-dark rounded';}else{ '';} ?>  fw-bold"><?= $name['child_firstname'] ?? '' ?></button></a>
+            <a class="text-black text-decoration-none" href="../controllers/controller-rdv.php?idChild=<?= $name['child_id'] ?>"><button class="btn <?php if (isset($_GET['idChild']) && $_GET['idChild'] == $name['child_id']) {
+                                                                                                                                                        echo  'border border-3 border-dark rounded';
+                                                                                                                                                    } else {
+                                                                                                                                                        '';
+                                                                                                                                                    } ?>  fw-bold"><?= $name['child_firstname'] ?? '' ?></button></a>
         <?php } ?>
     </div>
     <hr>
 
     <div class=" event-container row mx-auto">
-  
-        <div class="col-lg-2 button_type_doc">
+
+    
+    <div class="doc mx-auto">
+            <p class=fw-bold>Ajouter un événement</p>
+            <form class="" action="../controllers/controller-rdv.php" method="POST">
+                <div class=""> <input class="w-100" type="date" name="dateEvent" value="<?= $_GET['date'] ?? '' ?>">
+                    <input class="w-100" type="time" name="hourEvent">
+                </div>
+                <div class=""> <select class="w-100" name="childname" id="child">
+                        <option value="">--Choisir l'enfant--</option>
+                        <?php foreach ($nameList as $name) { ?>
+                            <option value="<?= $name['child_id'] ?? '' ?>"> <?= $name['child_firstname'] ?? '' ?></option>
+                        <?php } ?>
+                    </select>
+                    <select class="w-100" name="motifEvent" id="event-select">
+                        <option value="">--Choisir evenement--</option>
+                        <option value="1">Rendez-vous médical</option>
+                        <option value="2">Anniversaire</option>
+                        <option value="3">Sport</option>
+                        <option value="4">Sortie scolaire</option>
+                        <option value="5">Autre</option>
+
+                    </select>
+                </div>
+                <div class=""><textarea class="w-100" name="noteEvenement" id="" cols="30" rows="5"></textarea></div>
+
+                <div class='text-center mx-auto'><input type="submit" value="Ajouter"></div>
+                <?php if (isset($_GET['error'])) {
+                    echo 'Veuillez remplir tous les champs';
+                } else {
+                    '';
+                } ?>
+            </form>
+
+        </div>
+        <div class="col-lg-2 button_type_doc mx-auto">
             <button id="medecin">Médical</button>
             <button id="anniv">Anniversaire</button>
             <button id="sport">Sport</button>
             <button id="scolaire">Sortie scolaire</button>
             <button id="other">Autre</button>
         </div>
-        <div class="col-lg-6 mx-auto">
-        <p class="text-center fw-bold fs-5 mt-5"><?= $message ?? '' ?></p>
+        <div class="col-lg-6 mx-auto ">
+          
             <?php foreach ($eventList as $event) { ?>
-               
 
-                <div class="bloc-event my-3 row event <?php if ($event['event_type_id'] == 1) {
-                                                echo 'medecin';
-                                            } elseif ($event['event_type_id'] == 2) {
-                                                echo 'anniv';
-                                            } elseif ($event['event_type_id'] == 3) {
-                                                echo 'sport';
-                                            } elseif ($event['event_type_id'] == 4) {
-                                                echo 'scolaire';
-                                            } elseif ($event['event_type_id'] == 5) {
-                                                echo 'other';
-                                            } ?>">
+
+                <div class="bloc-event mb-3 row event <?php if ($event['event_type_id'] == 1) {
+                                                            echo 'medecin';
+                                                        } elseif ($event['event_type_id'] == 2) {
+                                                            echo 'anniv';
+                                                        } elseif ($event['event_type_id'] == 3) {
+                                                            echo 'sport';
+                                                        } elseif ($event['event_type_id'] == 4) {
+                                                            echo 'scolaire';
+                                                        } elseif ($event['event_type_id'] == 5) {
+                                                            echo 'other';
+                                                        } ?>">
                     <p class="col-lg-3"><?= date('d-m-Y', strtotime($event['event_date'])) ?? ''; ?> <br> <?= $event['event_hour'] ?? '' ?></p>
-                    <p class="col-lg-2"><?= ucfirst($event['event_name']) ?? '' ?></p>
+                    <p class="col-lg-2 <?php if ($event['event_type_id'] == 1) {
+                                                            echo 'eventMedecin';
+                                                        } elseif ($event['event_type_id'] == 2) {
+                                                            echo 'eventAnniv';
+                                                        } elseif ($event['event_type_id'] == 3) {
+                                                            echo 'eventSport';
+                                                        } elseif ($event['event_type_id'] == 4) {
+                                                            echo 'eventScolaire';
+                                                        } elseif ($event['event_type_id'] == 5) {
+                                                            echo 'eventAutre';
+                                                        } ?>"></p>
                     <p class="col-lg-4"><?= $event['event_motif'] ?? '' ?></p>
                     <p class="col-lg-3">
                         <?php if (!isset($user['parent2'])) { ?>
                             <img class="trash" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal<?= $event['event_id'] ?>" src="../assets/img/delete.png" alt="">
-                            <img class="trash" type=" button" data-bs-toggle="modal" data-bs-target="#modal-<?= $event['event_id'] ?>"  src="../assets/img/edit.png" alt="">
+                            <img class="trash" type=" button" data-bs-toggle="modal" data-bs-target="#modal-<?= $event['event_id'] ?>" src="../assets/img/edit.png" alt="">
                         <?php } ?>
                     </p>
                 </div>
-
+   
                 <!-- Modal de suppression -->
                 <div class="modal fade" id="exampleModal<?= $event['event_id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
@@ -126,6 +178,7 @@
                 </div>
             <?php  } ?>
         </div>
+        <p class="text-center fw-bold fs-5 mt-5"><?= $message ?? '' ?></p>
     </div>
 
     </div>

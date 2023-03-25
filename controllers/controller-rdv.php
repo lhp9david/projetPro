@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     } else {
 
-        header('Location: ../views/add-event.php?error');
+        header('Location: ../controllers/controller-rdv.php?error');
     }
 }
 
