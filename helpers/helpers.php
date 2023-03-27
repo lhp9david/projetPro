@@ -117,7 +117,7 @@ function showCalendar($month, $year)
       echo '<div class="container_pastille">';
 
       foreach (checkEvent($event, date('Y-m-d', mktime(0, 0, 0, $month, $i, $year))) as $value) {
-        echo '<div class="pastille my-1 ' . $typeColor[$value] . '">' . '</div>';
+        echo '<div class="pastille my-1">' .'<img src='.'"../assets/img/'.$typeColor[$value].'.png" alt="">' . '</div>';
       }
 
       echo '</div>';
@@ -132,7 +132,7 @@ function showCalendar($month, $year)
       echo '<div class="container_pastille">';
 
       foreach (checkEvent($event, date('Y-m-d', mktime(0, 0, 0, $month, $i, $year))) as $value) {
-        echo '<div class="pastille my-1 ' . $typeColor[$value] . '">' . '</div>';
+        echo '<div class="pastille my-1">' .'<img src='.'"../assets/img/'.$typeColor[$value].'.png" alt="">' . '</div>';
       }
 
       echo '</div>';
@@ -158,7 +158,7 @@ function showCalendar($month, $year)
       echo '<div class="container_pastille">';
 
       foreach (checkEvent($event, date('Y-m-d', mktime(0, 0, 0, $month, $i, $year))) as $value) {
-        echo '<div class="pastille my-1 ' . $typeColor[$value] . '">' . '</div>';
+        echo '<div class="pastille my-1">' .'<img src='.'"../assets/img/'.$typeColor[$value].'.png" alt="">' . '</div>';
       }
 
       echo '</div>';
@@ -189,7 +189,7 @@ function showCalendar($month, $year)
       echo '<div class="container_pastille">';
       foreach (checkEvent($event, date('Y-m-d', mktime(0, 0, 0, $month, $i, $year))) as $value) {
 
-        echo '<div class="pastille my-1 ' . $typeColor[$value] . '">' . '</div>';
+        echo '<div class="pastille my-1">' .'<img src='.'"../assets/img/'.$typeColor[$value].'.png" alt="">' . '</div>';
       }
       echo '</div>';
       echo '</td>';
@@ -379,7 +379,7 @@ function createModalEvent($month, $i, $year)
             $month = 0 . $month;
           } ?>
           <button type="button" class="btn btn-dark fw-bold" data-bs-dismiss="modal">Fermer</button>
-          <button type="button" class="btn btn-warning fw-bold "><a class="text-black" href="..controllers/controller-rdv.php?<?= 'date=' . $year . '-' . $month . '-' . $i ?>">Ajouter un évènement</a> </button>
+          <button type="button" class="btn btn-warning fw-bold "><a class="text-black" href="../controllers/controller-rdv.php?<?= 'date=' . $year . '-' . $month . '-' . $i ?>">Ajouter un évènement</a> </button>
         </div>
       </div>
     </div>

@@ -70,7 +70,7 @@ class Files
 
 
 
-    public function saveFile($id)
+    public function saveFile($id, $mail)
     {
 
 
@@ -104,12 +104,13 @@ class Files
         move_uploaded_file($_FILES['userFile']['tmp_name'], $targetPath);
 
         // Enregistrer le fichier dans la base de données
-        $sql = 'INSERT INTO files (file_name, file_type_id, child_id,file_date) VALUES (:file_name, :file_type_id, :child_id,:file_date)';
+        $sql = 'INSERT INTO files (file_name, file_type_id, child_id,file_date,mail) VALUES (:file_name, :file_type_id, :child_id,:file_date,:mail)';
         $stmt = $this->_pdo->prepare($sql);
         $stmt->bindValue(':file_name', $targetPath);
         $stmt->bindParam(':file_type_id', $fileTypeID);
         $stmt->bindParam(':child_id', $id);
         $stmt->bindValue(':file_date', date('m-Y'));
+        $stmt->bindValue(':mail', $mail);
         $stmt->execute();
 
         return true;

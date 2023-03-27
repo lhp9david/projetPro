@@ -32,7 +32,7 @@ class Event
     }
 
 /* creer un event */
-    public function createEvent()
+    public function createEvent($mail)
     {
 
         /* recuperer le type d'event par rapport à l'id */
@@ -49,7 +49,7 @@ class Event
 
 
 
-        $sql = 'INSERT INTO event (event_name, event_date, event_hour, child_id, event_type_id,event_motif) VALUES (:event_name, :event_date, :event_hour, :child_id, :event_type_id, :event_motif)';
+        $sql = 'INSERT INTO event (event_name, event_date, event_hour, child_id, event_type_id,event_motif,mail) VALUES (:event_name, :event_date, :event_hour, :child_id, :event_type_id, :event_motif, :mail)';
         $stmt = $this->_pdo->prepare($sql);
         $stmt->bindParam(':event_name', $eventTypeName);
         $stmt->bindParam(':event_date', $_POST['dateEvent']);
@@ -57,6 +57,7 @@ class Event
         $stmt->bindParam(':child_id', $_POST['childname']);
         $stmt->bindParam(':event_type_id', $_POST['motifEvent']);
         $stmt->bindParam(':event_motif', $_POST['noteEvenement']);
+        $stmt->bindValue(':mail', $mail);
         $stmt->execute();
         header('Location: ../controllers/controller-rdv.php');
         exit();
@@ -96,7 +97,7 @@ class Event
     public function showAllEvent()
     {
         $parentID = $_SESSION['user']['parent_id'];
-        $sql = 'SELECT event_type_id,event_id,event_name, event_date, event_hour, event_motif, child_firstname FROM event  INNER JOIN child ON event.child_id = child.child_id WHERE child.parent_id = :parent_id ORDER BY event_date DESC, event_hour DESC';
+        $sql = 'SELECT event_type_id,event_id,event_name, event_date, event_hour, event_motif, child_firstname,mail FROM event  INNER JOIN child ON event.child_id = child.child_id WHERE child.parent_id = :parent_id ORDER BY event_date DESC, event_hour DESC';
         $stmt = $this->_pdo->prepare($sql);
         $stmt->bindParam(':parent_id', $parentID);
         $stmt->execute();
@@ -154,8 +155,6 @@ class Event
         $stmt->bindParam(':event_motif', $_POST['noteEvenement']);
         $stmt->bindParam(':event_id', $_POST['idEvent']);
         $stmt->execute();
-  
-       
     }
 
     

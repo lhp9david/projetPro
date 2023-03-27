@@ -183,39 +183,7 @@ class Paarent
         exit();
     }
 
-    /**
-     * méthode pour connexion du parent 2
-     * 
-     */
 
-    public function loginParent2($pseudo, $password){
-        $errors = [];
-
-        $query = $this->_pdo->prepare('SELECT * FROM parent WHERE parent2_nickname = :pseudo');
-        $query->bindValue(':pseudo', $pseudo);
-        $query->execute();
-        $result = $query->fetch();
-
-        if ($result) {
-            // Un ou plusieurs enregistrements ont été trouvés, traiter les données ici
-
-            if (password_verify($password, $result['parent2_pass'])) {
-                $_SESSION['user'] = [
-                    'parent_id' => $result['parent_id'],
-                    'parent_name' => $result['parent_name'],
-                    'parent_firstname' => $result['parent_firstname'],
-                    'mail' => $result['mail'],
-                    'parent_password' => $result['parent_password'],
-                    'parent2_nickname' => $result['parent2_nickname'],
-                    'parent2_pass' => $result['parent2_pass'],
-                ];
-                header('Location: controller-accueil.php');
-                exit();
-            } else {
-               $errors['error'] = 'Mauvais identifiant ou mot de passe';
-            }
-        }
-    }
 
 
     /**méthode pour recuperer toutes les informations des parents et de ses enfants inner join */

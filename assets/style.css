@@ -92,15 +92,14 @@ justify-content: space-between;
   font-weight: bold;
 }
 
-.choice input,
-.doc input[type="submit"] {
+.choice input
+ {
   border-radius: 1em;
   background-color: black;
   color: white;
 }
 
-.choice input:hover,
-.doc input[type="submit"]:hover {
+.choice input:hover {
   background-color: white;
   color: black;
   transition: 0.5s;
@@ -170,7 +169,7 @@ td:hover {
   justify-content: space-evenly;
   align-items: center;
   margin: auto;
-  width: auto;
+ 
 }
 .pastille {
   height: 2em;
@@ -181,26 +180,11 @@ td:hover {
   background-size: 2em;
   background-repeat: no-repeat;
 }
-.eventScolaire {
-background-image: url('../assets/img/cartable.png');
-background-size: 2em;
-background-repeat: no-repeat;
+.pastille img {
+  width: 2em;
+  height: 2em;
 }
-.eventSport {
-  background-image: url('../assets/img/sports.png');
-  background-size: 2em;
-  background-repeat: no-repeat;
-}
-.eventAnniv {
- background-image: url('../assets/img/invitation-danniversaire.png');
- background-size: 2em;
- background-repeat: no-repeat;
-}
-.eventAutre {
-  background-image: url('../assets/img/notes.png');
-  background-size: 2em;
-  background-repeat: no-repeat;
-}
+
 
 
 
@@ -538,14 +522,11 @@ footer {
   .button_type_doc button {
     width: auto;
   }
-  .pastille {
-    width: 0.8em;
-    height: 0.8em;
-  }
+
   .legend {
     width: 90%;
-    margin: auto;
-    align-items: center;
+    margin: 1em auto;
+    justify-content: none;
   }
 
   .legend_pastille {
@@ -553,13 +534,20 @@ footer {
     justify-content: center;
     align-items: center;
     gap: 1em;
+    margin: 1em;
   }
   .table {
     width: 95%;
     margin: auto;
+    height: auto;
   }
   .legend_pastille{
     gap: 0;
+  }
+  .legend_pastille img{
+    margin-right: 0.5em;
+    height: 1.5em;
+    width: 1.5em;
   }
   .doc {
     margin-bottom: 1em;

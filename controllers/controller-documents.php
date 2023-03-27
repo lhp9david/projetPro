@@ -38,10 +38,19 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
         /* si le fichier est valide, on appelle la fonction saveFile() pour enregistrer le fichier dans le dossier uploads et on redirige vers la page documents */
             } else {
-            $error = 'Votre fichier a bien été téléchargé';
-            $id = $_POST['child'];
-            $folder->saveFile($id);
-            header('Location: controller-documents.php');
+              if ($user['parent2']) {
+                $mail = $user['parent2_nickname'];
+                $error = 'Votre fichier a bien été téléchargé';
+                $id = $_POST['child'];
+                $folder->saveFile($id, $mail);
+                header('Location: controller-documents.php');
+              } else {
+                $mail = $user['mail'];
+                $error = 'Votre fichier a bien été téléchargé';
+                $id = $_POST['child'];
+                $folder->saveFile($id, $mail);
+                header('Location: controller-documents.php');
+              }
             }
     
         } else {

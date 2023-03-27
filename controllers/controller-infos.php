@@ -67,11 +67,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['pass'])) {
                 $errors['error'] = 'les mots de passe ne sont pas identique';
             }
         }
-        if (empty($_POST['confirmNewPass'])) {
-            $errors['confirmNewPass'] = 'Champ obligatoire';
-        } else if (!preg_match('/^.{8,}$/', $_POST['confirmNewPass'])) {
-            $errors['confirmNewpass'] = 'Veuillez respecter le format';
-        }
+            if (empty($_POST['confirmNewPass'])) {
+                $errors['confirmNewPass'] = 'Champ obligatoire';
+            } else if (!preg_match('/^.{8,}$/', $_POST['confirmNewPass'])) {
+                $errors['confirmNewpass'] = 'Veuillez respecter le format';
+            }
     }
 
     if (empty($errors) && !isset($user['parent2'])) {
@@ -82,7 +82,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['pass'])) {
 
     } else if (empty($errors) && isset($user['parent2'])) {
         $pass = new Paarent();
-        $pass->updatePassword2($user['parentid'], $oldPass, $newPass);
+        $pass->updatePassword2($user['parent_id'], $oldPass, $newPass);
 
     }
 }

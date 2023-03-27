@@ -40,13 +40,14 @@
 
         ?>
 <div class="legend">
-<div class="legend_pastille"><img src="../assets/img/calendrier.png" alt=""><div>Medical</div></div>
-<div class="legend_pastille"><img src="../assets/img/invitation-danniversaire.png" alt=""><div>Anniversaire</div></div>
-<div class="legend_pastille"><img src="../assets/img/sports.png" alt=""><div>Sport</div></div>
-<div class="legend_pastille"><img src="../assets/img/cartable.png" alt=""><div>Ecole</div></div>
-<div class="legend_pastille"><img src="../assets/img/notes.png" alt=""><div>Autre</div></div>
+<div class="legend_pastille"><img src="../assets/img/eventMedecin.png" alt=""><div>Medical</div></div>
+<div class="legend_pastille"><img src="../assets/img/eventAnniv.png" alt=""><div>Anniversaire</div></div>
+<div class="legend_pastille"><img src="../assets/img/eventSport.png" alt=""><div>Sport</div></div>
+<div class="legend_pastille"><img src="../assets/img/eventScolaire.png" alt=""><div>Ecole</div></div>
+<div class="legend_pastille"><img src="../assets/img/eventAutre.png" alt=""><div>Autre</div></div>
 </div>
     </div>
+    
     <?php include('../views/include/footer.php') ?>
     <script src="../assets/js/bootstrap.bundle.js"></script>
     <script src="../script.js"></script>

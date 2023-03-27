@@ -15,33 +15,35 @@ include('../models/Child.php');
 include('../models/Event.php');
 
 /* si la métode POST est utilisé et que le bouton modifier est cliqué */
-if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['changeEvent'])){
-  
-    if(empty($_POST['motifEvent']) || empty($_POST['dateEvent']) || empty($_POST['hourEvent']) || empty($_POST['childname'])){
-       $errors = 'Veuillez remplir tous les champs';
-    } else {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['changeEvent'])) {
+
+ 
         /* on instancie la classe Event et on appelle la fonction updateEvent() pour modifier l'event en base de donnée */
-    $event = new Event();
-    $event->updateEvent();
-    /* on redirige vers la page rdv */
-    header('Location: ../controllers/controller-rdv.php');
-    exit();
-    }
-
-
+        $event = new Event();
+        $event->updateEvent();
+        /* on redirige vers la page rdv */
+        header('Location: ../controllers/controller-rdv.php');
+        exit();
+    
 }
 
 /* si la métode POST est utilisé  */
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['createEvent'])) {
- 
+
     /*** si les champs existe et qu'ils ne sont pas vide alors on crée un nouvel event en base de donnée  */
     if (!empty($_POST['motifEvent']) && !empty($_POST['dateEvent']) && !empty($_POST['hourEvent'])  && !empty($_POST['childname'])) {
-
-/* on instancie la classe Event et on appelle la fonction createEvent() pour créer un nouvel event en base de donnée */
-        $event = new Event();
-        $event->createEvent();
-
-
+        if ($user['parent2']) {
+            $mail = $user['parent2_nickname'];
+               /* on instancie la classe Event et on appelle la fonction createEvent() pour créer un nouvel event en base de donnée */
+            $event = new Event();
+            $event->createEvent($mail);
+        } else {
+            $mail = $user['mail'];
+            /* on instancie la classe Event et on appelle la fonction createEvent() pour créer un nouvel event en base de donnée */
+            $event = new Event();
+            $event->createEvent($mail);
+        }
+     
     } else {
 
         header('Location: ../controllers/controller-rdv.php?error');
@@ -59,21 +61,21 @@ if (isset($_GET['idChild'])) {
     $id = $_GET['idChild'];
 
     /*** on instancie la classe Event et on appelle la fonction showEvent() pour afficher les rdv de l'enfant  */
-        $event = new Event();
-        $eventList = $event->showEvent($id);
+    $event = new Event();
+    $eventList = $event->showEvent($id);
 
     /*** si la liste est vide on affiche un message  */
-        if (!$eventList){
-            $message = "Aucun événement à venir";
-        }
-    } else {
+    if (!$eventList) {
+        $message = "Aucun événement à venir";
+    }
+} else {
 
     /*** sinon on affiche tous les rdv  */
     $event = new Event();
     $eventList = $event->showAllEvent();
 
     /*** si la liste est vide on affiche un message  */
-    if (!$eventList){
+    if (!$eventList) {
         $message = "Aucun événement à venir";
     }
 }
@@ -93,4 +95,3 @@ if (isset($_GET['idEvent'])) {
 
 /*on appelle la vue */
 include('../views/view-rdv.php');
-?>

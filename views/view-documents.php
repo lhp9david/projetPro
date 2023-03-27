@@ -56,9 +56,12 @@
                 <div> <select class="w-100 form-select mb-1" name="child" id="">
                         <?php foreach ($nameList as $child) { ?>
                             <option value="<?= $child['child_id'] ?>"><?= ucfirst($child['child_firstname']) ?></option>
-                        <?php } ?></select></div>
-                <div><input class="w-100 form-control mb-1" type="file" name="userFile"> <p class="text-center text-danger"><?= $error ?? '' ?></p></div>
-                <div class="mx-auto mt-5 text-center"> <input type="submit" value="Ajouter"></div>
+                        <?php } ?>
+                    </select></div>
+                <div><input class="w-100 form-control mb-1" type="file" name="userFile">
+                    <p class="text-center text-danger"><?= $error ?? '' ?></p>
+                </div>
+                <div class="mx-auto mt-5 text-center"> <input type="submit" class="btn btn-outline-dark border border-3 border-dark" value="Ajouter"></div>
 
             </form>
         </div>
@@ -87,10 +90,14 @@
                                                                                                                     } else {
                                                                                                                         echo "../controllers/" . $value['file_name'];
                                                                                                                     } ?>" alt="aperçu document"></a>
-                    <?php if (isset($user['parent2'])) { ?>
-                        <a download="document" class="text-center pt-1" href="../controllers/<?= $value['file_name'] ?>"><button class="btn btn-success">Télécharger</button></a>
-                    <?php } ?>
-                    <?php if (!isset($user['parent2'])) { ?>
+                    <?php if (!isset($user['parent2']) && $value['mail'] == $user['parent2_nickname']) { ?>
+                        <a download="document" class="text-center p-1" href="../controllers/<?= $value['file_name'] ?>"><button class="btn btn-success">Télécharger</button></a>
+                    <?php } else if (!isset($user['parent2']) && $value['mail'] == $user['mail']){ ?>
+                        <a class="text-center p-1" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal<?= $value['file_id'] ?>"><button class="btn btn-danger">Supprimer</button></a>
+                        <?php } ?>
+                    <?php if (isset($user['parent2']) && $value['mail'] == $user['mail']) { ?>
+                        <a download="document" class="text-center p-1" href="../controllers/<?= $value['file_name'] ?>"><button class="btn btn-success">Télécharger</button></a>
+                    <?php } else if (isset($user['parent2']) && $value['mail'] == $user['parent2_nickname']) { ?>
                         <a class="text-center p-1" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal<?= $value['file_id'] ?>"><button class="btn btn-danger">Supprimer</button></a>
                     <?php } ?>
                 </div>

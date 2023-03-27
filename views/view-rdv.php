@@ -39,7 +39,7 @@
     <div class=" event-container row mx-auto">
 
     
-    <div class="doc mx-auto">
+    <div class="doc mx-auto col-lg-3">
             <p class="fw-bold text-center">Ajouter un événement</p>
             <form class="" action="../controllers/controller-rdv.php" method="POST">
                 <div class=""> <input class="w-100 form-control mb-1" type="date" name="dateEvent" value="<?= $_GET['date'] ?? '' ?>">
@@ -63,7 +63,7 @@
                 </div>
                 <div class=""><textarea class="w-100 form-control mb-1" name="noteEvenement" id="" cols="30" rows="5"></textarea></div>
 
-                <div class='text-center mx-auto'><input type="submit" name="createEvent" value="Ajouter"></div>
+                <div class='text-center mx-auto'><input type="submit" class="btn btn-outline-dark border border-3 border-dark" name="createEvent" value="Ajouter"></div>
                 <?php if (isset($_GET['error'])) {
                     echo '<p class="text-center text-danger">'.'Veuillez remplir tous les champs'. '</p>';
                 } else {
@@ -80,7 +80,7 @@
             <button id="other">Autre</button>
         </div>
         <div class="col-lg-6 mx-auto ">
-          
+        <p class="text-center fw-bold fs-5 mt-5"><?= $message ?? '' ?></p>
             <?php foreach ($eventList as $event) { ?>
 
 
@@ -109,13 +109,16 @@
                                                         } ?>"></p>
                     <p class="col-lg-4"><?= $event['event_motif'] ?? '' ?></p>
                     <p class="col-lg-3">
-                        <?php if (!isset($user['parent2'])) { ?>
+                        <?php if (!isset($user['parent2']) && $event['mail'] == $user['mail']) { ?>
+                            <img class="trash" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal<?= $event['event_id'] ?>" src="../assets/img/delete.png" alt="">
+                            <img class="trash" type=" button" data-bs-toggle="modal" data-bs-target="#modal-<?= $event['event_id'] ?>" src="../assets/img/edit.png" alt="">
+                        <?php } else if (isset($user['parent2']) && $event['mail'] == $user['parent2_nickname']){ ?>
                             <img class="trash" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal<?= $event['event_id'] ?>" src="../assets/img/delete.png" alt="">
                             <img class="trash" type=" button" data-bs-toggle="modal" data-bs-target="#modal-<?= $event['event_id'] ?>" src="../assets/img/edit.png" alt="">
                         <?php } ?>
                     </p>
                 </div>
-   
+               
                 <!-- Modal de suppression -->
                 <div class="modal fade" id="exampleModal<?= $event['event_id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
@@ -179,7 +182,7 @@
                 </div>
             <?php  } ?>
         </div>
-        <p class="text-center fw-bold fs-5 mt-5"><?= $message ?? '' ?></p>
+        
     </div>
 
     </div>
