@@ -17,7 +17,7 @@ if(!isset($_SESSION['user'])){
     
         if (isset($_POST['pseudoParent2'])) {
             if (empty($_POST['pseudoParent2'])) {
-                $errors['pseudoParent2'] = 'champ obligatoire';
+                $errors['pseudoParent2'] = 'Champ obligatoire';
             }
             else if(!filter_var(($_POST['pseudoParent2']), FILTER_VALIDATE_EMAIL)) {
                 $errors['pseudoParent2'] = 'Veuillez respecter le format';
@@ -25,7 +25,7 @@ if(!isset($_SESSION['user'])){
         }
         if (isset($_POST['passwordParent2'])) {
             if (empty($_POST['passwordParent2'])) {
-                $errors['passwordParent2'] = 'champ obligatoire';
+                $errors['passwordParent2'] = 'Champ obligatoire';
             }
             else if (!preg_match('/^.{8,}$/', $_POST['passwordParent2'])) {
                 $errors['passwordParent2'] = '8 caractères minimum';
@@ -39,7 +39,7 @@ if(!isset($_SESSION['user'])){
                 $errors['confirmPassParent2'] = 'les mots de passe ne sont pas identique';
             }
             if (empty($_POST['confirmPassParent2'])) {
-                $errors['confirmPassParent2'] = 'champ obligatoire';
+                $errors['confirmPassParent2'] = 'Champ obligatoire';
             }
             else if (!preg_match('/^.{8,}$/', $_POST['confirmPassParent2'])) {
                 $errors['confirmPassPArent2'] = 'Veuillez respecter le format';

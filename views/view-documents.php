@@ -20,7 +20,7 @@
 
 
 
-    <div class="container mt-5 text-end mx-0">
+    <div class="container mt-4 text-end mx-0">
         <a class="text-black text-decoration-none" href="../controllers/controller-documents.php"><button class="btn <?php if (!isset($_GET['idChild'])) {
                                                                                                                             echo 'border border-3 border-dark rounded';
                                                                                                                         } else {
@@ -45,19 +45,19 @@
 
 
         <div class="doc mx-auto col-lg-3">
-            <p>Partager un document</p>
+            <p class="text-center">Partager un document</p>
             <form action="" method="POST" enctype="multipart/form-data">
-                <div> <select class="w-100" name="type" id="">
+                <div> <select class="w-100 form-select mb-1" name="type" id="">
                         <option value="photo">Photo</option>
                         <option value="ecole">Ecole</option>
                         <option value="medical">Médical</option>
                         <option value="autre">Autre</option>
                     </select></div>
-                <div> <select class="w-100" name="child" id="">
+                <div> <select class="w-100 form-select mb-1" name="child" id="">
                         <?php foreach ($nameList as $child) { ?>
                             <option value="<?= $child['child_id'] ?>"><?= ucfirst($child['child_firstname']) ?></option>
                         <?php } ?></select></div>
-                <div><input class="w-100" type="file" name="userFile"> <span><?= $error ?? '' ?></span></div>
+                <div><input class="w-100 form-control mb-1" type="file" name="userFile"> <p class="text-center text-danger"><?= $error ?? '' ?></p></div>
                 <div class="mx-auto mt-5 text-center"> <input type="submit" value="Ajouter"></div>
 
             </form>

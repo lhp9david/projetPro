@@ -10,7 +10,7 @@ require '../helpers/database.php';
     
         if (isset($_POST['lastname'])) {
             if (empty($_POST['lastname'])) {
-                $errors['lastname'] = 'champ obligatoire';
+                $errors['lastname'] = 'Champ obligatoire';
             }
             else if(!preg_match('/^[a-zA-ZÀ-ÿ-]+$/', $_POST['lastname'])) {
                 $errors['lastname'] = 'Veuillez respecter le format';
@@ -23,7 +23,7 @@ require '../helpers/database.php';
     
         if (isset($_POST['firstname'])) {
             if (empty($_POST['firstname'])) {
-                $errors['firstname'] = 'champ obligatoire';
+                $errors['firstname'] = 'Champ obligatoire';
             }
             else if (!preg_match('/^[a-zA-ZÀ-ÿ-]+$/', $_POST['firstname'])) {
                 $errors['firstname'] = 'Veuillez respecter le format';
@@ -36,7 +36,7 @@ require '../helpers/database.php';
         if (isset($_POST['mail'])) {
     
             if (empty($_POST['mail'])) {
-                $errors['mail'] = 'champ obligatoire';
+                $errors['mail'] = 'Champ obligatoire';
             }
             else if (!filter_var($_POST['mail'], FILTER_VALIDATE_EMAIL)) {
                 $errors['mail'] = 'Veuillez respecter le format';
@@ -47,7 +47,7 @@ require '../helpers/database.php';
     
         if (isset($_POST['password'])) {
             if (empty($_POST['password'])) {
-                $errors['password'] = 'champ obligatoire';
+                $errors['password'] = 'Champ obligatoire';
             }
             else if (!preg_match('/^.{8,}$/', $_POST['password'])) {
                 $errors['password'] = '8 caractères minimum';
@@ -65,7 +65,7 @@ require '../helpers/database.php';
             }
         }
             if (empty($_POST['confirmPass'])) {
-                $errors['confirmPass'] = 'champ obligatoire';
+                $errors['confirmPass'] = 'Champ obligatoire';
             }
             else if (!preg_match('/^.{8,}$/', $_POST['confirmPass'])) {
                 $errors['password'] = 'Veuillez respecter le format';

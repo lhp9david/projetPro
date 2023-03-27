@@ -56,11 +56,13 @@ function showCalendar($month, $year)
   // tableau des jours fériés
   $holidays = [
     date("d-M-Y", mktime(0, 0, 0, 1, 1, $year)) => 'Nouvel an',
-    date("d-M-Y", strtotime('+1 day', easter_date($year))) => 'Lundi de Pâques',
+    date("d-M-Y", strtotime('+1 day', easter_date($year))) => 'Pâques',
+    date("d-M-Y", strtotime('+2 day', easter_date($year))) => 'Lundi de pâques',
     date("d-M-Y", mktime(0, 0, 0, 5, 1, $year)) => 'Fête du Travail',
     date("d-M-Y", mktime(0, 0, 0, 5, 8, $year)) => 'Victoire 45',
     date("d-M-Y", strtotime('+39 days', easter_date($year))) => 'Ascension',
-    date("d-M-Y", strtotime('+50 days', easter_date($year))) => 'Lundi de Pentecôte',
+    date("d-M-Y", strtotime('+50 days', easter_date($year))) => 'Pentecôte',
+    date("d-M-Y", strtotime('+51 days', easter_date($year))) => 'Lundi de Pentecôte',
     date("d-M-Y", mktime(0, 0, 0, 7, 14, $year)) => 'Fête Nationale',
     date("d-M-Y", mktime(0, 0, 0, 8, 15, $year)) => 'Assomption',
     date("d-M-Y", mktime(0, 0, 0, 11, 1, $year)) => 'Toussaint',

@@ -17,18 +17,22 @@ include('../models/Event.php');
 /* si la métode POST est utilisé et que le bouton modifier est cliqué */
 if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['changeEvent'])){
   
-    
-
-/* on instancie la classe Event et on appelle la fonction updateEvent() pour modifier l'event en base de donnée */
+    if(empty($_POST['motifEvent']) || empty($_POST['dateEvent']) || empty($_POST['hourEvent']) || empty($_POST['childname'])){
+       $errors = 'Veuillez remplir tous les champs';
+    } else {
+        /* on instancie la classe Event et on appelle la fonction updateEvent() pour modifier l'event en base de donnée */
     $event = new Event();
     $event->updateEvent();
     /* on redirige vers la page rdv */
     header('Location: ../controllers/controller-rdv.php');
     exit();
+    }
+
+
 }
 
 /* si la métode POST est utilisé  */
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['createEvent'])) {
  
     /*** si les champs existe et qu'ils ne sont pas vide alors on crée un nouvel event en base de donnée  */
     if (!empty($_POST['motifEvent']) && !empty($_POST['dateEvent']) && !empty($_POST['hourEvent'])  && !empty($_POST['childname'])) {

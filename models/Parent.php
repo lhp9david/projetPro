@@ -241,4 +241,48 @@ class Paarent
         $stmt->execute();
         
     }
+
+    /*update du mot de passe du parent 1 */
+
+    public function updatePassword($id, $oldPassword,$newPassword)
+    {
+        $sql = "SELECT * FROM parent WHERE parent_id = :parent_id";
+        $stmt = $this->_pdo->prepare($sql);
+        $stmt->bindParam(':parent_id', $id);
+        $stmt->execute();
+        $result = $stmt->fetch();
+        if ($result) {
+            if (password_verify($oldPassword, $result['parent_password'])) {
+                $sql = "UPDATE parent SET parent_password = :password WHERE parent_id = :parent_id";
+                $stmt = $this->_pdo->prepare($sql);
+                $stmt->bindValue(':password', password_hash($newPassword, PASSWORD_DEFAULT), PDO::PARAM_STR);
+                $stmt->bindValue(':parent_id', $id);
+                $stmt->execute();
+            } else {
+                $errors['error'] = 'Mauvais mot de passe';
+            }
+        }
+    }
+
+    /*update du mot de passe du parent 2 */
+
+    public function updatePassword2($id, $oldPassword,$newPassword)
+    {
+        $sql = "SELECT * FROM parent WHERE parent_id = :parent_id";
+        $stmt = $this->_pdo->prepare($sql);
+        $stmt->bindParam(':parent_id', $id);
+        $stmt->execute();
+        $result = $stmt->fetch();
+        if ($result) {
+            if (password_verify($oldPassword, $result['parent2_pass'])) {
+                $sql = "UPDATE parent SET parent2_pass = :password WHERE parent_id = :parent_id";
+                $stmt = $this->_pdo->prepare($sql);
+                $stmt->bindValue(':password', password_hash($newPassword, PASSWORD_DEFAULT), PDO::PARAM_STR);
+                $stmt->bindValue(':parent_id', $id);
+                $stmt->execute();
+            } else {
+                $errors['error'] = 'Mauvais mot de passe';
+            }
+        }
+    }
 }

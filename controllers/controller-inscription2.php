@@ -18,7 +18,7 @@ $errors = [];
     
         if (isset($_POST['childName'])) {
             if (empty($_POST['childName'])) {
-                $errors['childName'] = 'champ obligatoire';
+                $errors['childName'] = 'Champ obligatoire';
             }
             else if(!preg_match('/^[a-zA-ZÀ-ÿ-]+$/', $_POST['childName'])) {
                 $errors['childName'] = 'Veuillez respecter le format';
@@ -29,7 +29,7 @@ $errors = [];
     
         if (isset($_POST['childFirstname'])) {
             if (empty($_POST['childFirstname'])) {
-                $errors['childFirstname'] = 'champ obligatoire';
+                $errors['childFirstname'] = 'Champ obligatoire';
             }
             else if (!preg_match('/^[a-zA-ZÀ-ÿ-]+$/', $_POST['childFirstname'])) {
                 $errors['childFirstname'] = 'Veuillez respecter le format';
@@ -40,7 +40,7 @@ $errors = [];
 
         if (isset($_POST['birthdate'])) {
             if (empty($_POST['birthdate'])) {
-                $errors['birthdate'] = 'champ obligatoire';
+                $errors['birthdate'] = 'Champ obligatoire';
             } else {
                 $birthdate = $_POST['birthdate'];
             }

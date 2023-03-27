@@ -15,7 +15,7 @@
 <?php include('../views/include/navbar.php') ?>
 
 <div class="infos row mx-0">
-    <h2 class="my-5 text-center">Mes infos</h2>
+    <h2 class="my-3 text-center">Mes infos</h2>
     <?php if (!isset($user['parent2'])) { ?>
 
         <?php foreach ($infoList as $info) { ?>
@@ -34,7 +34,7 @@
                 <div><img src="../assets/img/user.png" alt=""></div>
                 <p class="fw-bold"><?= $info['parent2_nickname'] ?></p>
             </div>
-            <div class=" text-center mb-2 col-lg-6"><button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModalDelete">Modifier mon mot de passe</button></div>
+            <div class=" text-center mb-2 col-lg-6"><button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModalPass">Modifier mon mot de passe</button></div>
             <div class=" text-center mb-2 col-lg-6"><button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModalDelete">Supprimer le compte</button></div>
 
 
@@ -79,10 +79,53 @@
         </div>
     </div>
 </div>
-
+<!-- Modal de modif de password  -->
+<div class="modal fade <?=!empty($errors) ? 'openModal' : ''  ?>" id="exampleModalPass" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Modifier votre mot de passe</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+            <form action="" method="POST">
+            <div>
+                     <label class="fw-bold" for="oldPass">Mot de passe actuel</label>
+                     <input class="w-100 " type="password" name="oldPass">
+                     <p class="text-danger"><?=$errors['oldPass'] ?? ''?> </p>
+               </div>
+               <div>
+                     <label class=" fw-bold" for="newPass">Nouveau mot de passe</label>
+                     <input class="w-100" type="password" name="newPass">
+                     <p class="text-danger"><?=$errors['newPass'] ?? ''?></p>
+               </div>    <div>
+                     <label class="fw-bold" for="confirmNewPass">Confirmer le nouveau mot de passe</label>
+                     <input class="w-100 fw-bold" type="password" name="confirmNewPass">
+                     <p class="text-danger"><?=$errors['confirmNewPass'] ?? ''?></p>
+                     <p class="text-danger"><?=$errors['error'] ?? ''?></p>
+               </div>
+            
+             
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                <input type="submit" name="pass" value="Modifier" class="btn btn-warning"></input>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
 <?php include('../views/include/footer.php') ?>
 <script src="../assets/js/bootstrap.bundle.js"></script>
 <script src="script.js"></script>
+<script>
+        // creation de l'objet openModal, nous ciblons la classe openModal
+        let openModal = new bootstrap.Modal(document.querySelector('.openModal'), {
+            keyboard: false
+        });
+        // nous l'ouvrons avec la methode show()
+        openModal.show();
+    </script>
 </body>
 
 </html>

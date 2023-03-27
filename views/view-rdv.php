@@ -20,7 +20,7 @@
 
 
 
-    <div class="container text-end mt-5 mx-0">
+    <div class="container text-end mt-4 mx-0">
         <a class="text-black text-decoration-none" href="../controllers/controller-rdv.php"><button class="btn <?php if (!isset($_GET['idChild'])) {
                                                                                                                     echo 'border border-3 border-dark rounded';
                                                                                                                 } else {
@@ -40,18 +40,18 @@
 
     
     <div class="doc mx-auto">
-            <p class=fw-bold>Ajouter un événement</p>
+            <p class="fw-bold text-center">Ajouter un événement</p>
             <form class="" action="../controllers/controller-rdv.php" method="POST">
-                <div class=""> <input class="w-100" type="date" name="dateEvent" value="<?= $_GET['date'] ?? '' ?>">
-                    <input class="w-100" type="time" name="hourEvent">
+                <div class=""> <input class="w-100 form-control mb-1" type="date" name="dateEvent" value="<?= $_GET['date'] ?? '' ?>">
+                    <input class="w-100 form-control mb-1" type="time" name="hourEvent">
                 </div>
-                <div class=""> <select class="w-100" name="childname" id="child">
+                <div class=""> <select class="w-100 form-select mb-1" name="childname" id="child">
                         <option value="">--Choisir l'enfant--</option>
                         <?php foreach ($nameList as $name) { ?>
                             <option value="<?= $name['child_id'] ?? '' ?>"> <?= $name['child_firstname'] ?? '' ?></option>
                         <?php } ?>
                     </select>
-                    <select class="w-100" name="motifEvent" id="event-select">
+                    <select class="w-100 form-select mb-1" name="motifEvent" id="event-select">
                         <option value="">--Choisir evenement--</option>
                         <option value="1">Rendez-vous médical</option>
                         <option value="2">Anniversaire</option>
@@ -61,11 +61,11 @@
 
                     </select>
                 </div>
-                <div class=""><textarea class="w-100" name="noteEvenement" id="" cols="30" rows="5"></textarea></div>
+                <div class=""><textarea class="w-100 form-control mb-1" name="noteEvenement" id="" cols="30" rows="5"></textarea></div>
 
-                <div class='text-center mx-auto'><input type="submit" value="Ajouter"></div>
+                <div class='text-center mx-auto'><input type="submit" name="createEvent" value="Ajouter"></div>
                 <?php if (isset($_GET['error'])) {
-                    echo 'Veuillez remplir tous les champs';
+                    echo '<p class="text-center text-danger">'.'Veuillez remplir tous les champs'. '</p>';
                 } else {
                     '';
                 } ?>
@@ -168,6 +168,7 @@
                                     <button type="button" class="btn btn-dark fw-bold" data-bs-dismiss="modal">Fermer</button>
                                     <input type="submit" name="changeEvent" class="btn btn-warning fw-bold " value="Modifier"></input>
                                 </form>
+                                <p><?=$error ?? ''?></p>
                             </div>
                             <div class="modal-footer">
 
