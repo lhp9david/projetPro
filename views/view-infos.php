@@ -118,21 +118,26 @@
     </div>
 </div>
 
+<?php if (isset($_GET['pass'])) { ?>
 
+
+<?php } ?>
 
 
 <?php include('../views/include/footer.php') ?>
 <script src="../assets/js/bootstrap.bundle.js"></script>
-<script src="script.js"></script>
-<script>
-    // creation de l'objet openModal, nous ciblons la classe openModal
-    let openModal = new bootstrap.Modal(document.querySelector('.openModal'), {
-        keyboard: false
-    });
-    // nous l'ouvrons avec la methode show()
-    openModal.show();
 
+<script>
+    let modal = document.querySelector('.openModal');
+    if (modal) {
+        let openModal = new bootstrap.Modal(modal, {
+            keyboard: false
+        })
+        openModal.show();
+    };
+  
 </script>
+<script src="../script.js"></script>
 </body>
 
 </html>

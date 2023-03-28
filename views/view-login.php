@@ -47,8 +47,11 @@
 
         <div class="mb-3">
           <label for="password" class="form-label fw-bold fs-5 text-end">Mot de passe</label>
-          <input type="password" class="form-control" name="password" id="password"><span class="text-danger"><?= $errors['error'] ?? '' ?></span>
+        <div class="d-flex justify-content-end align-items-center">  <input type="password" class="form-control" name="password" id="password"><i class="bi-eye-slash-fill bi bi-eye-fill p-1" id="togglePassword"></i></div>
+          <span class="text-danger"><?= $errors['error'] ?? '' ?></span>
         </div>
+        <div class="g-recaptcha" data-sitekey="6LcaqjslAAAAAFXpVUVdOBY_xt5e8gmkmZxsS7w9"></div>
+        <p class="text-danger text-center"><?= $errorsArray['captcha'] ?? '' ?></p>
 
         <button type="submit" class="btn btn-warning d-block mx-auto fw-bold">Valider</button>
       </form>
@@ -68,11 +71,34 @@
 
   </div>
 
-
-  <script src="../assets/js/bootstrap.bundle.js"></script>
-  <script src="script.js"></script>
-
   <?php } ?>
+
+  <!-- script bootstrap  -->
+  <script src="../assets/js/bootstrap.bundle.js"></script>
+
+  <!-- script pour afficher le mot de passe  -->
+  <script>
+    const togglePassword = document.querySelector('#togglePassword');
+  const password = document.querySelector('#password');
+
+  togglePassword.addEventListener('click', function (e) {
+    // toggle the type attribute
+    const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+    password.setAttribute('type', type);
+    // toggle the eye slash icon
+    togglePassword.classList.toggle('bi-eye-slash-fill');
+});
+  </script>
+
+  <!-- script pour le recaptcha de google  -->
+  <script src="https://www.google.com/recaptcha/api.js"></script>
+  <script>
+   function onSubmit(token) {
+     document.getElementById("demo-form").submit();
+   }
+ </script>
+
+  <script src="../script.js"></script>
 </body>
 
 </html>

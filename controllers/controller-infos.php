@@ -83,6 +83,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['pass'])) {
     } else if (empty($errors) && isset($user['parent2'])) {
         $pass = new Paarent();
         $pass->updatePassword2($user['parent_id'], $oldPass, $newPass);
+        header('Location: controller-infos.php?pass');
+        exit();
 
     }
 }

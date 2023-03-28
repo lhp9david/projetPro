@@ -21,8 +21,8 @@
 <form action="" method="POST" class="col-lg-6 mx-auto">
 
 <div class="mb-3">
-  <p class="inscription text-center fw-bold my-5">Veuillez indiquer ici l'adresse mail de votre ex conjoint(e) et choisissez lui un mot de passe. <br>
-  Ce compte aura un accès consultatif au calendrier, documents et évènements (aucune modification possible)</p>
+  <p class="inscription text-center fw-bold my-5">Veuillez indiquer ici l'adresse mail de votre ex conjoint(e) et choisissez lui un mot de passe provisoire que vous devez lui communiquer pour qu'il puisse avoir accès au calendrier. <br>
+Avec ce compte votre ex-conjoint(e) aura accès aux evenements et documents que vous posterez, et pourra aussi posté des evenements et documents</p>
 </div>
 <div class="mb-3">
   <label for="pseudoParent2" class="form-label fw-bold fs-5">Mail</label>

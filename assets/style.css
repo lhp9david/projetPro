@@ -42,6 +42,19 @@ body {
   justify-content: center;
 }
 
+#password {
+  position: relative;
+}
+#togglePassword {
+  position: absolute;
+  cursor: pointer;
+  font-size: 1.5em;
+}
+
+.g-recaptcha {
+  margin: 1em auto;
+  width: fit-content;
+}
 /********************************************************Inscription****************************************************/
 .inscription {
   width: fit-content;
