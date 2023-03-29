@@ -5,7 +5,6 @@ require '../helpers/database.php';
 
     $errors = [];
     
-    
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
         if (isset($_POST['lastname'])) {
@@ -19,8 +18,6 @@ require '../helpers/database.php';
             }}
         }
     
-    
-    
         if (isset($_POST['firstname'])) {
             if (empty($_POST['firstname'])) {
                 $errors['firstname'] = 'Champ obligatoire';
@@ -31,7 +28,6 @@ require '../helpers/database.php';
                $firstname = $_POST['firstname'];
             }
         }
-    
     
         if (isset($_POST['mail'])) {
     
@@ -56,8 +52,6 @@ require '../helpers/database.php';
             }
         }
     
-    
-    
         if (isset($_POST['confirmPass'])) {
             if (isset($password) ){
                 if($password != $_POST['confirmPass']){
@@ -72,7 +66,6 @@ require '../helpers/database.php';
             }
         }
     
-        
         if (!isset($_POST['CGU'])) {
             if (empty($_POST['CGU'])) {
                 $errors['CGU'] = 'Veuillez accepter les CGU';

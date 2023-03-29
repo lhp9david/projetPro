@@ -125,13 +125,13 @@ class Event
     /**
      * @return void
      */
-    public function updateEvent()
+    public function updateEvent($motifEvent, $dateEvent, $hourEvent, $noteEvenement, $idEvent)
     {
 
         /* recuperer le type avec l'event_type_id */
         $sql = 'SELECT event_type FROM event_type WHERE event_type_id = :event_type_id';
         $stmt = $this->_pdo->prepare($sql);
-        $stmt->bindParam(':event_type_id', $_POST['motifEvent']);
+        $stmt->bindParam(':event_type_id', $motifEvent);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         $eventName = $result['event_type'];
@@ -140,7 +140,7 @@ class Event
         /* recuperer la valeur du child_id avec l'event_id */
         $sql = 'SELECT child_id FROM event WHERE event_id = :event_id';
         $stmt = $this->_pdo->prepare($sql);
-        $stmt->bindParam(':event_id', $_POST['idEvent']);
+        $stmt->bindParam(':event_id', $idEvent);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         $childID = $result['child_id'];
@@ -149,14 +149,14 @@ class Event
         $parentID = $_SESSION['user']['parent_id'];
         $sql = 'UPDATE event SET event_name = :event_name, event_date = :event_date, event_hour = :event_hour, child_id = :child_id, event_type_id = :event_type_id, event_motif = :event_motif WHERE event_id = :event_id AND child_id in (SELECT child_id FROM child WHERE parent_id = :parent_id)';
         $stmt = $this->_pdo->prepare($sql);
-        $stmt->bindParam(':parent_id', $parentID);
-        $stmt->bindParam(':event_name', $eventName );
-        $stmt->bindParam(':event_date', $_POST['dateEvent']);
-        $stmt->bindParam(':event_hour', $_POST['hourEvent']);
-        $stmt->bindParam(':child_id', $childID);
-        $stmt->bindParam(':event_type_id', $_POST['motifEvent'] );
-        $stmt->bindParam(':event_motif', $_POST['noteEvenement']);
-        $stmt->bindParam(':event_id', $_POST['idEvent']);
+        $stmt->bindValue(':event_name', $eventName);
+        $stmt->bindValue(':event_date', $dateEvent);
+        $stmt->bindValue(':event_hour', $hourEvent);
+        $stmt->bindValue(':child_id', $childID);
+        $stmt->bindValue(':event_type_id', $motifEvent);
+        $stmt->bindValue(':event_motif', $noteEvenement);
+        $stmt->bindValue(':event_id', $idEvent);
+        $stmt->bindValue(':parent_id', $parentID);
         $stmt->execute();
     }
 

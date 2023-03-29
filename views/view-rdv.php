@@ -137,7 +137,7 @@
 
 
                 <!-- modal de modification -->
-                <div class="modal fade" id="modal-<?= $event['event_id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal fade <?= !empty($errors) ? 'openModal' : ''  ?>" id="modal-<?= $event['event_id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -168,7 +168,7 @@
                                     <button type="button" class="btn btn-dark fw-bold" data-bs-dismiss="modal">Fermer</button>
                                     <input type="submit" name="changeEvent" class="btn btn-warning fw-bold " value="Modifier"></input>
                                 </form>
-                                <p><?=$error ?? ''?></p>
+                                <p class="text-danger fw-bold"><?=$errors ?? ''?></p>
                             </div>
                             <div class="modal-footer">
 
@@ -187,10 +187,20 @@
 
 
 
-    <?= $error ?? '' ?>
+
     <?php include('../views/include/footer.php') ?>
     <script src="../rdv.js"></script>
     <script src="../assets/js/bootstrap.bundle.js"></script>
+    <script>
+    let modal = document.querySelector('.openModal');
+    if (modal) {
+        let openModal = new bootstrap.Modal(modal, {
+            keyboard: false
+        })
+        openModal.show();
+    };
+  
+</script>
 
 </body>
 
