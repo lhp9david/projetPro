@@ -21,13 +21,13 @@
 
 
     <div class="container mt-4 text-end mx-0">
-        <a class="text-black text-decoration-none" href="../controllers/controller-documents.php"><button class="btn <?php if (!isset($_GET['idChild'])) {
+        <a class="text-black text-decoration-none" href="../documents.php"><button class="btn <?php if (!isset($_GET['idChild'])) {
                                                                                                                             echo 'border border-3 border-dark rounded';
                                                                                                                         } else {
                                                                                                                             '';
                                                                                                                         } ?> fw-bold">Voir tous</button></a>
         <?php foreach ($nameList as $name) { ?>
-            <a class="text-black text-decoration-none" href="../controllers/controller-documents.php?idChild=<?= $name['child_id'] ?>"> <button class="btn <?php if (isset($_GET['idChild']) && $_GET['idChild'] == $name['child_id']) {
+            <a class="text-black text-decoration-none" href="../documents.php?idChild=<?= $name['child_id'] ?>"> <button class="btn <?php if (isset($_GET['idChild']) && $_GET['idChild'] == $name['child_id']) {
                                                                                                                                                                 echo  'border border-3 border-dark rounded';
                                                                                                                                                             } else {
                                                                                                                                                                 '';
@@ -114,7 +114,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-                                <a href="../controllers/controller-documents.php?id=<?= $value['file_id'] ?>"><button type="button" class="btn btn-danger">Supprimer</button></a>
+                                <a href="../documents.php?id=<?= $value['file_id'] ?>"><button type="button" class="btn btn-danger">Supprimer</button></a>
                             </div>
                         </div>
                     </div>

@@ -59,7 +59,7 @@ class Event
         $stmt->bindParam(':event_motif', $_POST['noteEvenement']);
         $stmt->bindValue(':mail', $mail);
         $stmt->execute();
-        header('Location: ../controllers/controller-rdv.php');
+        header('Location: ../evenements.php');
         exit();
     }
 
@@ -86,7 +86,7 @@ class Event
         $stmt->bindParam(':event_id', $id);
         $stmt->bindParam(':parent_id', $parentID);
         $stmt->execute();
-        header('Location: ../controllers/controller-rdv.php');
+        header('Location: ../evenements.php');
         exit();
     }
 
@@ -122,6 +122,9 @@ class Event
     }
 
     /* modifier un event */
+    /**
+     * @return void
+     */
     public function updateEvent()
     {
 

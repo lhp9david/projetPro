@@ -5,7 +5,7 @@ require '../helpers/database.php';
 
 session_start();
 if(!isset($_SESSION['user'])){
-    header('Location: controller-login.php');
+    header('Location: connexion.php');
     exit();
 } else {
     $user = $_SESSION['user'];
@@ -14,7 +14,7 @@ $errors = [];
     
     
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    
+    /*verifie que les champs sont bien remplis et qu'ils respectent le format */
     
         if (isset($_POST['childName'])) {
             if (empty($_POST['childName'])) {

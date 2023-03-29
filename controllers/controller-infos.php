@@ -11,7 +11,7 @@ session_start();
 
 /* si l'utilisateur n'est pas connecté, on le redirige vers la page de connexion */
 if (!isset($_SESSION['user'])) {
-    header('Location: controller-login.php');
+    header('Location: connexion.php');
     exit();
     /* sinon on recupere les informations de l'utilisateur connecté */
 } else {

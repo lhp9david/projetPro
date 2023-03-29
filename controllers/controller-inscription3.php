@@ -5,7 +5,7 @@ require '../models/Parent.php';
 require '../helpers/database.php';
 session_start();
 if(!isset($_SESSION['user'])){
-    header('Location: controller-login.php');
+    header('Location: connexion.php');
     exit();
 } else {
     $user = $_SESSION['user'];
@@ -14,7 +14,7 @@ if(!isset($_SESSION['user'])){
     
     
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    
+    /* on vérifie que les champs sont remplis et que les mots de passe sont identiques */
         if (isset($_POST['pseudoParent2'])) {
             if (empty($_POST['pseudoParent2'])) {
                 $errors['pseudoParent2'] = 'Champ obligatoire';

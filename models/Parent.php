@@ -74,7 +74,7 @@ class Paarent
     
                     $this->_success = true;
     
-                    header('Location: controller-accueil.php');
+                    header('Location: ../accueil.php');
                 }
             }
             if(!$result) {
@@ -125,7 +125,7 @@ class Paarent
                     header('Location: controller-inscription3.php');
                 
                 } else {
-                    header('Location: controller-accueil.php');
+                    header('Location: ../accueil.php');
                 }
             } 
         } else {

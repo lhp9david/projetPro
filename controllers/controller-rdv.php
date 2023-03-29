@@ -2,7 +2,7 @@
 /* on demarre la session */
 session_start();
 if (!isset($_SESSION['user'])) {
-    header('Location: controller-login.php');
+    header('Location: connexion.php');
     exit();
 } else {
     $user = $_SESSION['user'];
@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['changeEvent'])) {
         $event = new Event();
         $event->updateEvent();
         /* on redirige vers la page rdv */
-        header('Location: ../controllers/controller-rdv.php');
+        header('Location: ../evenements.php');
         exit();
     
 }
@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['createEvent'])) {
      
     } else {
 
-        header('Location: ../controllers/controller-rdv.php?error');
+        header('Location: ../evenements.php?error');
     }
 }
 
@@ -86,7 +86,7 @@ if (isset($_GET['idEvent'])) {
     $id = $_GET['idEvent'];
     $event = new Event();
     $event->deleteEvent($id);
-    header('Location: controller-rdv.php');
+    header('Location: evenements.php');
     exit();
 }
 

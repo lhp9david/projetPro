@@ -17,17 +17,14 @@
    
 
 
-
-
-
     <div class="container text-end mt-4 mx-0">
-        <a class="text-black text-decoration-none" href="../controllers/controller-rdv.php"><button class="btn <?php if (!isset($_GET['idChild'])) {
+        <a class="text-black text-decoration-none" href="../evenements.php"><button class="btn <?php if (!isset($_GET['idChild'])) {
                                                                                                                     echo 'border border-3 border-dark rounded';
                                                                                                                 } else {
                                                                                                                     '';
                                                                                                                 } ?> fw-bold">Voir tous</button></a>
         <?php foreach ($nameList as $name) { ?>
-            <a class="text-black text-decoration-none" href="../controllers/controller-rdv.php?idChild=<?= $name['child_id'] ?>"><button class="btn <?php if (isset($_GET['idChild']) && $_GET['idChild'] == $name['child_id']) {
+            <a class="text-black text-decoration-none" href="../evenements.php?idChild=<?= $name['child_id'] ?>"><button class="btn <?php if (isset($_GET['idChild']) && $_GET['idChild'] == $name['child_id']) {
                                                                                                                                                         echo  'border border-3 border-dark rounded';
                                                                                                                                                     } else {
                                                                                                                                                         '';
@@ -96,17 +93,17 @@
                                                             echo 'other';
                                                         } ?>">
                     <p class="col-lg-3"><?= date('d-m-Y', strtotime($event['event_date'])) ?? ''; ?> <br> <?= $event['event_hour'] ?? '' ?></p>
-                    <p class="col-lg-2 <?php if ($event['event_type_id'] == 1) {
-                                                            echo 'eventMedecin';
+                    <p class="col-lg-2"> <?php if ($event['event_type_id'] == 1) {
+                                                            echo '<img src="../assets/img/eventMedecin.png" alt="">';
                                                         } elseif ($event['event_type_id'] == 2) {
-                                                            echo 'eventAnniv';
+                                                            echo '<img src="../assets/img/eventAnniv.png" alt="">';
                                                         } elseif ($event['event_type_id'] == 3) {
-                                                            echo 'eventSport';
+                                                            echo '<img src="../assets/img/eventSport.png" alt="">';
                                                         } elseif ($event['event_type_id'] == 4) {
-                                                            echo 'eventScolaire';
+                                                            echo '<img src="../assets/img/eventScolaire.png" alt="">';
                                                         } elseif ($event['event_type_id'] == 5) {
-                                                            echo 'eventAutre';
-                                                        } ?>"></p>
+                                                            echo '<img src="../assets/img/eventAutre.png" alt="">';
+                                                        } ?></p>
                     <p class="col-lg-4"><?= $event['event_motif'] ?? '' ?></p>
                     <p class="col-lg-3">
                         <?php if (!isset($user['parent2']) && $event['mail'] == $user['mail']) { ?>
@@ -132,7 +129,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-                                <a href="../controllers/controller-rdv.php?idEvent=<?= $event['event_id'] ?>"><button type="button" class="btn btn-danger">Supprimer</button></a>
+                                <a href="../evenements.php?idEvent=<?= $event['event_id'] ?>"><button type="button" class="btn btn-danger">Supprimer</button></a>
                             </div>
                         </div>
                     </div>

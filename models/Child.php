@@ -42,7 +42,11 @@ class Child {
        
 }
 
-/* afficher les infos des enfants du parent connecté */
+/**
+ * 
+ * @return array
+ * 
+ */
 
 public function displayChild() {
     $parentID = $_SESSION['user']['parent_id'];

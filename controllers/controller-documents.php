@@ -4,7 +4,7 @@ session_start();
 
 /* si l'utilisateur n'est pas connecté, on le redirige vers la page de connexion */
 if(!isset($_SESSION['user'])){
-    header('Location: controller-login.php');
+    header('Location: connexion.php');
     exit();
 
 /* sinon on recupere les informations de l'utilisateur connecté */
@@ -43,13 +43,13 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
                 $error = 'Votre fichier a bien été téléchargé';
                 $id = $_POST['child'];
                 $folder->saveFile($id, $mail);
-                header('Location: controller-documents.php');
+                header('Location: ../documents.php');
               } else {
                 $mail = $user['mail'];
                 $error = 'Votre fichier a bien été téléchargé';
                 $id = $_POST['child'];
                 $folder->saveFile($id, $mail);
-                header('Location: controller-documents.php');
+                header('Location: ../documents.php');
               }
             }
     
@@ -94,7 +94,7 @@ if(isset($_GET['id'])){
       $file = new Files();
       $file->deleteFile($id);
   
-      header('Location: controller-documents.php');
+      header('Location: ../documents.php');
       exit();
   }
 

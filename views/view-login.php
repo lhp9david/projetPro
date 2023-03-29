@@ -14,26 +14,26 @@
 
 <body>
 
-
+<!-- message après inscription  -->
 <?php if (isset($subscribed)) { ?>
    <div class="container message">
    <p>Vous êtes bien Inscrit, vous allez recevoir un mail de confirmation</p>
-   <button class="return btn btn-warning d-block mx-auto fw-bold"><a class="text-decoration-none text-black" href="../controllers/controller-login.php">Se connecter</a></button> 
+   <button class="return btn btn-warning d-block mx-auto fw-bold"><a class="text-decoration-none text-black" href="../connexion.php">Se connecter</a></button> 
    </div>
-   
+   <!-- message en cas de suppression de compte  -->
 <?php }  else if (isset($deleted)) { ?>
    <div class="container message">
    <p>Votre compte a bien été supprimé</p>
-   <button class="return btn btn-warning d-block mx-auto fw-bold"><a class="text-decoration-none text-black" href="../controllers/controller-login.php">Retour à l'accueil</a></button> 
+   <button class="return btn btn-warning d-block mx-auto fw-bold"><a class="text-decoration-none text-black" href="../connexion.php">Retour à l'accueil</a></button> 
    </div>
-
+<!-- message en cas de deconnexion  -->
 <?php  } else if (isset($disconnected)) { ?>
   <div class="container message" >
   <p>Vous êtes bien déconnecté</p>
-   <button class="return btn btn-warning d-block mx-auto fw-bold"><a class="text-decoration-none text-black" href="../controllers/controller-login.php">Retour à l'accueil</a></button> 
+   <button class="return btn btn-warning d-block mx-auto fw-bold"><a class="text-decoration-none text-black" href="../connexion.php">Retour à l'accueil</a></button> 
   </div>
 <?php } else { ?>
-
+<!-- formulaire de connexion  -->
   <h1 class="connexion text-center my-5 fw-bold">Connexion</h1>
   <div class="container">
     <div class="row">

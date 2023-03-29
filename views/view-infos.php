@@ -96,6 +96,7 @@
                         <label class="fw-bold" for="oldPass">Mot de passe actuel</label>
                         <input class="w-100 " type="password" name="oldPass">
                         <p class="text-danger fw-bold"><?= $errors['oldPass'] ?? '' ?> </p>
+                        
                     </div>
                     <div>
                         <label class=" fw-bold" for="newPass">Nouveau mot de passe</label>
