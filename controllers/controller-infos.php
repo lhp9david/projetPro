@@ -77,13 +77,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['pass'])) {
     if (empty($errors) && !isset($user['parent2'])) {
         $pass = new Paarent();
         $pass->updatePassword($user['parent_id'], $oldPass, $newPass);
-        header('Location: controller-infos.php?pass');
+        header('Location: infos.php?pass');
         exit();
 
     } else if (empty($errors) && isset($user['parent2'])) {
         $pass = new Paarent();
         $pass->updatePassword2($user['parent_id'], $oldPass, $newPass);
-        header('Location: controller-infos.php?pass');
+        header('Location: infos.php?pass');
         exit();
 
     }
