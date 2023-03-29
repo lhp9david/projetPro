@@ -141,19 +141,19 @@
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="exampleModalLabel">Modifier</h1>
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Modifier l'évènement</h1>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
 
                             <div class="modal-body">
                                 <form action="" method="POST">
-                                    <div><input type="date" name="dateEvent" value="<?= $event['event_date'] ?? '' ?>"></div>
-                                    <div><input type="time" name="hourEvent" value="<?= $event['event_hour'] ?? '' ?>"></div>
-                                    <div> <select name="childname" id="child">
+                                    <div><input class="form-control" type="date" name="dateEvent" value="<?= $event['event_date'] ?? '' ?>"></div>
+                                    <div><input class="form-control" type="time" name="hourEvent" value="<?= $event['event_hour'] ?? '' ?>"></div>
+                                    <div> <select class="form-control" name="childname" id="child">
                                             <option value=""><?= $event['child_firstname'] ?? '' ?></option>
                                         </select></div>
 
-                                    <div> <select name="motifEvent" id="event-select">
+                                    <div> <select class="form-control" name="motifEvent" id="event-select">
 
                                             <option <?= ($event['event_type_id'] == 1) ? 'selected' : '' ?> value="1">Rendez-vous médical</option>
                                             <option <?= ($event['event_type_id'] == 2) ? 'selected' : '' ?> value="2">Anniversaire</option>
@@ -162,7 +162,7 @@
                                             <option <?= ($event['event_type_id'] == 5) ? 'selected' : '' ?> value="5">Autre</option>
 
                                         </select></div>
-                                    <div><textarea name="noteEvenement" id="" cols="30" rows="5" value=""><?= $event['event_motif'] ?? '' ?></textarea></div>
+                                    <div><textarea class="form-control" name="noteEvenement" id="" cols="30" rows="5" value=""><?= $event['event_motif'] ?? '' ?></textarea></div>
 
                                     <input type="hidden" name="idEvent" value="<?= $event['event_id'] ?>">
                                     <button type="button" class="btn btn-dark fw-bold" data-bs-dismiss="modal">Fermer</button>
