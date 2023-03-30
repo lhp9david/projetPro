@@ -35,7 +35,7 @@
 <?php } else { ?>
 <!-- formulaire de connexion  -->
   <h1 class="connexion text-center my-5 fw-bold">Connexion</h1>
-  <div class="container">
+  <div class="container p-2">
     <div class="row">
 
       <form action="/controllers/controller-login.php" method="POST" class="col-lg-6 mx-auto">

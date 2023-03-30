@@ -5,6 +5,13 @@ class Database
 
     private static object $_pdo;
 
+    /**
+     * retourne un objet PDO
+     * 
+     * @return object
+     * 
+     * 
+     */
     public static function connect(): object
     {
         // instanciation d'un objet PDO à l'aide des constantes définies dans le fichier env.php

@@ -77,8 +77,17 @@ class Event
     }
 
 
-    /* effacer un event selon le parent_id et le event_id */ 
-    public function deleteEvent($id)
+
+
+    /**
+     * effacer un event selon l'id
+     * 
+     * @param int $id id de l'event
+     * 
+     * @return void
+     * 
+     */
+    public function deleteEvent(int $id) : void
     {
         $parentID = $_SESSION['user']['parent_id'];
         $sql = 'DELETE FROM event WHERE event_id = :event_id AND child_id in (SELECT child_id FROM child WHERE parent_id = :parent_id)';
@@ -94,7 +103,14 @@ class Event
 
     /* afficher les events en joignant la table child pour afficher le prenom de l'enfant par ordre chronologique par date et heure*/
 
-    public function showAllEvent()
+    /**
+     * afficher tous les events
+     * 
+     * @return array
+     * 
+     */
+
+    public function showAllEvent(): array
     {
         $parentID = $_SESSION['user']['parent_id'];
         $sql = 'SELECT event_type_id,event_id,event_name, event_date, event_hour, event_motif, child_firstname,mail FROM event  INNER JOIN child ON event.child_id = child.child_id WHERE child.parent_id = :parent_id ORDER BY event_date DESC, event_hour DESC';
@@ -121,11 +137,19 @@ class Event
         return $result;
     }
 
-    /* modifier un event */
+    
     /**
+     * modifier un event
+     * 
+     * @param string $motifEvent motif de l'event
+     * @param string $dateEvent date de l'event
+     * @param string $hourEvent heure de l'event
+     * @param string $noteEvenement note de l'event
+     * @param int $idEvent id de l'event
+     * 
      * @return void
      */
-    public function updateEvent($motifEvent, $dateEvent, $hourEvent, $noteEvenement, $idEvent)
+    public function updateEvent(string $motifEvent, string $dateEvent,string $hourEvent,string $noteEvenement,int $idEvent): void
     {
 
         /* recuperer le type avec l'event_type_id */
