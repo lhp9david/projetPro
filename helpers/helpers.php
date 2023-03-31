@@ -107,7 +107,15 @@ function showCalendar($month, $year)
     // si date d'aujourd'hui et evenement
     if (in_array(date('d-M-Y', mktime(0, 0, 0, $month, $i, $year)), $event_date) && date('d-M-Y', mktime(0, 0, 0, $month, $i, $year)) == date('d-M-Y')) {
 
-      echo '<td class=" text-black type="button" data-bs-toggle="modal" data-bs-target="#modal-' . $i . '">' . '<span class="number">' . $i . '</span>' . '</td>';
+      echo '<td class=" text-black type="button" data-bs-toggle="modal" data-bs-target="#modal-' . $i . '">' . '<span class="number">' . $i . '</span>' ;
+      echo '<div class="container_pastille">';
+
+      foreach (checkEvent($event, date('Y-m-d', mktime(0, 0, 0, $month, $i, $year))) as $value) {
+        echo '<div class="pastille my-1">' .'<img src='.'"../assets/img/'.$typeColor[$value].'.png" alt="">' . '</div>';
+      }
+
+      echo '</div>';
+      echo '</td>';
       createModalEvent($month, $i, $year);
 
       // si evenement et weekend

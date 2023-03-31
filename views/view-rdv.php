@@ -69,14 +69,15 @@
             </form>
 
         </div>
-        <div class="col-lg-2 button_type_doc mx-auto">
+  
+        <div class="col-lg-6 mx-auto ">
+        <div class="button_type_doc ">
             <button id="medecin">Médical</button>
             <button id="anniv">Anniversaire</button>
             <button id="sport">Sport</button>
             <button id="scolaire">Sortie scolaire</button>
             <button id="other">Autre</button>
         </div>
-        <div class="col-lg-6 mx-auto ">
         <p class="text-center fw-bold fs-5 mt-5"><?= $message ?? '' ?></p>
             <?php foreach ($eventList as $event) { ?>
 
@@ -105,7 +106,7 @@
                                                             echo '<img src="../assets/img/eventAutre.png" alt="">';
                                                         } ?></p>
                     <p class="col-lg-4"><?= $event['event_motif'] ?? '' ?></p>
-                    <p class="col-lg-3">
+                    <p class="bloc-icon col-lg-3">
                         <?php if (!isset($user['parent2']) && $event['mail'] == $user['mail']) { ?>
                             <img class="trash" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal<?= $event['event_id'] ?>" src="../assets/img/delete.png" alt="">
                             <img class="trash" type=" button" data-bs-toggle="modal" data-bs-target="#modal-<?= $event['event_id'] ?>" src="../assets/img/edit.png" alt="">
@@ -121,11 +122,11 @@
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="exampleModalLabel">Supprimer le fichier</h1>
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Supprimer l'événement</h1>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                Êtes-vous sûr de vouloir supprimer ce fichier ?
+                                Êtes-vous sûr de vouloir supprimer <span class="fw-bold"><?=$event['event_motif']?></span> ?
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>

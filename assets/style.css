@@ -292,8 +292,10 @@ td:hover {
 /***********************************************view-doc**********************************************************/
 .elt {
   height: 10em;
+  width: 15em;
   display:block;
   margin:auto;
+  border-radius: 7px;
 }
 
 .photo,#photo {
@@ -324,26 +326,27 @@ td:hover {
 .doc_container {
   display: flex;
   justify-content: center;
-  align-items: center;
+  
   flex-wrap: wrap;
   gap: 1em;
- 
+ margin-bottom: 1em;
 
 }
 .button_type_doc {
   display: flex;
-  flex-direction: column;
+  width: 100%;
+  justify-content: center;
   margin-left: 0.5em;
   flex-wrap: wrap;
   gap: 1em;
-  align-items: center;
+  align-items: baseline;
 
 }
 
 .button_type_doc button {
   border-radius: 10px;
   font-weight: bold;
-  width: 10em;
+  width: 7.9em;
   background-color: white;
 }
 
@@ -373,6 +376,7 @@ td:hover {
   width: fit-content;
   height: fit-content;
   border: 0.2em solid black;
+  margin-bottom: 1em;
 }
 
 .yearDoc {
@@ -392,6 +396,15 @@ textarea {
   width: 100%;
 }
 
+.bloc-event {
+  width: 80%;
+  margin: auto;
+}
+
+.bloc-icon {
+  display: flex;
+  justify-content: space-around;
+}
 /**************************************view-infos************************************/
 
 .infosEnfant,.infosParent,.infosParent2 {
@@ -484,12 +497,29 @@ footer {
  
 
   .container {
-  
     padding: 0;
-
   }
 
+  
+  .legend_pastille {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+    margin: 1em;
+  }
 
+  .legend_pastille img{
+    margin-right: 0.5em;
+    height: 1.5em;
+    width: 1.5em;
+  }
+
+  .table {
+    width: 95%;
+    margin: auto;
+    height: auto;
+  }
 
   th,
   td {
@@ -507,28 +537,17 @@ footer {
     width: auto;
   }
 
+
   .bell {
     position: absolute;
     top: 4em;
     left: 1em;
   }
 
-  .doc_container img {
-    width: auto;
-    height: 100px;
-   
-  }
+.bloc-icon {
+  margin-top: 0.5em;
+}
 
-  .button_type_doc {
-    flex-direction: row;
-    margin: auto;
-    margin-bottom: 1em;
-    justify-content: center;
-  }
-  .button_type_doc button {
-    width: auto;
-   
-  }
 
   .arrow {
     height: 1em;
@@ -547,25 +566,9 @@ footer {
     margin: 0.5em 0;
   }
 
-  .bloc-event {
-    width: 90%;
-    margin: auto;
-  }
+
   .bloc-event p {
     padding: 0.2em;
-  }
-
-}
-
-@media screen and (max-width: 992px){
-  .button_type_doc {
-    flex-direction: row;
-    margin: auto;
-    margin-bottom: 1em;
-    justify-content: center;
-  }
-  .button_type_doc button {
-    width: auto;
   }
 
   .legend {
@@ -574,29 +577,19 @@ footer {
     justify-content: none;
   }
 
-  .legend_pastille {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1em;
-    margin: 1em;
+  
+  .button_type_doc button {
+    width: auto;
+   
   }
-  .table {
-    width: 95%;
-    margin: auto;
-    height: auto;
-  }
-  .legend_pastille{
-    gap: 0;
-  }
-  .legend_pastille img{
-    margin-right: 0.5em;
-    height: 1.5em;
-    width: 1.5em;
-  }
-  .doc {
-    margin-bottom: 1em;
-  }
+
 }
+
+
+
+
+
+
+
 
 

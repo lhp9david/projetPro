@@ -66,18 +66,19 @@
             </form>
         </div>
 
-        <div class=" col-lg-2 button_type_doc mx-auto">
+
+       
+        <div class=" col-lg-7  doc_container mx-auto">
+        <div class="  button_type_doc mx-auto">
             <button id="photo">Photos</button>
             <button id="ecole">Ecole</button>
             <button id="medical">Médical</button>
             <button id="autre">Autre</button>
         </div>
-       
-        <div class=" col-lg-7 doc_container mx-auto">
-            
+        <?php if (isset($message)){ echo'<p class="text-center fw-bold fs-5">'.$message.'</p>';}else{'';} ?>
             <?php foreach ($fileList as $value) { ?>
-                <?= $message ? '<p class="text-center fw-bold fs-5">'.$message.'</p>' : '' ?>
-                <div class="bloc-event d-flex flex-column <?php if ($value['file_type_id'] == 1) {
+           
+                <div class="d-flex flex-column <?php if ($value['file_type_id'] == 1) {
                                                                 echo 'photo';
                                                             } else if ($value['file_type_id'] == 2) {
                                                                 echo 'ecole';
@@ -87,7 +88,7 @@
                                                                 echo 'autre';
                                                             } ?>">
 
-                    <a href="../controllers/<?= $value['file_name'] ?>" target="_blank"> <img class="elt p-1" src="<?php if (preg_match('/\.pdf/', $value['file_name'])) {
+                    <a href="../controllers/<?= $value['file_name'] ?>" target="_blank"> <img class="elt img-fluid" src="<?php if (preg_match('/\.pdf/', $value['file_name'])) {
                                                                                                                         echo '../assets/img/fichier-pdf.png';
                                                                                                                     } else {
                                                                                                                         echo "../controllers/" . $value['file_name'];
