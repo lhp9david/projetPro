@@ -3,12 +3,14 @@ let annivBouton = document.querySelector("#anniv");
 let sportBouton = document.querySelector("#sport");
 let scolaireBouton = document.querySelector("#scolaire");
 let otherBouton = document.querySelector("#other");
+let iconEvent = document.querySelector("#iconEvent");
 
 let medecin = document.querySelectorAll(".medecin");
 let anniv = document.querySelectorAll(".anniv");
 let sport = document.querySelectorAll(".sport");
 let scolaire = document.querySelectorAll(".scolaire");
 let other = document.querySelectorAll(".other");
+let formEvent = document.querySelector(".form-event");
 
 medecinBouton.addEventListener('click', ()=>{
     medecin.forEach((element) => {
@@ -98,4 +100,9 @@ otherBouton.addEventListener('click', ()=>{
     scolaire.forEach((element) => {
     element.classList.add ("hide");
     });
+})
+
+iconEvent.addEventListener('click', ()=>{
+    iconEvent.classList.toggle('bi-arrow-right-circle-fill');
+    formEvent.classList.toggle('d-none');
 })

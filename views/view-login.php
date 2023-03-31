@@ -48,10 +48,10 @@
         <div class="mb-3">
           <label for="password" class="form-label fw-bold fs-5 text-end">Mot de passe</label>
         <div class="d-flex justify-content-end align-items-center">  <input type="password" class="form-control" name="password" id="password"><i class="bi-eye-slash-fill bi bi-eye-fill p-1" id="togglePassword"></i></div>
-          <span class="text-danger"><?= $errors['error'] ?? '' ?></span>
+          <span class="text-danger fw-bold"><?= $errors['error'] ?? '' ?></span>
         </div>
         <div class="g-recaptcha" data-sitekey="6LcaqjslAAAAAFXpVUVdOBY_xt5e8gmkmZxsS7w9"></div>
-        <p class="text-danger text-center"><?= $errorsArray['captcha'] ?? '' ?></p>
+        <p class="text-danger fw-bold text-center"><?= $errorsArray['captcha'] ?? '' ?></p>
 
         <button type="submit" class="btn btn-warning d-block mx-auto fw-bold">Valider</button>
       </form>

@@ -134,26 +134,30 @@ class Paarent
     }
     }
 
-
+/* verifie dans la base de données si le parent existe */
+    public function checkParent($mail)
+    {
+        $query = $this->_pdo->prepare('SELECT * FROM parent WHERE mail = :mail');
+        $query->bindValue(':mail', $mail);
+        $query->execute();
+        $result = $query->fetch();
+        if ($result) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
 
     /**
      * enregistre un nouveau parent dans la base de données
      * 
+     * 
      */
-    public function createParent($lastname, $firstname, $mail, $password)
+    public function createParent(string $lastname,string $firstname,string $mail,string $password)
     {
 
 
-        $query = $this->_pdo->prepare('SELECT * FROM parent WHERE mail = :mail');
-        $query->bindValue(':mail', filter_var($_POST['mail'], FILTER_VALIDATE_EMAIL));
-        $query->execute();
-        $result = $query->fetch();
-        if ($result) {
-            
-            $errors['mail'] = 'Cette adresse mail est déjà utilisée';
-           
-        } else {
             $sql = "INSERT INTO parent (parent_name, parent_firstname, mail,parent_password) VALUES (:lastname, :firstname, :mail, :password)";
             $stmt = $this->_pdo->prepare($sql);
             $stmt->bindValue(':lastname', htmlspecialchars(trim($lastname)));
@@ -164,7 +168,7 @@ class Paarent
             header('Location: controller-login.php?subscribed');
             exit();
         }
-    }
+    
 /*****************
  * creation du parent 2
  * **************

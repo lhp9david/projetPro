@@ -37,8 +37,8 @@
 
     
     <div class="doc mx-auto col-lg-3">
-            <p class="fw-bold text-center">Ajouter un événement</p>
-            <form class="" action="../controllers/controller-rdv.php" method="POST">
+            <div class="ajoutEvent"><p class="fw-bold text-center">Ajouter un événement</p><i id="iconEvent" class="bi-arrow-right-circle-fill bi bi-arrow-down-circle-fill   d-block d-lg-none"></i></div>
+            <form class="form-event d-none d-lg-block" action="../controllers/controller-rdv.php" method="POST">
                 <div class=""> <input class="w-100 form-control mb-1" type="date" name="dateEvent" value="<?= $_GET['date'] ?? '' ?>">
                     <input class="w-100 form-control mb-1" type="time" name="hourEvent">
                 </div>
@@ -192,6 +192,8 @@
     <script src="../rdv.js"></script>
     <script src="../assets/js/bootstrap.bundle.js"></script>
     <script>
+
+        /* ouvre la modal au chargement de la page si il y a des erreurs */
     let modal = document.querySelector('.openModal');
     if (modal) {
         let openModal = new bootstrap.Modal(modal, {
@@ -201,6 +203,7 @@
     };
   
 </script>
+
 
 </body>
 

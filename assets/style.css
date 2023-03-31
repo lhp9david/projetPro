@@ -480,11 +480,9 @@ footer {
 }
 
 
-@media screen and (max-width: 520px) {
+@media screen and (max-width: 992px) {
  
-  button {
-    font-size: 0.8em !important;
-  }
+
   .container {
   
     padding: 0;
@@ -537,6 +535,26 @@ footer {
     width: 1em;
   }
 
+  .ajoutEvent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    gap: 1em;
+  }
+
+  .ajoutEvent p {
+    margin: 0.5em 0;
+  }
+
+  .bloc-event {
+    width: 90%;
+    margin: auto;
+  }
+  .bloc-event p {
+    padding: 0.2em;
+  }
+
 }
 
 @media screen and (max-width: 992px){
@@ -580,3 +598,5 @@ footer {
     margin-bottom: 1em;
   }
 }
+
+

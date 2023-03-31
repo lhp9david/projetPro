@@ -45,8 +45,8 @@
 
 
         <div class="doc mx-auto col-lg-3">
-            <p class="text-center">Partager un document</p>
-            <form action="" method="POST" enctype="multipart/form-data">
+             <div class="ajoutEvent"><p class="fw-bold text-center">Partager un document</p><i id="iconEvent" class="bi-arrow-right-circle-fill bi bi-arrow-down-circle-fill   d-block d-lg-none"></i></div>
+            <form class="form-event d-none d-lg-block" action="" method="POST" enctype="multipart/form-data">
                 <div> <select class="w-100 form-select mb-1" name="type" id="">
                         <option value="photo">Photo</option>
                         <option value="ecole">Ecole</option>
@@ -72,9 +72,11 @@
             <button id="medical">Médical</button>
             <button id="autre">Autre</button>
         </div>
+       
         <div class=" col-lg-7 doc_container mx-auto">
-            <p class="text-center fw-bold fs-5"><?= $message ?? '' ?></p>
+            
             <?php foreach ($fileList as $value) { ?>
+                <?= $message ? '<p class="text-center fw-bold fs-5">'.$message.'</p>' : '' ?>
                 <div class="bloc-event d-flex flex-column <?php if ($value['file_type_id'] == 1) {
                                                                 echo 'photo';
                                                             } else if ($value['file_type_id'] == 2) {
@@ -131,6 +133,7 @@
     <?php include('../views/include/footer.php') ?>
     <script src="../script.js"></script>
     <script src="../assets/js/bootstrap.bundle.js"></script>
+    <script src="../doc.js"></script>
 
 </body>
 

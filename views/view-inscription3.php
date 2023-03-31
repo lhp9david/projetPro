@@ -17,7 +17,7 @@
   <h1 class="inscription text-center fw-bold fs-1">Accès du 2eme parent</h1>
 
 
-<div class="container">
+<div class="container p-3">
 <form action="" method="POST" class="col-lg-6 mx-auto">
 
 <div class="mb-3">

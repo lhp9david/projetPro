@@ -17,11 +17,11 @@
 <body class='bloc-inscription'>
 <div class='row'>  
     <div class="col-lg-6"><a class="text-dark" href="/index.php"><i class="bi bi-arrow-left-circle-fill fs-1 mx-3"></i></a></div>
-    <div class="col-lg-6 text-end"><a class="text-dark" href="/controllers/controller-add-child.php"><i class="bi bi-arrow-right-circle-fill fs-1 mx-3"></i></a></div>
+
 </div>
     <h1 class="inscription text-center fw-bold fs-1">Ajout de vos enfants</h1>
 
-    <div class="container">
+    <div class="container p-3">
 
         <form action="" method="POST" class="col-lg-6 mx-auto">
             <div class="child">

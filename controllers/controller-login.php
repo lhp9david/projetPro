@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!empty($_POST['mail']) && !empty($_POST['password'])) {
         $mail = $_POST['mail'];
         $password = $_POST['password'];
-
+        
         // Vérifier si le captcha est vide
         if (isset($_POST['g-recaptcha-response'])) {
             $captcha = $_POST['g-recaptcha-response'];
@@ -44,7 +44,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $errors['error'] = 'Veuillez remplir tous les champs';
             }
                 
-        }}
+        }} else {
+        $errors['error'] = 'Veuillez remplir tous les champs';
+        }
 
 }
 

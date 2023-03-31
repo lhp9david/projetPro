@@ -38,6 +38,11 @@ require '../helpers/database.php';
                 $errors['mail'] = 'Veuillez respecter le format';
             } else {
                 $mail = $_POST['mail'];
+                $obj_parent = new Paarent();
+                $obj_parent->checkParent($mail);
+                if($obj_parent->checkParent($mail) == true){
+                    $errors['mail'] = 'Cet email est déjà utilisé';
+                }
             }
         }
     
@@ -71,6 +76,27 @@ require '../helpers/database.php';
                 $errors['CGU'] = 'Veuillez accepter les CGU';
             }
         }
+
+        
+    // Vérifier si le captcha est vide
+    if (isset($_POST['g-recaptcha-response'])) {
+        $captcha = $_POST['g-recaptcha-response'];
+
+        // verifier la key 
+        $secretKey = "6LcaqjslAAAAAPIBLyJnvdDh7NE3uLNDClb6u1He";
+        $ip = $_SERVER['REMOTE_ADDR'];
+        // post request to server
+        $url = 'https://www.google.com/recaptcha/api/siteverify?secret=' . urlencode($secretKey) .  '&response=' . urlencode($captcha);
+        $response = file_get_contents($url);
+        $responseKeys = json_decode($response, true);
+        // should return JSON with success as true
+        if (!$responseKeys["success"]) {
+            $errors['captcha'] = 'vous êtes un robot';
+        }
+    }
+    if (!$captcha) {
+        $errors['captcha'] = 'veuillez cocher la case';
+    }
 
         if(empty($errors)){
 /** si tous les champs sont remplis on crée le parent */
