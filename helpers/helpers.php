@@ -240,7 +240,7 @@ function showForm($month, $year)
   echo '  <form class="col-lg-6 mt-5" action="" method="get">
             
             <label for="month"></label>';
-  echo '  </select><a class="" href="?month=' . (($month == '1') ? '12' : $month - '1') . '&year=' . (($month == '01') ? $year - 1 : $year) . '"><img class="arrow" src="../assets/img/left.png" alt="gauche"></a>';
+  echo '  </select><a class="" href="?month=' . (($month == '1') ? '12' : $month - '1') . '&year=' . (($month == '01') ? $year - 1 : $year) . '"><i class="bi bi-caret-left-fill arrowGauche"></i></a>';
   echo '  <select class = ""name="month">';
 
   // Génère une liste de mois de janvier à décembre, ucfirst() met la première lettre en majuscule
@@ -253,7 +253,7 @@ function showForm($month, $year)
       echo '<option value=' . $m . '>' . ucfirst($monthlist) . '</option>';
     }
   }
-  echo '  </select><a class="" href="?month=' . (($month == 12) ? '1' : $month + '1') . '&year=' . (($month == '12') ? $year + 1 : $year) . '"><img class="arrow" src="../assets/img/right.png" alt="droite"></a>';
+  echo '  </select><a class="" href="?month=' . (($month == 12) ? '1' : $month + '1') . '&year=' . (($month == '12') ? $year + 1 : $year) . '"><i class="bi bi-caret-right-fill arrowDroite"></i></a>';
   echo '<label for="year" class="me-2"></label>';
   echo '<select class="" name="year">';
 
@@ -284,7 +284,7 @@ function createModal($month, $i, $year, $holidays)
           <h1 class="modal-title fs-5" id="exampleModalLabel"><?= $i . '/' . $month . '/' . $year ?></h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body">
+        <div class="modal-body fw-bold">
           <?= $holidays[date('d-M-Y', mktime(00, 00, 00, $month, $i, $year))] ?? ' ' ?>
         </div>
         <div class="modal-footer">
@@ -327,7 +327,7 @@ function createModalBirthday($month, $i, $year)
         <div class="modal-body">
           <?php foreach ($prénom as $value) {
             if (date('d-M-' . $year, strtotime($value['birthdate'])) == $date) { ?>
-              <p><?= 'Anniversaire de ' . '<span class=fw-bold>' . ucfirst($value['child_firstname']) ?></span></p>
+              <p><?= 'Anniversaire de ' . '<span class="fw-bold fs-5">' . ucfirst($value['child_firstname']) ?></span></p>
           <?php }
           } ?>
         </div>
@@ -367,18 +367,31 @@ function createModalEvent($month, $i, $year)
           <h1 class="modal-title fs-5" id="exampleModalLabel"><?= $i . '/' . $month . '/' . $year ?></h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body">
+        
           <?php foreach ($events as $value) { ?>
+            <div class="modal-body">
             <div>
-              <p class="fw-bold"><?= ucfirst($value['child_firstname']) ?></p>
+              <p class="fw-bold fs-5"><?= ucfirst($value['child_firstname']) ?></p>
               <p><?= $value['event_name'] ?></p>
               <p><?= $value['event_hour'] ?></p>
               <p><?= $value['event_motif'] ?></p>
-              <hr>
+           
             </div>
-
+        <?php    $typeColor = [
+    1 => 'eventMedecin',
+    2 => 'eventAnniv',
+    3 => 'eventSport',
+    4 => 'eventScolaire',
+    5 => 'eventAutre'
+  ]; ?>
+            <div class="icon-modal-container">
+            <?='<img class="icon-modal" src='.'"../assets/img/'.$typeColor[$value['event_type_id']].'.png" alt="">'?>
+            </div>
+           
+            </div>
+            <hr>
           <?php } ?>
-        </div>
+ 
         <div class="modal-footer">
           <?php if ($i < 10) {
             $i = 0 . $i;

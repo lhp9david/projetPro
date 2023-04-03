@@ -8,6 +8,7 @@ body {
 body {
   display: flex;
   flex-direction: column;
+
 }
 
 
@@ -119,18 +120,32 @@ justify-content: space-between;
   cursor: pointer;
 }
 
-.arrow {
-  width: 2em;
-  height: 2em;
-  margin: 1em;
+.arrowGauche {
+  color: black;
+  font-size: 3em;
+  position: fixed;
+  top: 50%;
+  left: 2em;
+}
 
+.arrowDroite {
+  color: black;
+  font-size: 3em;
+  position: fixed;
+  top: 50%;
+  right: 2em;
+}
+
+.arrowDroite:hover,.arrowGauche:hover {
+  scale: 1.2;
+  transition: 0.3s;
 }
 
 /*******************CALENDRIER******************************/
 .table {
   border-collapse: collapse;
   width: 100%;
-  
+  animation: opacity 1.5s;
 }
 
 th,
@@ -224,6 +239,16 @@ td:hover {
   margin: auto;
   width: auto;
 }
+ .modal-body {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+ }
+.icon-modal {
+  object-fit: cover;
+  height: 8em;
+  width: 8em;
+}
 /*********************************************************view-rdv****************************************************/
 
 .event {
@@ -292,10 +317,11 @@ td:hover {
 /***********************************************view-doc**********************************************************/
 .elt {
   height: 10em;
-  width: 15em;
+  width: 8em;
   display:block;
   margin:auto;
   border-radius: 7px;
+  object-fit: cover;
 }
 
 .photo,#photo {
@@ -549,10 +575,7 @@ footer {
 }
 
 
-  .arrow {
-    height: 1em;
-    width: 1em;
-  }
+
 
   .ajoutEvent {
     display: flex;
@@ -581,6 +604,17 @@ footer {
   .button_type_doc button {
     width: auto;
    
+  }
+
+}
+
+@media screen and (max-width: 1440px){
+
+
+
+  .arrowDroite,.arrowGauche {
+    font-size: 1.2em;
+    position: static;
   }
 
 }

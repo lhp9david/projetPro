@@ -117,18 +117,31 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-                                <a href="../documents.php?id=<?= $value['file_id'] ?>"><button type="button" class="btn btn-danger">Supprimer</button></a>
+                                <a href="../documents.php?id=<?= $value['file_id'] ?>"><button type="button" class="btn btn-danger" id="liveToastBtn">Supprimer</button></a>
                             </div>
                         </div>
                     </div>
                 </div>
-
+                <div class="toast-container position-fixed bottom-0 end-0 p-3">
+  <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-header">
+      <img src="..." class="rounded me-2" alt="...">
+      <strong class="me-auto"></strong>
+      <small>11 mins ago</small>
+      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+    <div class="toast-body">
+      Votre fichier à bien été supprimer.
+    </div>
+  </div>
+</div>
             <?php }
             ?>
 
         </div>
 
     </div>
+
 
 
     <?php include('../views/include/footer.php') ?>

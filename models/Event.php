@@ -63,8 +63,15 @@ class Event
         exit();
     }
 
-    /* afficher seulement les event du l'enfant selon le parametre $id par ordre chronologique*/
-    public function showEvent($id)
+
+    /**
+     * afficher les events d'un enfant
+     * 
+     * @param int $id id de l'enfant
+     * 
+     * @return array
+     */
+    public function showEvent(int $id): array
     {
         $parentID = $_SESSION['user']['parent_id'];
         $sql = 'SELECT * FROM event INNER JOIN child ON event.child_id = child.child_id WHERE child.parent_id = :parent_id AND event.child_id = :child_id ORDER BY event_date ASC';
@@ -128,7 +135,7 @@ class Event
     public function showEventByDate($date)
     {
         $parentID = $_SESSION['user']['parent_id'];
-        $sql = 'SELECT event_id,event_name, event_date, event_hour, event_motif,child_firstname  FROM event INNER JOIN child ON event.child_id = child.child_id WHERE child.parent_id = :parent_id AND event_date = :event_date ORDER BY event_date ASC, event_hour ASC';
+        $sql = 'SELECT event_id,event_name, event_date, event_hour, event_motif,event_type_id,child_firstname  FROM event INNER JOIN child ON event.child_id = child.child_id WHERE child.parent_id = :parent_id AND event_date = :event_date ORDER BY event_date ASC, event_hour ASC';
         $stmt = $this->_pdo->prepare($sql);
         $stmt->bindParam(':parent_id', $parentID);
         $stmt->bindParam(':event_date', $date);
@@ -151,7 +158,6 @@ class Event
      */
     public function updateEvent(string $motifEvent, string $dateEvent,string $hourEvent,string $noteEvenement,int $idEvent): void
     {
-
         /* recuperer le type avec l'event_type_id */
         $sql = 'SELECT event_type FROM event_type WHERE event_type_id = :event_type_id';
         $stmt = $this->_pdo->prepare($sql);
@@ -159,8 +165,7 @@ class Event
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         $eventName = $result['event_type'];
-      
-
+    
         /* recuperer la valeur du child_id avec l'event_id */
         $sql = 'SELECT child_id FROM event WHERE event_id = :event_id';
         $stmt = $this->_pdo->prepare($sql);
