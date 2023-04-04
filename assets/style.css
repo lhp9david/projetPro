@@ -8,7 +8,7 @@ body {
 body {
   display: flex;
   flex-direction: column;
-
+  background-color: #F6F2EF;
 }
 
 
@@ -183,6 +183,9 @@ td:hover {
 
 .grey {
   background-color: #ebf0f3 !important;
+}
+.greyDark {
+  background-color: #d4d9dd !important;
 }
 .number {
   font-size: 1.5em;

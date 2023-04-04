@@ -17,6 +17,14 @@ function showCalendar($month, $year)
   include('../helpers/database.php');
   include('../config/env.php');
 
+
+
+  $json = file_get_contents('../fr-en-calendrier-scolaire.json');
+  $calendrier = json_decode($json, true);
+
+
+
+
   $event_date = [];
   $events = new Event;
   $event = $events->showAllEvent();
@@ -92,6 +100,8 @@ function showCalendar($month, $year)
         <tbody>
     ';
 
+
+
   // boucle pour parcourir les jrs du mois + fonction date() pour déterminer le jr de la semaine 
   for ($i = 1; $i <= $daysInMonth; $i++) {
     $dayOfWeek = date('N', mktime(0, 0, 0, $month, $i, $year));
@@ -101,11 +111,11 @@ function showCalendar($month, $year)
       echo '<tr>';
       for ($j = 1; $j < $dayOfWeek; $j++) {
 
-        echo '<td class="grey"></td>';
+        echo '<td class="greyDark"></td>';
       }
     }
-    // si date d'aujourd'hui et evenement
-    if (in_array(date('d-M-Y', mktime(0, 0, 0, $month, $i, $year)), $event_date) && date('d-M-Y', mktime(0, 0, 0, $month, $i, $year)) == date('d-M-Y')) {
+
+     if (in_array(date('d-M-Y', mktime(0, 0, 0, $month, $i, $year)), $event_date) && date('d-M-Y', mktime(0, 0, 0, $month, $i, $year)) == date('d-M-Y')) {
 
       echo '<td class=" text-black type="button" data-bs-toggle="modal" data-bs-target="#modal-' . $i . '">' . '<span class="number">' . $i . '</span>' ;
       echo '<div class="container_pastille">';
@@ -215,13 +225,15 @@ function showCalendar($month, $year)
       createModal($month, $i, $year, $holidays);
 
     }
+    
+
 
     // creation de cellules vides après le dernier du mois
     if ($dayOfWeek == 7) {
       echo '</tr>';
     } else if ($i == $daysInMonth) {
       for ($j = $dayOfWeek; $j < 7; $j++) {
-        echo '<td class="grey"></td>';
+        echo '<td class="greyDark"></td>';
       }
       echo '</tr>';
     }

@@ -17,22 +17,21 @@ include('../models/Event.php');
 
 /* si la métode POST est utilisé et que le bouton modifier est cliqué */
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['changeEvent'])) {
-   if(!empty($_POST['motifEvent']) && !empty($_POST['dateEvent']) && !empty($_POST['hourEvent']) && !empty($_POST['noteEvenement']) && !empty($_POST['idEvent'])) {
+    if (!empty($_POST['motifEvent']) && !empty($_POST['dateEvent']) && !empty($_POST['hourEvent']) && !empty($_POST['noteEvenement']) && !empty($_POST['idEvent'])) {
         $motifEvent = htmlspecialchars($_POST['motifEvent']);
         $dateEvent = htmlspecialchars($_POST['dateEvent']);
         $hourEvent = htmlspecialchars($_POST['hourEvent']);
         $noteEvenement = htmlspecialchars($_POST['noteEvenement']);
         $id = htmlspecialchars(trim($_POST['idEvent']));
 
-            /* on instancie la classe Event et on appelle la fonction updateEvent() pour modifier l'event en base de donnée */
-            $event = new Event();
-            $event->updateEvent($motifEvent, $dateEvent, $hourEvent, $noteEvenement, $id);
-            /* on redirige vers la page rdv */
-            header('Location: ../evenements.php');
+        /* on instancie la classe Event et on appelle la fonction updateEvent() pour modifier l'event en base de donnée */
+        $event = new Event();
+        $event->updateEvent($motifEvent, $dateEvent, $hourEvent, $noteEvenement, $id);
+        /* on redirige vers la page rdv */
+        header('Location: ../evenements.php');
     } else {
         $errors = 'Veuillez remplir tous les champs';
     }
-    
 }
 
 /* si la métode POST est utilisé  */
@@ -43,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['createEvent'])) {
 
         if ($user['parent2']) {
             $mail = $user['parent2_nickname'];
-               /* on instancie la classe Event et on appelle la fonction createEvent() pour créer un nouvel event en base de donnée */
+            /* on instancie la classe Event et on appelle la fonction createEvent() pour créer un nouvel event en base de donnée */
             $event = new Event();
             $event->createEvent($mail);
         } else {
@@ -52,7 +51,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['createEvent'])) {
             $event = new Event();
             $event->createEvent($mail);
         }
-     
     } else {
 
         header('Location: ../evenements.php?error');
