@@ -17,7 +17,7 @@
 <!-- message après inscription  -->
 <?php if (isset($subscribed)) { ?>
    <div class="container message">
-   <p>Vous êtes bien Inscrit, vous allez recevoir un mail de confirmation</p>
+   <p>Vous êtes bien Inscrit, veuillez vous connecter</p>
    <button class="return btn btn-warning d-block mx-auto fw-bold"><a class="text-decoration-none text-black" href="../connexion.php">Se connecter</a></button> 
    </div>
    <!-- message en cas de suppression de compte  -->
