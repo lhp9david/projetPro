@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="../assets/bootstrap-icons-1.9.1/bootstrap-icons.css">
     <link rel="stylesheet" href="../assets/style.css">
-    <title>Mes infos</title>
+    <title>Les enfants d'abord | Mes infos</title>
 </head>
 
 <?php include('../views/include/navbar.php') ?>
@@ -21,6 +21,7 @@
         <?php foreach ($infoList as $info) { ?>
 
             <div class="infosParent col-lg-4 text-center ">
+                <h2>Vous</h2>
                 <div><img src="../assets/img/user.png" alt=""></div>
                 <p class="fw-bold"><?= $info['mail'] ?></p>
             </div>
@@ -45,6 +46,7 @@
     } else { ?>
         <?php foreach ($infoList as $info) { ?>
             <div class="infosParent col-lg-4 text-center ">
+                <h2>Vous</h2>
                 <div><img src="../assets/img/user.png" alt=""></div>
                 <p class="fw-bold"><?= $info['parent2_nickname'] ?></p>
             </div>

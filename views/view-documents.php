@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="../assets/bootstrap-icons-1.9.1/bootstrap-icons.css">
     <link rel="stylesheet" href="/assets/style.css">
-    <title>Documents</title>
+    <title>Les enfants d'abord | Documents</title>
 </head>
 
 <body>

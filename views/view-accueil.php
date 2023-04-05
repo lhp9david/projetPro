@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="../assets/bootstrap-icons-1.9.1/bootstrap-icons.css">
     <link rel="stylesheet" href="../assets/style.css">
-    <title>Calendrier</title>
+    <title>Calendrier | Les enfants d'abord</title>
 </head>
 
 
