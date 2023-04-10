@@ -13,7 +13,7 @@
 </head>
 
 <body class='bloc-inscription'>
-  <a class="text-dark" href="/views/view-inscription2.php"><i class="bi bi-arrow-left-circle-fill fs-1 mx-3"></i></a>
+
   <h1 class="inscription text-center fw-bold fs-1">Accès du 2eme parent</h1>
 
 

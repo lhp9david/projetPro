@@ -74,7 +74,8 @@ class Event
     public function showEvent(int $id): array
     {
         $parentID = $_SESSION['user']['parent_id'];
-        $sql = 'SELECT * FROM event INNER JOIN child ON event.child_id = child.child_id WHERE child.parent_id = :parent_id AND event.child_id = :child_id ORDER BY event_date ASC';
+        $sql = 'SELECT `event_name`, `event_hour`, `event_motif`, `event_name`, `event_type_id`, `event_date`,`mail`,`event_id` FROM `event` INNER JOIN `child` ON event.child_id = child.child_id WHERE child.parent_id = :parent_id AND event.child_id = :child_id ORDER BY event_date ASC';
+
         $stmt = $this->_pdo->prepare($sql);
         $stmt->bindParam(':parent_id', $parentID);
         $stmt->bindParam(':child_id', $id);
@@ -97,7 +98,7 @@ class Event
     public function deleteEvent(int $id) : void
     {
         $parentID = $_SESSION['user']['parent_id'];
-        $sql = 'DELETE FROM event WHERE event_id = :event_id AND child_id in (SELECT child_id FROM child WHERE parent_id = :parent_id)';
+        $sql = 'DELETE FROM `event` WHERE event_id = :event_id AND child_id in (SELECT child_id FROM child WHERE parent_id = :parent_id)';
         $stmt = $this->_pdo->prepare($sql);
         $stmt->bindParam(':event_id', $id);
         $stmt->bindParam(':parent_id', $parentID);
@@ -129,8 +130,15 @@ class Event
 
    
     }
+public function firstnamePArent($parentID){
+    $sql = $this->_pdo ->prepare('SELECT `parent_firstname` from `parent` WHERE parent_id = :parent_id');
+    $sql->bindParam(':parent_id', $parentID);
+    $sql->execute();
+    $result = $sql->fetch(PDO::FETCH_ASSOC);
+    return $result;
+}
 
-
+    
     /*recuperer les event selon la date selectionnée */
     public function showEventByDate($date)
     {
@@ -159,7 +167,7 @@ class Event
     public function updateEvent(string $motifEvent, string $dateEvent,string $hourEvent,string $noteEvenement,int $idEvent): void
     {
         /* recuperer le type avec l'event_type_id */
-        $sql = 'SELECT event_type FROM event_type WHERE event_type_id = :event_type_id';
+        $sql = 'SELECT event_type FROM `event_type` WHERE event_type_id = :event_type_id';
         $stmt = $this->_pdo->prepare($sql);
         $stmt->bindParam(':event_type_id', $motifEvent);
         $stmt->execute();
@@ -167,7 +175,7 @@ class Event
         $eventName = $result['event_type'];
     
         /* recuperer la valeur du child_id avec l'event_id */
-        $sql = 'SELECT child_id FROM event WHERE event_id = :event_id';
+        $sql = 'SELECT child_id FROM `event` WHERE event_id = :event_id';
         $stmt = $this->_pdo->prepare($sql);
         $stmt->bindParam(':event_id', $idEvent);
         $stmt->execute();
@@ -176,7 +184,9 @@ class Event
 
         /* modifier l'event de l'enfant du parent */
         $parentID = $_SESSION['user']['parent_id'];
-        $sql = 'UPDATE event SET event_name = :event_name, event_date = :event_date, event_hour = :event_hour, child_id = :child_id, event_type_id = :event_type_id, event_motif = :event_motif WHERE event_id = :event_id AND child_id in (SELECT child_id FROM child WHERE parent_id = :parent_id)';
+
+        $sql = 'UPDATE `event` SET event_name = :event_name, event_date = :event_date, event_hour = :event_hour, child_id = :child_id, event_type_id = :event_type_id, event_motif = :event_motif WHERE event_id = :event_id AND child_id in (SELECT child_id FROM `child` WHERE parent_id = :parent_id)';
+
         $stmt = $this->_pdo->prepare($sql);
         $stmt->bindValue(':event_name', $eventName);
         $stmt->bindValue(':event_date', $dateEvent);
