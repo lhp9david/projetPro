@@ -91,11 +91,11 @@ require '../helpers/database.php';
         $responseKeys = json_decode($response, true);
         // should return JSON with success as true
         if (!$responseKeys["success"]) {
-            $errors['captcha'] = 'vous êtes un robot';
+            $errors['captcha'] = 'Vous êtes un robot';
         }
     }
     if (!$captcha) {
-        $errors['captcha'] = 'veuillez cocher la case';
+        $errors['captcha'] = 'Veuillez cocher la case';
     }
 
         if(empty($errors)){

@@ -16,12 +16,12 @@
 
 <div class="container message">
 <?php foreach($childList as $child) { ?>
-  <p> <span class="fw-bold"><?= ucfirst($child['child_firstname']) ?></span>  à bien été ajouté(e) </p> 
+  <h1 class="mb-5"> <span class="fw-bold"><?= ucfirst($child['child_firstname']) ?></span>  a bien été ajouté(e) </h1> 
 
     <?php } ?>
 
-<button class="addChild btn btn-success fw-bold my-2"><a href="../controllers/controller-inscription2.php">Ajouter un enfant</a></button>
-<button class="addChild btn btn-success fw-bold"><a href="../controllers/controller-inscription3.php">j'ai fini</a></button>
+<button class="addChild btn btn-success fw-bold my-2"><a href="../controllers/controller-inscription2.php">Ajouter un autre enfant</a></button>
+<button class="addChild btn btn-outline-success mt-5 fw-bold"><a href="../controllers/controller-inscription3.php" class="text-black">J'ai fini</a></button>
 </div>
 
     <script src="../assets/js/bootstrap.bundle.js"></script>

@@ -93,8 +93,11 @@
                                                         } elseif ($event['event_type_id'] == 5) {
                                                             echo 'other';
                                                         } ?>">
-                    <p class="col-lg-3"><?= date('d-m-Y', strtotime($event['event_date'])) ?? ''; ?> <br> <?= $event['event_hour'] ?? '' ?></p>
-                    <p class="col-lg-2"> <?php if ($event['event_type_id'] == 1) {
+                                                     <?php   $date = new DateTime($event['event_date']);
+$formatter = new IntlDateFormatter('fr_FR', IntlDateFormatter::FULL, IntlDateFormatter::NONE);?>
+
+                    <p class="col-lg-4"><?= $formatter->format($date) ?? ''; ?> <br> <?= $event['event_hour'] ?? '' ?></p>
+                    <p class="col-lg-1"> <?php if ($event['event_type_id'] == 1) {
                                                             echo '<img src="../assets/img/eventMedecin.png" alt="">';
                                                         } elseif ($event['event_type_id'] == 2) {
                                                             echo '<img src="../assets/img/eventAnniv.png" alt="">';
