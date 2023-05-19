@@ -17,9 +17,23 @@ function showCalendar($month, $year)
   include('../helpers/database.php');
   include('../config/env.php');
 
+$url = 'https://data.education.gouv.fr/api/records/1.0/search/?dataset=fr-en-calendrier-scolaire&q=&facet=description&facet=population&facet=start_date&facet=end_date&facet=location&facet=zones&facet=annee_scolaire&refine.zones=Zone+A';
+$data = file_get_contents($url);
+$calendrier = json_decode($data, true);
+var_dump($calendrier);
+foreach ($calendrier['records'] as $value) {
+ $vacances = [];
+$startDate = new DateTime($value['fields']['start_date']);
+$endDate = new DateTime($value['fields']['end_date']);
 
+while ($startDate <= $endDate) {
+  $vacances[] = $startDate->format('Y-m-d');
+  $startDate->modify('+1 day');
+}
 
-
+}
+var_dump($vacances);
+var_dump(date('Y-m-d'));
   $event_date = [];
   $events = new Event;
   $event = $events->showAllEventCalendar();
