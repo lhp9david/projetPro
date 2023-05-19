@@ -19,15 +19,10 @@ function showCalendar($month, $year)
 
 
 
-  $json = file_get_contents('../fr-en-calendrier-scolaire.json');
-  $calendrier = json_decode($json, true);
-
-
-
 
   $event_date = [];
   $events = new Event;
-  $event = $events->showAllEvent();
+  $event = $events->showAllEventCalendar();
   foreach ($event as $value) {
 
     array_push($event_date, (date('d-M-Y', strtotime($value['event_date']))));

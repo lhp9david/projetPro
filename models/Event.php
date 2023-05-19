@@ -74,7 +74,7 @@ class Event
     public function showEvent(int $id): array
     {
         $parentID = $_SESSION['user']['parent_id'];
-        $sql = 'SELECT `event_name`, `event_hour`, `event_motif`, `event_name`, `event_type_id`, `event_date`,`mail`,`event_id` FROM `event` INNER JOIN `child` ON event.child_id = child.child_id WHERE child.parent_id = :parent_id AND event.child_id = :child_id ORDER BY event_date DESC';
+        $sql = 'SELECT `event_name`, `event_hour`, `event_motif`, `event_name`, `event_type_id`, `event_date`,`mail`,`event_id` FROM `event` INNER JOIN `child` ON event.child_id = child.child_id WHERE child.parent_id = :parent_id AND event.child_id = :child_id AND event_date>= CURDATE() ORDER BY event_date DESC';
 
         $stmt = $this->_pdo->prepare($sql);
         $stmt->bindParam(':parent_id', $parentID);
@@ -121,7 +121,7 @@ class Event
     public function showAllEvent(): array
     {
         $parentID = $_SESSION['user']['parent_id'];
-        $sql = 'SELECT event_type_id,event_id,event_name, event_date, event_hour, event_motif, child_firstname,mail FROM event  INNER JOIN child ON event.child_id = child.child_id WHERE child.parent_id = :parent_id ORDER BY event_date ASC, event_hour ASC';
+        $sql = 'SELECT event_type_id,event_id,event_name, event_date, event_hour, event_motif, child_firstname,mail FROM event  INNER JOIN child ON event.child_id = child.child_id WHERE child.parent_id = :parent_id AND event_date>= CURDATE() ORDER BY event_date ASC, event_hour ASC';
         $stmt = $this->_pdo->prepare($sql);
         $stmt->bindParam(':parent_id', $parentID);
         $stmt->execute();
@@ -130,6 +130,30 @@ class Event
 
    
     }
+
+        /* afficher les events sur le calendrier*/
+
+    /**
+     * afficher tous les events
+     * 
+     * @return array
+     * 
+     */
+
+     public function showAllEventCalendar(): array
+     {
+         $parentID = $_SESSION['user']['parent_id'];
+         $sql = 'SELECT event_type_id,event_id,event_name, event_date, event_hour, event_motif, child_firstname,mail FROM event  INNER JOIN child ON event.child_id = child.child_id WHERE child.parent_id = :parent_id  ORDER BY event_date ASC, event_hour ASC';
+         $stmt = $this->_pdo->prepare($sql);
+         $stmt->bindParam(':parent_id', $parentID);
+         $stmt->execute();
+         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+         return $result;
+ 
+    
+     }
+
+
 public function firstnamePArent($parentID){
     $sql = $this->_pdo ->prepare('SELECT `parent_firstname` from `parent` WHERE parent_id = :parent_id');
     $sql->bindParam(':parent_id', $parentID);
