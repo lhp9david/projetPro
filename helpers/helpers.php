@@ -147,7 +147,7 @@ var_dump($vacances);
 
      if (in_array(date('d-M-Y', mktime(0, 0, 0, $month, $i, $year)), $event_date) && date('d-M-Y', mktime(0, 0, 0, $month, $i, $year)) == date('d-M-Y')) {
 
-      echo '<td class="text-black ' . (in_array(date($year.'-'.$month.'-'.$i), $vacances) ? ' vacance' : '') . '" type="button" data-bs-toggle="modal" data-bs-target="#modal-' . $i . '"><span class="number">' . $i . '</span></td>';
+      echo '<td class="text-black ' . (in_array(date($year.'-'.$month.'-'.$i), $vacances) ? ' vacance' : '') . '" type="button" data-bs-toggle="modal" data-bs-target="#modal-' . $i . '"><span class="number">' . $i . '</span>';
 
 
       echo '<div class="container_pastille">';
@@ -162,7 +162,7 @@ var_dump($vacances);
 
       // si evenement et weekend
     } else if (!empty(checkEvent($event, date('Y-m-d', mktime(0, 0, 0, $month, $i, $year)))) && $dayOfWeek == 6 || !empty(checkEvent($event, date('Y-m-d', mktime(0, 0, 0, $month, $i, $year)))) && $dayOfWeek == 7) {
-      echo '<td class="text-black grey ' . (in_array(date($year.'-'.$month.'-'.$i), $vacances) ? ' vacance' : '') . '" data-bs-toggle="modal" data-bs-target="#modal-' . $i . '"><span class="number">' . $i . '</span></td>';
+      echo '<td class="text-black grey ' . (in_array(date($year.'-'.$month.'-'.$i), $vacances) ? ' vacance' : '') . '" data-bs-toggle="modal" data-bs-target="#modal-' . $i . '">'.'<span class="number">' . $i . '</span>';
 
       echo '<div class="container_pastille">';
 
@@ -178,7 +178,7 @@ var_dump($vacances);
       // si evenement et jour férié
     } else if (!empty(checkEvent($event, date('Y-m-d', mktime(0, 0, 0, $month, $i, $year)))) && array_key_exists(date('d-M-Y', mktime(0, 0, 0, $month, $i, $year)), $holidays)) {
 
-      echo '<td class="grey flex p-0 text-black ' . (in_array(date($year.'-'.$month.'-'.$i), $vacances) ? ' vacance' : '') . '" data-bs-toggle="modal" data-bs-target="#modal-' . $i . '">' . $holidays[date('d-M-Y', mktime(0, 0, 0, $month, $i, $year))] . '</td>';
+      echo '<td class="grey flex p-0 text-black ' . (in_array(date($year.'-'.$month.'-'.$i), $vacances) ? ' vacance' : '') . '" data-bs-toggle="modal" data-bs-target="#modal-' . $i . '">' . $holidays[date('d-M-Y', mktime(0, 0, 0, $month, $i, $year))] ;
 
       echo '<div class="container_pastille">';
 
@@ -200,14 +200,14 @@ var_dump($vacances);
       // si anniversaire et weekend
     } else if (in_array(date('d-M-Y', mktime(0, 0, 0, $month, $i, $year)), $birthday) && $dayOfWeek == 6 || in_array(date('d-M-Y', mktime(0, 0, 0, $month, $i, $year)), $birthday) && $dayOfWeek == 7) {
 
-      echo '<td class="grey text-black ' . (in_array(date($year.'-'.$month.'-'.$i), $vacances) ? ' vacance' : '') .  '" data-bs-toggle="modal" data-bs-target="#modal-' . $i . '">' . '<img class="present" src="../assets/img/cadeau.png" alt="">' . '</td>';
+      echo '<td class="grey text-black ' . (in_array(date($year.'-'.$month.'-'.$i), $vacances) ? ' vacance' : '') .  '" data-bs-toggle="modal" data-bs-target="#modal-' . $i . '">' . '<img class="present" src="../assets/img/cadeau.png" alt=""></td>';
 
       createModalBirthday($month, $i, $year);
 
       // si anniversaire et evenement
     } else if (in_array(date('d-M-Y', mktime(0, 0, 0, $month, $i, $year)), $birthday) && !empty(checkEvent($event, date('Y-m-d', mktime(0, 0, 0, $month, $i, $year))))) {
 
-      echo '<td class="text-black ' . (in_array(date($year.'-'.$month.'-'.$i), $vacances) ? ' vacance' : '') . '" data-bs-toggle="modal" data-bs-target="#modal-' . $i . '"><img class="present" src="../assets/img/cadeau.png" alt=""></td>';
+      echo '<td class="text-black ' . (in_array(date($year.'-'.$month.'-'.$i), $vacances) ? ' vacance' : '') . '" data-bs-toggle="modal" data-bs-target="#modal-' . $i . '"><img class="present" src="../assets/img/cadeau.png" alt="">';
 
       echo '<div class="container_pastille">';
 
@@ -222,7 +222,7 @@ var_dump($vacances);
 
       // si jour férié
     } else if (array_key_exists(date('d-M-Y', mktime(0, 0, 0, $month, $i, $year)), $holidays)) {
-      echo '<td class="grey flex p-0 text-black border border-dark ' . (in_array(date($year.'-'.$month.'-'.$i), $vacances) ? ' vacance' : '') . '" data-bs-toggle="modal" data-bs-target="#modal-' . $i . '">' . $holidays[date('d-M-Y', mktime(0, 0, 0, $month, $i, $year))] . '</td>';
+      echo '<td class="grey flex p-0 text-black border border-dark ' . (in_array(date($year.'-'.$month.'-'.$i), $vacances) ? ' vacance' : '') . '" data-bs-toggle="modal" data-bs-target="#modal-' . $i . '">' . $holidays[date('d-M-Y', mktime(0, 0, 0, $month, $i, $year))].'</td>' ;
 
       createModal($month, $i, $year, $holidays);
 
@@ -241,7 +241,7 @@ var_dump($vacances);
 
       // si evenement
     } else if (!empty(checkEvent($event, date('Y-m-d', mktime(0, 0, 0, $month, $i, $year))))) {
-      echo '<td class="bg-warning text-black ' . (in_array(date($year.'-'.$month.'-'.$i), $vacances) ? ' vacance' : '') . '" data-bs-toggle="modal" data-bs-target="#modal-' . $i . '"><span class="number">' . $i . '</span></td>';
+      echo '<td class="bg-warning text-black ' . (in_array(date($year.'-'.$month.'-'.$i), $vacances) ? ' vacance' : '') . '" data-bs-toggle="modal" data-bs-target="#modal-' . $i . '"><span class="number">' . $i . '</span>';
 
 
       echo '<div class="container_pastille">';
