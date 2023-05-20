@@ -216,7 +216,10 @@ td:hover {
   height: 2em;
 }
 
-
+.vacance {
+  
+  border: 3px solid #28a745;
+}
 
 
 .legend {
