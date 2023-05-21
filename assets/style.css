@@ -225,13 +225,30 @@ td:hover {
   height: 2em;
 }
 
-.vacance {
-
-
-  background-image: linear-gradient(to top, green 0%, green 10%, transparent 10%, transparent 100%);
+.zoneA {
+height: 3%;
+background-color: red;
+width: 100%;
+position: absolute;
+bottom: 0;
+left: 0;
 }
-
-
+.zoneB {
+height: 3%;
+background-color: blue;
+width: 100%;
+position: absolute;
+bottom: 7%;
+left: 0;
+}
+.zoneC {
+height: 3%;
+background-color: rgb(18, 202, 18);
+width: 100%;
+position: absolute;
+bottom: 14%;
+left: 0;
+}
 
 
 .legend {
@@ -566,7 +583,7 @@ footer {
 }
 
 
-@media screen and (max-width: 992px) {
+@media screen and (max-width: 995px) {
 
 
   .container {

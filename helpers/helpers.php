@@ -16,16 +16,23 @@ function showCalendar($month, $year)
   include('../models/Child.php');
   include('../helpers/database.php');
   include('../config/env.php');
-  $vacances = [];
+  $vacancesA = [];
+  $vacancesB = [];
+  $vacancesC = [];
 // appel de l'api pour récupérer les vacances scolaires
-$url = 'https://data.education.gouv.fr/api/records/1.0/search/?dataset=fr-en-calendrier-scolaire&q=&rows=20&facet=description&facet=population&facet=start_date&facet=end_date&facet=location&facet=zones&facet=annee_scolaire&refine.zones=Zone+B&refine.end_date='.$year;
+$urlZoneA = 'https://data.education.gouv.fr/api/records/1.0/search/?dataset=fr-en-calendrier-scolaire&q=&rows=20&facet=description&facet=population&facet=start_date&facet=end_date&facet=location&facet=zones&facet=annee_scolaire&refine.zones=Zone+A&refine.end_date='.$year;
+$urlZoneB = 'https://data.education.gouv.fr/api/records/1.0/search/?dataset=fr-en-calendrier-scolaire&q=&rows=20&facet=description&facet=population&facet=start_date&facet=end_date&facet=location&facet=zones&facet=annee_scolaire&refine.zones=Zone+B&refine.end_date='.$year;
+$urlZoneC = 'https://data.education.gouv.fr/api/records/1.0/search/?dataset=fr-en-calendrier-scolaire&q=&rows=20&facet=description&facet=population&facet=start_date&facet=end_date&facet=location&facet=zones&facet=annee_scolaire&refine.zones=Zone+C&refine.end_date='.$year;
+
+/*********************************ZONE A *************************/
 
 // enregistrement des données dans une variable
-$data = file_get_contents($url);
-$calendrier = json_decode($data, true);
+$dataZoneA = file_get_contents($urlZoneA);
+$calendrierZoneA = json_decode($dataZoneA, true);
+
 
 // faire une boucle pour récupérer les dates de vacances
-foreach ($calendrier['records'] as $value) {
+foreach ($calendrierZoneA['records'] as $value) {
 
 $startDate = new DateTime($value['fields']['start_date']);
 $startDate->modify('+1 day');
@@ -45,13 +52,83 @@ while ($startDate <= $endDate) {
   $date = str_replace('-0', '-', $date);
 
   // Ajouter uniquement si la date n'est pas déjà dans le tableau
-  if (!in_array($date, $vacances)) {
-    array_push($vacances, $date);
+  if (!in_array($date, $vacancesA)) {
+    array_push($vacancesA, $date);
   }
   $startDate->modify('+1 day');
 }
 
 }
+/*********************************ZONE B ***********************************/
+// enregistrement des données dans une variable
+$dataZoneB = file_get_contents($urlZoneB);
+$calendrierZoneB = json_decode($dataZoneB, true);
+
+
+// faire une boucle pour récupérer les dates de vacances
+foreach ($calendrierZoneB['records'] as $value) {
+
+$startDate = new DateTime($value['fields']['start_date']);
+$startDate->modify('+1 day');
+$endDate = new DateTime($value['fields']['end_date']);
+
+// remplir le tableau des vacances grace aux dates de depart et date de fin 
+while ($startDate <= $endDate) {
+  $date = $startDate->format('Y-m-d');
+  
+  // Supprimer le zéro devant le mois
+  if (substr($date, 5, 1) === '0') {
+    $date = substr_replace($date, '', 5, 1);
+  }
+
+  
+  // Supprimer le zéro devant le jour
+  $date = str_replace('-0', '-', $date);
+
+  // Ajouter uniquement si la date n'est pas déjà dans le tableau
+  if (!in_array($date, $vacancesB)) {
+    array_push($vacancesB, $date);
+  }
+  $startDate->modify('+1 day');
+}
+
+}
+
+/*********************************ZONE C ***********************************/
+// enregistrement des données dans une variable
+$dataZoneC = file_get_contents($urlZoneC);
+$calendrierZoneC = json_decode($dataZoneC, true);
+
+
+// faire une boucle pour récupérer les dates de vacances
+foreach ($calendrierZoneC['records'] as $value) {
+
+$startDate = new DateTime($value['fields']['start_date']);
+$startDate->modify('+1 day');
+$endDate = new DateTime($value['fields']['end_date']);
+
+// remplir le tableau des vacances grace aux dates de depart et date de fin 
+while ($startDate <= $endDate) {
+  $date = $startDate->format('Y-m-d');
+  
+  // Supprimer le zéro devant le mois
+  if (substr($date, 5, 1) === '0') {
+    $date = substr_replace($date, '', 5, 1);
+  }
+
+  
+  // Supprimer le zéro devant le jour
+  $date = str_replace('-0', '-', $date);
+
+  // Ajouter uniquement si la date n'est pas déjà dans le tableau
+  if (!in_array($date, $vacancesC)) {
+    array_push($vacancesC, $date);
+  }
+  $startDate->modify('+1 day');
+}
+
+}
+
 
   $event_date = [];
   $events = new Event;
@@ -147,7 +224,7 @@ while ($startDate <= $endDate) {
 
      if (in_array(date('d-M-Y', mktime(0, 0, 0, $month, $i, $year)), $event_date) && date('d-M-Y', mktime(0, 0, 0, $month, $i, $year)) == date('d-M-Y')) {
 
-      echo '<td class="text-black ' . (in_array(date($year.'-'.$month.'-'.$i), $vacances) ? ' vacance' : '') . '" type="button" data-bs-toggle="modal" data-bs-target="#modal-' . $i . '"><span class="number">' . $i . '</span>';
+      echo '<td class="text-black ' . (in_array(date($year.'-'.$month.'-'.$i), $vacancesA) ? ' vacanceA' : '') .  (in_array(date($year.'-'.$month.'-'.$i), $vacancesB) ? ' vacanceB' : '') . (in_array(date($year.'-'.$month.'-'.$i), $vacancesC) ? ' vacanceC' : '') .'" type="button" data-bs-toggle="modal" data-bs-target="#modal-' . $i . '"><span class="number">' . $i . '</span>';
 
 
       echo '<div class="container_pastille">';
@@ -162,7 +239,7 @@ while ($startDate <= $endDate) {
 
       // si evenement et weekend
     } else if (!empty(checkEvent($event, date('Y-m-d', mktime(0, 0, 0, $month, $i, $year)))) && $dayOfWeek == 6 || !empty(checkEvent($event, date('Y-m-d', mktime(0, 0, 0, $month, $i, $year)))) && $dayOfWeek == 7) {
-      echo '<td class="text-black grey ' . (in_array(date($year.'-'.$month.'-'.$i), $vacances) ? ' vacance' : '') . '" data-bs-toggle="modal" data-bs-target="#modal-' . $i . '">'.'<span class="number">' . $i . '</span>';
+      echo '<td class="text-black grey ' . (in_array(date($year.'-'.$month.'-'.$i), $vacancesA) ? ' vacanceA' : '') .(in_array(date($year.'-'.$month.'-'.$i), $vacancesB) ? ' vacanceB' : '') .(in_array(date($year.'-'.$month.'-'.$i), $vacancesC) ? ' vacanceC' : '') . '" data-bs-toggle="modal" data-bs-target="#modal-' . $i . '">'.'<span class="number">' . $i . '</span>';
 
       echo '<div class="container_pastille">';
 
@@ -178,7 +255,7 @@ while ($startDate <= $endDate) {
       // si evenement et jour férié
     } else if (!empty(checkEvent($event, date('Y-m-d', mktime(0, 0, 0, $month, $i, $year)))) && array_key_exists(date('d-M-Y', mktime(0, 0, 0, $month, $i, $year)), $holidays)) {
 
-      echo '<td class="grey flex p-0 text-black ' . (in_array(date($year.'-'.$month.'-'.$i), $vacances) ? ' vacance' : '') . '" data-bs-toggle="modal" data-bs-target="#modal-' . $i . '">' . $holidays[date('d-M-Y', mktime(0, 0, 0, $month, $i, $year))] ;
+      echo '<td class="grey flex p-0 text-black ' . (in_array(date($year.'-'.$month.'-'.$i), $vacancesA) ? ' vacanceA' : '') .(in_array(date($year.'-'.$month.'-'.$i), $vacancesB) ? ' vacanceB' : '') .(in_array(date($year.'-'.$month.'-'.$i), $vacancesC) ? ' vacanceC' : '') . '" data-bs-toggle="modal" data-bs-target="#modal-' . $i . '">' . $holidays[date('d-M-Y', mktime(0, 0, 0, $month, $i, $year))] ;
 
       echo '<div class="container_pastille">';
 
@@ -193,21 +270,21 @@ while ($startDate <= $endDate) {
       // si anniversaire et jour ferie 
     } else if (in_array(date('d-M-Y', mktime(0, 0, 0, $month, $i, $year)), $birthday) && array_key_exists(date('d-M-Y', mktime(0, 0, 0, $month, $i, $year)), $holidays)) {
 
-      echo '<td class="grey text-black ' . (in_array(date($year.'-'.$month.'-'.$i), $vacances) ? ' vacance' : '') . '" data-bs-toggle="modal" data-bs-target="#modal-' . $i . '"><img class="present" src="../assets/img/cadeau.png" alt=""></td>';
+      echo '<td class="grey text-black ' . (in_array(date($year.'-'.$month.'-'.$i), $vacancesA) ? ' vacanceA' : '') .(in_array(date($year.'-'.$month.'-'.$i), $vacancesB) ? ' vacanceB' : '') .(in_array(date($year.'-'.$month.'-'.$i), $vacancesC) ? ' vacanceC' : '') . '" data-bs-toggle="modal" data-bs-target="#modal-' . $i . '"><img class="present" src="../assets/img/cadeau.png" alt=""></td>';
 
       createModalBirthday($month, $i, $year);
 
       // si anniversaire et weekend
     } else if (in_array(date('d-M-Y', mktime(0, 0, 0, $month, $i, $year)), $birthday) && $dayOfWeek == 6 || in_array(date('d-M-Y', mktime(0, 0, 0, $month, $i, $year)), $birthday) && $dayOfWeek == 7) {
 
-      echo '<td class="grey text-black ' . (in_array(date($year.'-'.$month.'-'.$i), $vacances) ? ' vacance' : '') .  '" data-bs-toggle="modal" data-bs-target="#modal-' . $i . '">' . '<img class="present" src="../assets/img/cadeau.png" alt=""></td>';
+      echo '<td class="grey text-black ' . (in_array(date($year.'-'.$month.'-'.$i), $vacancesA) ? ' vacanceA' : '') .(in_array(date($year.'-'.$month.'-'.$i), $vacancesB) ? ' vacanceB' : '') .(in_array(date($year.'-'.$month.'-'.$i), $vacancesC) ? ' vacanceC' : '') .  '" data-bs-toggle="modal" data-bs-target="#modal-' . $i . '">' . '<img class="present" src="../assets/img/cadeau.png" alt=""></td>';
 
       createModalBirthday($month, $i, $year);
 
       // si anniversaire et evenement
     } else if (in_array(date('d-M-Y', mktime(0, 0, 0, $month, $i, $year)), $birthday) && !empty(checkEvent($event, date('Y-m-d', mktime(0, 0, 0, $month, $i, $year))))) {
 
-      echo '<td class="text-black ' . (in_array(date($year.'-'.$month.'-'.$i), $vacances) ? ' vacance' : '') . '" data-bs-toggle="modal" data-bs-target="#modal-' . $i . '"><img class="present" src="../assets/img/cadeau.png" alt="">';
+      echo '<td class="text-black ' . (in_array(date($year.'-'.$month.'-'.$i), $vacancesA) ? ' vacanceA' : '') .(in_array(date($year.'-'.$month.'-'.$i), $vacancesB) ? ' vacanceB' : '') .(in_array(date($year.'-'.$month.'-'.$i), $vacancesC) ? ' vacanceC' : '') . '" data-bs-toggle="modal" data-bs-target="#modal-' . $i . '"><img class="present" src="../assets/img/cadeau.png" alt="">';
 
       echo '<div class="container_pastille">';
 
@@ -222,26 +299,26 @@ while ($startDate <= $endDate) {
 
       // si jour férié
     } else if (array_key_exists(date('d-M-Y', mktime(0, 0, 0, $month, $i, $year)), $holidays)) {
-      echo '<td class="grey flex p-0 text-black border border-dark ' . (in_array(date($year.'-'.$month.'-'.$i), $vacances) ? ' vacance' : '') . '" data-bs-toggle="modal" data-bs-target="#modal-' . $i . '">' . $holidays[date('d-M-Y', mktime(0, 0, 0, $month, $i, $year))].'</td>' ;
+      echo '<td class="grey flex p-0 text-black border border-dark ' . (in_array(date($year.'-'.$month.'-'.$i), $vacancesA) ? ' vacanceA' : '') .(in_array(date($year.'-'.$month.'-'.$i), $vacancesB) ? ' vacanceB' : '') .(in_array(date($year.'-'.$month.'-'.$i), $vacancesC) ? ' vacanceC' : '') . '" data-bs-toggle="modal" data-bs-target="#modal-' . $i . '">' . $holidays[date('d-M-Y', mktime(0, 0, 0, $month, $i, $year))].'</td>' ;
 
       createModal($month, $i, $year, $holidays);
 
       // anniversaire en vert
     } else if (in_array(date('d-M-Y', mktime(0, 0, 0, $month, $i, $year)), $birthday)) {
-      echo '<td class="text-black ' . (in_array(date($year.'-'.$month.'-'.$i), $vacances) ? ' vacance' : '') . '" data-bs-toggle="modal" data-bs-target="#modal-' . $i . '"><img class="present" src="../assets/img/cadeau.png" alt=""></td>';
+      echo '<td class="text-black ' . (in_array(date($year.'-'.$month.'-'.$i), $vacancesA) ? ' vacanceA' : '') .(in_array(date($year.'-'.$month.'-'.$i), $vacancesB) ? ' vacanceB' : '') .(in_array(date($year.'-'.$month.'-'.$i), $vacancesC) ? ' vacanceC' : '') . '" data-bs-toggle="modal" data-bs-target="#modal-' . $i . '"><img class="present" src="../assets/img/cadeau.png" alt=""></td>';
 
       createModalBirthday($month, $i, $year);
 
       // date d'aujourd'hui en jaune
     } else if (date('d-M-Y', mktime(0, 0, 0, $month, $i, $year)) == date('d-M-Y')) {
 
-      echo '<td class="bg-warning text-black ' . (in_array(date($year.'-'.$month.'-'.$i), $vacances) ? ' vacance' : '') . '" data-bs-toggle="modal" data-bs-target="#modal-' . $i . '"><span class="number">' . $i . '</span></td>';
+      echo '<td class="bg-warning text-black ' . (in_array(date($year.'-'.$month.'-'.$i), $vacancesA) ? ' vacanceA' : '') .(in_array(date($year.'-'.$month.'-'.$i), $vacancesA) ? ' vacanceA' : '') .(in_array(date($year.'-'.$month.'-'.$i), $vacancesA) ? ' vacanceA' : '') . '" data-bs-toggle="modal" data-bs-target="#modal-' . $i . '"><span class="number">' . $i . '</span></td>';
 
       createModal($month, $i, $year, $holidays);
 
       // si evenement
     } else if (!empty(checkEvent($event, date('Y-m-d', mktime(0, 0, 0, $month, $i, $year))))) {
-      echo '<td class="text-black ' . (in_array(date($year.'-'.$month.'-'.$i), $vacances) ? ' vacance' : '') . '" data-bs-toggle="modal" data-bs-target="#modal-' . $i . '"><span class="number">' . $i . '</span>';
+      echo '<td class="text-black ' . (in_array(date($year.'-'.$month.'-'.$i), $vacancesA) ? ' vacanceA' : '') .(in_array(date($year.'-'.$month.'-'.$i), $vacancesB) ? ' vacanceB' : '') .(in_array(date($year.'-'.$month.'-'.$i), $vacancesC) ? ' vacanceC' : '') . '" data-bs-toggle="modal" data-bs-target="#modal-' . $i . '"><span class="number">' . $i . '</span>';
 
 
       echo '<div class="container_pastille">';
@@ -256,13 +333,13 @@ while ($startDate <= $endDate) {
       //samedi et dimanche en gris
     } else if ($dayOfWeek == 6 || $dayOfWeek == 7) {
 
-      echo '<td class="grey ' . (in_array(date($year.'-'.$month.'-'.$i), $vacances) ? 'vacance' : '') . '" data-bs-toggle="modal" data-bs-target="#modal-' . $i . '"><span class="number">' . $i . '</span></td>';
+      echo '<td class="grey ' . (in_array(date($year.'-'.$month.'-'.$i), $vacancesA) ? 'vacanceA' : '') .(in_array(date($year.'-'.$month.'-'.$i), $vacancesB) ? ' vacanceB' : '') .(in_array(date($year.'-'.$month.'-'.$i), $vacancesC) ? ' vacanceC' : '') . '" data-bs-toggle="modal" data-bs-target="#modal-' . $i . '"><span class="number">' . $i . '</span></td>';
 
       createModal($month, $i, $year, $holidays);
 
     } else {
 
-      echo '<td class="' . (in_array(date($year.'-'.$month.'-'.$i), $vacances) ? 'vacance' : '') . '" data-bs-toggle="modal" data-bs-target="#modal-' . $i . '"><span class="number">' . $i . '</span></td>';
+      echo '<td class="' . (in_array(date($year.'-'.$month.'-'.$i), $vacancesA) ? 'vacanceA' : '') .(in_array(date($year.'-'.$month.'-'.$i), $vacancesB) ? ' vacanceB' : '') .(in_array(date($year.'-'.$month.'-'.$i), $vacancesC) ? ' vacanceC' : '') . '" data-bs-toggle="modal" data-bs-target="#modal-' . $i . '"><span class="number">' . $i . '</span></td>';
 
       createModal($month, $i, $year, $holidays);
 
