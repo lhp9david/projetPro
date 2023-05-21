@@ -28,7 +28,7 @@
             '<div class="col-lg-6">'. showForm($month, $year) .'</div>';
             echo '<h1 class="col-lg-6 text-end mt-5 ">'.$months[$month].' '.$year.'</h1>';
             echo '</div>';
-            showCalendar($month, $year);
+            showCalendar(ltrim($month, '0'), $year);
             
         } else {
             echo '<div class="row mx-0">';

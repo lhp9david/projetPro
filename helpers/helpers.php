@@ -18,7 +18,7 @@ function showCalendar($month, $year)
   include('../config/env.php');
   $vacances = [];
 // appel de l'api pour récupérer les vacances scolaires
-$url = 'https://data.education.gouv.fr/api/records/1.0/search/?dataset=fr-en-calendrier-scolaire&q=&rows=20&facet=description&facet=population&facet=start_date&facet=end_date&facet=location&facet=zones&facet=annee_scolaire&refine.zones=Zone+C&refine.start_date='.($year-1);
+$url = 'https://data.education.gouv.fr/api/records/1.0/search/?dataset=fr-en-calendrier-scolaire&q=&rows=20&facet=description&facet=population&facet=start_date&facet=end_date&facet=location&facet=zones&facet=annee_scolaire&refine.zones=Zone+B&refine.end_date='.$year;
 
 // enregistrement des données dans une variable
 $data = file_get_contents($url);
@@ -106,7 +106,7 @@ while ($startDate <= $endDate) {
     date("d-M-Y", mktime(0, 0, 0, 12, 25, $year)) => 'Jour de Noël'
 
   ];
-var_dump($vacances);
+
 
 
 
@@ -241,7 +241,7 @@ var_dump($vacances);
 
       // si evenement
     } else if (!empty(checkEvent($event, date('Y-m-d', mktime(0, 0, 0, $month, $i, $year))))) {
-      echo '<td class="bg-warning text-black ' . (in_array(date($year.'-'.$month.'-'.$i), $vacances) ? ' vacance' : '') . '" data-bs-toggle="modal" data-bs-target="#modal-' . $i . '"><span class="number">' . $i . '</span>';
+      echo '<td class="text-black ' . (in_array(date($year.'-'.$month.'-'.$i), $vacances) ? ' vacance' : '') . '" data-bs-toggle="modal" data-bs-target="#modal-' . $i . '"><span class="number">' . $i . '</span>';
 
 
       echo '<div class="container_pastille">';
@@ -289,6 +289,7 @@ var_dump($vacances);
 /******************************************Fonction pour afficher le formulaire******************************************/
 function showForm($month, $year)
 {
+  
   $formatter = new IntlDateFormatter('fr_FR', IntlDateFormatter::FULL, IntlDateFormatter::NONE, 'Europe/Paris', IntlDateFormatter::GREGORIAN);
   $formatter->setPattern('MMMM');
   echo '  <form class="col-lg-6 mt-5" action="" method="get">
@@ -324,6 +325,7 @@ function showForm($month, $year)
   echo '  </select>
             <input class="" type="submit" value="valider">
             </form>';
+            
 }
 
 /*****************************fonction pour creer la modal  ******************************************************/

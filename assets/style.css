@@ -5,6 +5,7 @@ body {
   box-sizing: border-box;
   min-height: 100vh;
 }
+
 body {
   display: flex;
   flex-direction: column;
@@ -54,6 +55,7 @@ body {
   margin: 1em auto;
   width: fit-content;
 }
+
 /********************************************************Inscription****************************************************/
 .inscription {
   width: fit-content;
@@ -81,33 +83,34 @@ body {
 }
 
 .deco {
-color: #737373;
+  color: #737373;
 }
+
 .deco:hover {
   color: red;
   transition: 0.5s;
 }
+
 .lien {
-justify-content: space-between;
+  justify-content: space-between;
 }
 
 
 /*******************************add-child************************************/
-.addChild a{
+.addChild a {
   text-decoration: none;
   color: white;
 }
 
 /***********************Choix du mois et de l'année**************************/
-.choice,.doc
- {
+.choice,
+.doc {
   width: fit-content;
   padding: 1em;
   font-weight: bold;
 }
 
-.choice input
- {
+.choice input {
   border-radius: 1em;
   background-color: black;
   color: white;
@@ -136,7 +139,8 @@ justify-content: space-between;
   right: 2em;
 }
 
-.arrowDroite:hover,.arrowGauche:hover {
+.arrowDroite:hover,
+.arrowGauche:hover {
   scale: 1.2;
   transition: 0.3s;
 }
@@ -184,9 +188,11 @@ td:hover {
 .grey {
   background-color: #ebf0f3 !important;
 }
+
 .greyDark {
   background-color: #d4d9dd !important;
 }
+
 .number {
   font-size: 1.5em;
 }
@@ -200,26 +206,32 @@ td:hover {
   justify-content: space-evenly;
   align-items: center;
   margin: auto;
- 
+
 }
+
 .pastille {
   height: 2em;
   width: 2em;
 }
+
 .eventMedecin {
   background-image: url('../assets/img/calendrier.png');
   background-size: 2em;
   background-repeat: no-repeat;
 }
+
 .pastille img {
   width: 2em;
   height: 2em;
 }
 
 .vacance {
-  
-  border: 3px solid #28a745;
+
+
+  background-image: linear-gradient(to top, green 0%, green 10%, transparent 10%, transparent 100%);
 }
+
+
 
 
 .legend {
@@ -227,11 +239,13 @@ td:hover {
   justify-content: space-between;
   flex-wrap: wrap;
 }
+
 .legend_pastille {
   display: flex;
   justify-content: space-between;
   gap: 1em;
 }
+
 .legend_pastille img {
   height: 2em;
   width: 2em;
@@ -245,16 +259,19 @@ td:hover {
   margin: auto;
   width: auto;
 }
- .modal-body {
+
+.modal-body {
   display: flex;
   justify-content: space-around;
   align-items: center;
- }
+}
+
 .icon-modal {
   object-fit: cover;
   height: 8em;
   width: 8em;
 }
+
 /*********************************************************view-rdv****************************************************/
 
 .event {
@@ -277,37 +294,48 @@ td:hover {
   cursor: pointer;
 }
 
-.medecin,#medecin {
+.medecin,
+#medecin {
   border: 0.2em solid #28a745;
 }
-.anniv,#anniv {
-  border:0.2em solid #17a2b8;
+
+.anniv,
+#anniv {
+  border: 0.2em solid #17a2b8;
 }
-.sport,#sport {
+
+.sport,
+#sport {
   border: 0.2em solid #dc3545;
 }
-.scolaire,#scolaire {
+
+.scolaire,
+#scolaire {
   border: 0.2em solid #ffc107;
 }
-.other,#other {
+
+.other,
+#other {
   border: 0.2em solid #6c757d;
 }
+
 /*keyframe apparition en fondu*/
 @keyframes opacity {
   0% {
     opacity: 0;
-   
+
   }
+
   100% {
     opacity: 1;
-  
+
   }
 }
 
 
 
 .bloc-event {
-  animation: opacity 0.5s ;
+  animation: opacity 0.5s;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -324,46 +352,54 @@ td:hover {
 .elt {
   height: 10em;
   width: 8em;
-  display:block;
-  margin:auto;
+  display: block;
+  margin: auto;
   border-radius: 7px;
   object-fit: cover;
 }
 
-.photo,#photo {
+.photo,
+#photo {
   border: 0.2em solid blueviolet;
   border-radius: 10px;
 }
 
-.ecole,#ecole {
+.ecole,
+#ecole {
   border: 0.2em solid #ffc107;
   border-radius: 10px;
 }
+
 .hide {
   display: none !important;
 }
-.medical,#medical {
+
+.medical,
+#medical {
   border: 0.2em solid #28a745;
   border-radius: 10px;
 }
 
-.autre,#autre {
+.autre,
+#autre {
   border: 0.2em solid #6c757d;
   border-radius: 10px;
 }
 
-.elt:hover{
+.elt:hover {
   cursor: pointer;
 }
+
 .doc_container {
   display: flex;
   justify-content: center;
-  
+
   flex-wrap: wrap;
   gap: 1em;
- margin-bottom: 1em;
+  margin-bottom: 1em;
 
 }
+
 .button_type_doc {
   display: flex;
   width: 100%;
@@ -386,13 +422,14 @@ td:hover {
   scale: 1.1;
   transition: 0.5s;
 }
+
 .container-doc {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-wrap: wrap; 
+  flex-wrap: wrap;
   gap: 1em;
- 
+
 }
 
 .box-doc {
@@ -415,6 +452,7 @@ td:hover {
   text-align: end;
   font-size: 2em;
 }
+
 /*******************************add-event************************************/
 
 
@@ -437,12 +475,15 @@ textarea {
   display: flex;
   justify-content: space-around;
 }
+
 /**************************************view-infos************************************/
 
-.infosEnfant,.infosParent,.infosParent2 {
+.infosEnfant,
+.infosParent,
+.infosParent2 {
   display: flex;
   flex-direction: column;
-  justify-content:center;
+  justify-content: center;
   align-items: center;
   border-radius: 50%;
   height: 20em;
@@ -451,19 +492,19 @@ textarea {
 }
 
 .infosParent {
-  border:0.5em solid orange;
+  border: 0.5em solid orange;
 }
 
 .infosEnfant {
-  border:  0.5em solid;
-  border-top-color:blue;
-  border-right-color:blue;
-  border-bottom-color:orange;
-  border-left-color:orange;
+  border: 0.5em solid;
+  border-top-color: blue;
+  border-right-color: blue;
+  border-bottom-color: orange;
+  border-left-color: orange;
 }
 
 .infosParent2 {
-  border:0.5em solid blue;
+  border: 0.5em solid blue;
 }
 
 .infos img {
@@ -513,7 +554,7 @@ footer {
   color: black;
   font-weight: bold;
   margin: 0 1em;
-  
+
 }
 
 /********************************************************404********************************************************/
@@ -526,13 +567,13 @@ footer {
 
 
 @media screen and (max-width: 992px) {
- 
+
 
   .container {
     padding: 0;
   }
 
-  
+
   .legend_pastille {
     display: flex;
     justify-content: center;
@@ -541,7 +582,7 @@ footer {
     margin: 1em;
   }
 
-  .legend_pastille img{
+  .legend_pastille img {
     margin-right: 0.5em;
     height: 1.5em;
     width: 1.5em;
@@ -559,7 +600,7 @@ footer {
     padding: 0.4em;
   }
 
-  .choice{
+  .choice {
     font-size: 0.6em;
     padding: 0.5em;
   }
@@ -576,9 +617,9 @@ footer {
     left: 1em;
   }
 
-.bloc-icon {
-  margin-top: 0.5em;
-}
+  .bloc-icon {
+    margin-top: 0.5em;
+  }
 
 
 
@@ -606,30 +647,22 @@ footer {
     justify-content: none;
   }
 
-  
+
   .button_type_doc button {
     width: auto;
-   
+
   }
 
 }
 
-@media screen and (max-width: 1440px){
+@media screen and (max-width: 1440px) {
 
 
 
-  .arrowDroite,.arrowGauche {
+  .arrowDroite,
+  .arrowGauche {
     font-size: 1.2em;
     position: static;
   }
 
 }
-
-
-
-
-
-
-
-
-
