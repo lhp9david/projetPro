@@ -369,7 +369,7 @@ function showForm($month, $year)
   
   $formatter = new IntlDateFormatter('fr_FR', IntlDateFormatter::FULL, IntlDateFormatter::NONE, 'Europe/Paris', IntlDateFormatter::GREGORIAN);
   $formatter->setPattern('MMMM');
-  echo '  <form class="changeMonthYear col-lg-9 mt-3" action="" method="get">
+  echo '  <form class="changeMonthYear col-lg-8 mt-3" action="" method="get">
             
             <label for="month"></label>';
   echo '  <a class="" href="?month=' . (($month == '1') ? '12' : $month - '1') . '&year=' . (($month == '01') ? $year - 1 : $year) . '"><i class="bi bi-caret-left-fill arrowGauche"></i></a>';

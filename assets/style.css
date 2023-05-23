@@ -12,6 +12,7 @@ body {
   flex-direction: column;
   background-color: #F6F2EF;
   gap: 0;
+  
 }
 
 
@@ -128,16 +129,16 @@ body {
 .arrowGauche {
   color: black;
   font-size: 3em;
-  position: fixed;
-  top: 50%;
+  position: absolute;
+  top: 60%;
   left: 2em;
 }
 
 .arrowDroite {
   color: black;
   font-size: 3em;
-  position: fixed;
-  top: 50%;
+  position: absolute;
+  top: 60%;
   right: 2em;
 }
 
@@ -293,6 +294,7 @@ left: 0;
   align-items: center;
   margin: auto;
   width: auto;
+  flex-direction: column;
 }
 
 .modal-body {
@@ -634,6 +636,7 @@ h1 {
     width: 95%;
     margin: auto;
     height: auto;
+    position: relative;
   }
 
   th,
