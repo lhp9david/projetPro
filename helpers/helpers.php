@@ -369,11 +369,11 @@ function showForm($month, $year)
   
   $formatter = new IntlDateFormatter('fr_FR', IntlDateFormatter::FULL, IntlDateFormatter::NONE, 'Europe/Paris', IntlDateFormatter::GREGORIAN);
   $formatter->setPattern('MMMM');
-  echo '  <form class="col-lg-6 mt-5" action="" method="get">
+  echo '  <form class="changeMonthYear col-lg-9 mt-3" action="" method="get">
             
             <label for="month"></label>';
-  echo '  </select><a class="" href="?month=' . (($month == '1') ? '12' : $month - '1') . '&year=' . (($month == '01') ? $year - 1 : $year) . '"><i class="bi bi-caret-left-fill arrowGauche"></i></a>';
-  echo '  <select class = ""name="month">';
+  echo '  <a class="" href="?month=' . (($month == '1') ? '12' : $month - '1') . '&year=' . (($month == '01') ? $year - 1 : $year) . '"><i class="bi bi-caret-left-fill arrowGauche"></i></a>';
+  echo '  <select class = "form-select change" name="month">';
 
   // Génère une liste de mois de janvier à décembre, ucfirst() met la première lettre en majuscule
 
@@ -387,7 +387,7 @@ function showForm($month, $year)
   }
   echo '  </select><a class="" href="?month=' . (($month == 12) ? '1' : $month + '1') . '&year=' . (($month == '12') ? $year + 1 : $year) . '"><i class="bi bi-caret-right-fill arrowDroite"></i></a>';
   echo '<label for="year" class="me-2"></label>';
-  echo '<select class="" name="year">';
+  echo '<select class="form-select change" name="year">';
 
   // Génère la liste des années de 1970 à 2037
 
@@ -400,7 +400,7 @@ function showForm($month, $year)
   }
 
   echo '  </select>
-            <input class="" type="submit" value="valider">
+            <input class="btn btn-primary py-1 px-2 ms-3" type="submit" value="valider">
             </form>';
             
 }

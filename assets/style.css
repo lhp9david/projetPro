@@ -4,12 +4,14 @@ body {
   padding: 0;
   box-sizing: border-box;
   min-height: 100vh;
+
 }
 
 body {
   display: flex;
   flex-direction: column;
   background-color: #F6F2EF;
+  gap: 0;
 }
 
 
@@ -146,16 +148,30 @@ body {
 }
 
 /*******************CALENDRIER******************************/
+.tete {
+  justify-content: center;
+  width: 90%;
+}
+.changeMonthYear {
+    display: flex;
+    gap: 0.2em;
+    align-items: center;
+}
+.change {
+  height: fit-content;
+    width: auto;
+}
 .table {
   border-collapse: collapse;
-  width: 100%;
+  margin: auto;
   animation: opacity 1.5s;
+  scale: 0.9;
 }
 
 th,
 td {
 
-  height: 8em;
+  height: 7em;
   border: 1px solid black;
   padding: 8px;
   width: 100px;
@@ -255,6 +271,8 @@ left: 0;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+  width:90%;
+  margin: auto;
 }
 
 .legend_pastille {
@@ -585,12 +603,19 @@ footer {
 
 @media screen and (max-width: 995px) {
 
-
+h1 {
+  font-size: 1.5em;
+}
   .container {
     padding: 0;
   }
 
-
+.changeMonthYear {
+    padding: 0;
+    scale: 0.9;
+    flex-wrap: wrap;
+   
+}
   .legend_pastille {
     display: flex;
     justify-content: center;
