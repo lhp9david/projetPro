@@ -45,6 +45,9 @@
 <div class="legend_pastille"><img src="../assets/img/eventSport.png" alt=""><div>Sport</div></div>
 <div class="legend_pastille"><img src="../assets/img/eventScolaire.png" alt=""><div>Ecole</div></div>
 <div class="legend_pastille"><img src="../assets/img/eventAutre.png" alt=""><div>Autre</div></div>
+<div class="legend_pastille"><img src="../assets/img/red.png" alt=""><div>Zone A</div></div>
+<div class="legend_pastille"><img src="../assets/img/blue.png" alt=""><div>Zone B</div></div>
+<div class="legend_pastille"><img src="../assets/img/green.png" alt=""><div>Zone C</div></div>
 </div>
     </div>
     
